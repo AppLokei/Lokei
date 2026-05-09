@@ -1,4 +1,4 @@
-package Lokei.aplication.domain.enums;
+package Lokei.aplication.infrastructure.persistence.enums;
 
 public enum categoriaEnum {
     Alicates(1),

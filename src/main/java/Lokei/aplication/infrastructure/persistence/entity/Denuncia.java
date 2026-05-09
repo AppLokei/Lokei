@@ -1,4 +1,4 @@
-package Lokei.aplication.domain.entity;
+package Lokei.aplication.infrastructure.persistence.entity;
 
 import jakarta.persistence.*;
 

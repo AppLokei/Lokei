@@ -1,6 +1,6 @@
-package Lokei.aplication.domain.entity;
+package Lokei.aplication.infrastructure.persistence.entity;
 
-import Lokei.aplication.domain.enums.statusAluguelEnum;
+import Lokei.aplication.infrastructure.persistence.enums.statusAluguelEnum;
 import jakarta.persistence.*;
 
 import java.io.Serializable;

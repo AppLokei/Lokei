@@ -1,9 +1,8 @@
-package Lokei.aplication.domain.entity;
+package Lokei.aplication.infrastructure.persistence.entity;
 
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.IdentityHashMap;
 import java.util.Objects;
 
 @Entity
