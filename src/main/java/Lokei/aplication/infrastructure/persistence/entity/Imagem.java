@@ -7,18 +7,18 @@ import java.util.Objects;
 
 @Entity
 @Table
-public class imagem implements Serializable {
+public class Imagem implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String imagemUrl;
 
-    public imagem(){
+    public Imagem(){
 
     }
 
-    public imagem(Integer id, String imagemUrl) {
+    public Imagem(Integer id, String imagemUrl) {
         this.id = id;
         this.imagemUrl = imagemUrl;
     }
@@ -42,7 +42,7 @@ public class imagem implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        imagem imagem = (imagem) o;
+        Imagem imagem = (Imagem) o;
         return Objects.equals(id, imagem.id);
     }
 

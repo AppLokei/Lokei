@@ -1,5 +1,6 @@
 package Lokei.aplication.infrastructure.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -17,15 +18,21 @@ public class Avaliacao implements Serializable {
     private String comentario;
     private Date dataCriacao;
 
+    @OneToOne
+    @JoinColumn(name = "aluguel_id")
+    private Aluguel aluguel;
+
+
     public Avaliacao(){
 
     }
 
-    public Avaliacao(Integer id, Integer nota, String comentario, Date dataCriacao) {
+    public Avaliacao(Integer id, Integer nota, String comentario, Date dataCriacao, Aluguel aluguel) {
         this.id = id;
         this.nota = nota;
         this.comentario = comentario;
         this.dataCriacao = dataCriacao;
+        this.aluguel = aluguel;
     }
 
     public Integer getId() {
@@ -59,6 +66,15 @@ public class Avaliacao implements Serializable {
     public void setDataCriacao(Date dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
+
+    public Aluguel getAluguel() {
+        return aluguel;
+    }
+
+    public void setAluguel(Aluguel aluguel) {
+        this.aluguel = aluguel;
+    }
+
 
     @Override
     public boolean equals(Object o) {

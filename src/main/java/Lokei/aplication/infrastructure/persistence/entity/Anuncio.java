@@ -6,8 +6,7 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table
@@ -19,15 +18,20 @@ public class Anuncio implements Serializable {
     private String titulo;
     private String descricao;
     private BigDecimal valorDiario;
+    @Enumerated(EnumType.STRING)
     private statusAnuncioEnum status;
     private Date dateCriacao;
+    @Enumerated(EnumType.STRING)
     private categoriaEnum categoria;
+
+    @OneToMany(mappedBy = "anuncio")
+    private Set<Aluguel> aluguel= new HashSet<>();
 
     public Anuncio(){
 
     }
 
-    public Anuncio(Integer id, String titulo, String descricao, BigDecimal valorDiario, statusAnuncioEnum status, Date dateCriacao, categoriaEnum categoria) {
+    public Anuncio(Integer id, String titulo, String descricao, BigDecimal valorDiario, statusAnuncioEnum status, Date dateCriacao, categoriaEnum categoria, Set<Aluguel> aluguel) {
         this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
@@ -35,6 +39,7 @@ public class Anuncio implements Serializable {
         this.status = status;
         this.dateCriacao = dateCriacao;
         this.categoria = categoria;
+        this.aluguel = aluguel;
     }
 
     public Integer getId() {
@@ -69,14 +74,6 @@ public class Anuncio implements Serializable {
         this.valorDiario = valorDiario;
     }
 
-    public statusAnuncioEnum getStatus() {
-        return status;
-    }
-
-    public void setStatus(statusAnuncioEnum status) {
-        this.status = status;
-    }
-
     public Date getDateCriacao() {
         return dateCriacao;
     }
@@ -91,6 +88,22 @@ public class Anuncio implements Serializable {
 
     public void setCategoria(categoriaEnum categoria) {
         this.categoria = categoria;
+    }
+
+    public Set<Aluguel> getAluguel() {
+        return aluguel;
+    }
+
+    public void setAluguel(Set<Aluguel> aluguel) {
+        this.aluguel = aluguel;
+    }
+
+    public statusAnuncioEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(statusAnuncioEnum status) {
+        this.status = status;
     }
 
     @Override
