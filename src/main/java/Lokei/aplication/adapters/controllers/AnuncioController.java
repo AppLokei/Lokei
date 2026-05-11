@@ -6,6 +6,7 @@ import Lokei.aplication.adapters.mapper.AnuncioControllerMapper;
 import Lokei.aplication.application.usecases.anuncio.*;
 import Lokei.aplication.domain.entities.Anuncio;
 import Lokei.aplication.domain.enums.CategoriaEnum;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,7 @@ public class AnuncioController {
     }
 
     @PostMapping
-    public ResponseEntity<AnuncioResponseDTO> criar(@RequestBody AnuncioRequestDTO dto) {
+    public ResponseEntity<AnuncioResponseDTO> criar(@RequestBody @Valid AnuncioRequestDTO dto) {
         Anuncio anuncio = AnuncioControllerMapper.toAnuncio(dto);
         Anuncio criado = criarAnuncioUseCase.execute(anuncio);
         AnuncioResponseDTO response = AnuncioControllerMapper.toResponseDTO(criado);
@@ -42,7 +43,7 @@ public class AnuncioController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<AnuncioResponseDTO> atualizar(@PathVariable Long id, @RequestBody AnuncioRequestDTO dto) {
+    public ResponseEntity<AnuncioResponseDTO> atualizar(@PathVariable Long id, @RequestBody @Valid AnuncioRequestDTO dto) {
         Anuncio anuncio = AnuncioControllerMapper.toAnuncio(dto);
         anuncio.setId(id);
         Anuncio atualizado = atualizarAnuncioUseCase.execute(anuncio);
