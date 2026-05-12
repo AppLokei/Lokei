@@ -19,7 +19,7 @@ public class Avaliacao implements Serializable {
     private Date dataCriacao;
 
     @OneToOne
-    @JoinColumn(name = "aluguel_id")
+    @JoinColumn(name = "aluguel_id", nullable = false)
     private Aluguel aluguel;
 
 

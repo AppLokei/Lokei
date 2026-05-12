@@ -23,8 +23,7 @@ public class Aluguel implements Serializable {
     private statusAluguelEnum statusAluguel;
     private Date datacriacao;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "avaliacao_id")
+    @OneToOne(mappedBy = "aluguel", cascade = CascadeType.ALL)
     private Avaliacao avaliacao;
 
     @ManyToOne

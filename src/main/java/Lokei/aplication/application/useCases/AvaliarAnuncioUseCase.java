@@ -6,6 +6,7 @@ import Lokei.aplication.infrastructure.persistence.enums.statusAluguelEnum;
 import Lokei.aplication.infrastructure.persistence.repository.AluguelRepository;
 import Lokei.aplication.infrastructure.persistence.repository.AvaliacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,9 +17,15 @@ public class AvaliarAnuncioUseCase {
     @Autowired
     private AvaliacaoRepository repoAvaliacao;
 
-    public String avaliarAnuncio(Avaliacao avaliacao){
 
-        try{
+    public Aluguel teste(Aluguel aluguel) {
+
+        return repoAluguel.save(aluguel);
+    }
+
+    public String avaliarAnuncio(Avaliacao avaliacao) {
+
+        try {
             Integer aluguelId = avaliacao.getAluguel().getId();
 
             Aluguel aluguel = repoAluguel.findById(aluguelId)
@@ -26,20 +33,25 @@ public class AvaliarAnuncioUseCase {
 
             statusAluguelEnum status = aluguel.getStatusAluguel();
 
-            if(status == statusAluguelEnum.CONCLUIDO){
+            if (status == statusAluguelEnum.CONCLUIDO) {
+                avaliacao.setAluguel(aluguel);
                 repoAvaliacao.save(avaliacao);
                 return "Avaliação realizada";
-            }else if(status == statusAluguelEnum.ATIVO || status == statusAluguelEnum.CONFIRMADO){
+
+            } else if (status == statusAluguelEnum.ATIVO || status == statusAluguelEnum.CONFIRMADO) {
                 return "ainda não é possível avaliar este anúncio, seu periodo de reserva ainda não finalizou";
-            }else if(status == statusAluguelEnum.EM_APROVACAO){
+            } else if (status == statusAluguelEnum.EM_APROVACAO) {
                 return "não é possível avaliar esse anúncio, a reserva ainda não foi finalizada";
 
-            }else{
+            } else {
                 return "não é possível avaliar esse anúncio, a reserva não foi utilizada";
             }
-        }catch (Exception e){
+        } catch (DataIntegrityViolationException e) {
+            return "Erro ao realizar avaliação: essa reserva já possui avaliação";
+        } catch (Exception e) {
             return "Erro ao realizar avaliação: " + e.getMessage();
         }
+
 
     }
 
