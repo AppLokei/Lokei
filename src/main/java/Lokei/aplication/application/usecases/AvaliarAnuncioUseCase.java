@@ -21,7 +21,7 @@ public class AvaliarAnuncioUseCase {
         try{
             Integer aluguelId = avaliacaoEntity.getAluguel().getId();
 
-            AluguelEntity aluguelEntity = repoAluguel.findById(aluguelId)
+            AluguelEntity aluguelEntity = repoAluguel.findById(Long.valueOf(aluguelId))
                     .orElseThrow(() -> new RuntimeException("Aluguel não encontrado"));
 
             StatusAluguelEnum status = aluguelEntity.getStatusAluguel();

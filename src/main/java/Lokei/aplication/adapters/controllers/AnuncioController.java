@@ -1,7 +1,7 @@
 package Lokei.aplication.adapters.controllers;
 
-import Lokei.aplication.adapters.dtos.AnuncioRequestDTO;
-import Lokei.aplication.adapters.dtos.AnuncioResponseDTO;
+import Lokei.aplication.adapters.dtos.req.AnuncioRequestDTO;
+import Lokei.aplication.adapters.dtos.res.AnuncioResponseDTO;
 import Lokei.aplication.adapters.mapper.AnuncioControllerMapper;
 import Lokei.aplication.application.usecases.anuncio.*;
 import Lokei.aplication.domain.entities.Anuncio;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/anuncios")
+@RequestMapping(value = "/anuncio")
 public class AnuncioController {
 
     private final CriarAnuncioUseCase criarAnuncioUseCase;
@@ -68,12 +68,12 @@ public class AnuncioController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<AnuncioResponseDTO> findById(@PathVariable Long id) {
+    public ResponseEntity<AnuncioResponseDTO> buscarPorId(@PathVariable Long id) {
         Anuncio anuncio = buscarAnuncioPorIdUseCase.execute(id);
         return ResponseEntity.ok(AnuncioControllerMapper.toResponseDTO(anuncio));
     }
 
-    @GetMapping("/categoria/{categoria}")
+    @GetMapping("/categorias/{categoria}")
     public ResponseEntity<List<AnuncioResponseDTO>> buscarPorCategoria(@PathVariable CategoriaEnum categoria) {
         List<Anuncio> anuncios = buscarAnunciosPorCategoriaUseCase.execute(categoria);
         List<AnuncioResponseDTO> response = new ArrayList<>();

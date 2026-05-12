@@ -17,12 +17,17 @@ public class ImagemEntity implements Serializable {
     private Long id;
     private String imagemUrl;
 
+    @ManyToOne
+    @JoinColumn(name = "anuncio_id")
+    private AnuncioEntity anuncio;
+
     public ImagemEntity(){
     }
 
-    public ImagemEntity(Long id, String imagemUrl) {
+    public ImagemEntity(Long id, String imagemUrl, AnuncioEntity anuncio) {
         this.id = id;
         this.imagemUrl = imagemUrl;
+        this.anuncio = anuncio;
     }
 
     public Long getId() {
@@ -39,6 +44,14 @@ public class ImagemEntity implements Serializable {
 
     public void setImagemUrl(String imagemUrl) {
         this.imagemUrl = imagemUrl;
+    }
+
+    public AnuncioEntity getAnuncio() {
+        return anuncio;
+    }
+
+    public void setAnuncio(AnuncioEntity anuncio) {
+        this.anuncio = anuncio;
     }
 
     @Override

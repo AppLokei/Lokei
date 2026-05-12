@@ -9,6 +9,8 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -33,6 +35,9 @@ public class AnuncioEntity implements Serializable {
 
     @Enumerated(EnumType.STRING)
     private CategoriaEnum categoria;
+
+    @OneToMany(mappedBy = "anuncio", cascade = CascadeType.ALL)
+    private List<ImagemEntity> imagens = new ArrayList<>();
 
     public AnuncioEntity(){}
 
@@ -100,6 +105,14 @@ public class AnuncioEntity implements Serializable {
 
     public void setCategoria(CategoriaEnum categoria) {
         this.categoria = categoria;
+    }
+
+    public List<ImagemEntity> getImagens() {
+        return imagens;
+    }
+
+    public void setImagens(List<ImagemEntity> imagens) {
+        this.imagens = imagens;
     }
 
     @Override

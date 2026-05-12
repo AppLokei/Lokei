@@ -1,7 +1,7 @@
 package Lokei.aplication.adapters.mapper;
 
-import Lokei.aplication.adapters.dtos.AnuncioRequestDTO;
-import Lokei.aplication.adapters.dtos.AnuncioResponseDTO;
+import Lokei.aplication.adapters.dtos.req.AnuncioRequestDTO;
+import Lokei.aplication.adapters.dtos.res.AnuncioResponseDTO;
 import Lokei.aplication.domain.entities.Anuncio;
 
 public class AnuncioControllerMapper {

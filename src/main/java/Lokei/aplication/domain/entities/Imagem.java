@@ -6,11 +6,14 @@ public class Imagem {
     private Long id;
     private String imagemUrl;
 
+    private Anuncio anuncio;
+
     public Imagem(){}
 
-    public Imagem(Long id, String imagemUrl) {
+    public Imagem(Long id, String imagemUrl, Anuncio anuncio) {
         this.id = id;
         this.imagemUrl = imagemUrl;
+        this.anuncio = anuncio;
     }
 
     public Long getId() {
@@ -27,6 +30,14 @@ public class Imagem {
 
     public void setImagemUrl(String imagemUrl) {
         this.imagemUrl = imagemUrl;
+    }
+
+    public Anuncio getAnuncio() {
+        return anuncio;
+    }
+
+    public void setAnuncio(Anuncio anuncio) {
+        this.anuncio = anuncio;
     }
 
     @Override

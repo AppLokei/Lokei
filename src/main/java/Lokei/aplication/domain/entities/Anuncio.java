@@ -2,9 +2,12 @@ package Lokei.aplication.domain.entities;
 
 import Lokei.aplication.domain.enums.CategoriaEnum;
 import Lokei.aplication.domain.enums.StatusAnuncioEnum;
+import Lokei.aplication.domain.exceptions.AnuncioLimiteFotosException;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Anuncio {
@@ -15,6 +18,10 @@ public class Anuncio {
     private StatusAnuncioEnum status;
     private LocalDateTime dataCriacao;
     private CategoriaEnum categoria;
+
+    private List<Imagem> imagens = new ArrayList<>();
+
+    public Anuncio(){}
 
     public Anuncio(Long id, String titulo, String descricao, BigDecimal valorDiario, StatusAnuncioEnum status, CategoriaEnum categoria) {
         this.id = id;
@@ -74,8 +81,19 @@ public class Anuncio {
         return categoria;
     }
 
-    public void setCategoriaEnum(CategoriaEnum categoria) {
+    public void setCategoria(CategoriaEnum categoria) {
         this.categoria = categoria;
+    }
+
+    public List<Imagem> getImagens() {
+        return imagens;
+    }
+
+    public void adicionarImagem(Imagem imagem) {
+        if (imagens.size() >= 5) {
+            throw new AnuncioLimiteFotosException();
+        }
+        imagens.add(imagem);
     }
 
     @Override
