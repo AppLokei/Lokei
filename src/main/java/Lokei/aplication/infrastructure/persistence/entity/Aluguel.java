@@ -6,7 +6,8 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -16,12 +17,12 @@ public class Aluguel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Date dataInicio;
-    private Date dataFim;
+    private LocalDate dataInicio;
+    private LocalDate dataFim;
     private BigDecimal valorTotal;
     @Enumerated(EnumType.STRING)
     private statusAluguelEnum statusAluguel;
-    private Date datacriacao;
+    private LocalDateTime datacriacao;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "avaliacao_id")
@@ -30,11 +31,16 @@ public class Aluguel implements Serializable {
     @ManyToOne
     @JoinColumn(name = "anuncio_id")
     private Anuncio anuncio;
+
+    @ManyToOne
+    @JoinColumn(name = "locatario_id")
+    private Usuario locatario;
+
     public Aluguel(){
 
     }
 
-    public Aluguel(Integer id, Date dataInicio, Date dataFim, BigDecimal valorTotal, statusAluguelEnum statusAluguel, Date datacriacao, Avaliacao avaliacao, Anuncio anuncio) {
+    public Aluguel(Integer id, LocalDate dataInicio, LocalDate dataFim, BigDecimal valorTotal, statusAluguelEnum statusAluguel, LocalDateTime datacriacao, Avaliacao avaliacao, Anuncio anuncio, Usuario locatario) {
         this.id = id;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
@@ -43,6 +49,7 @@ public class Aluguel implements Serializable {
         this.datacriacao = datacriacao;
         this.avaliacao = avaliacao;
         this.anuncio = anuncio;
+        this.locatario = locatario;
     }
 
     public Integer getId() {
@@ -53,19 +60,19 @@ public class Aluguel implements Serializable {
         this.id = id;
     }
 
-    public Date getDataInicio() {
+    public LocalDate getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataInicio(Date dataInicio) {
+    public void setDataInicio(LocalDate dataInicio) {
         this.dataInicio = dataInicio;
     }
 
-    public Date getDataFim() {
+    public LocalDate getDataFim() {
         return dataFim;
     }
 
-    public void setDataFim(Date dataFim) {
+    public void setDataFim(LocalDate dataFim) {
         this.dataFim = dataFim;
     }
 
@@ -77,11 +84,11 @@ public class Aluguel implements Serializable {
         this.valorTotal = valorTotal;
     }
 
-    public Date getDatacriacao() {
+    public LocalDateTime getDatacriacao() {
         return datacriacao;
     }
 
-    public void setDatacriacao(Date datacriacao) {
+    public void setDatacriacao(LocalDateTime datacriacao) {
         this.datacriacao = datacriacao;
     }
 
@@ -108,6 +115,14 @@ public class Aluguel implements Serializable {
 
     public void setAnuncio(Anuncio anuncio) {
         this.anuncio = anuncio;
+    }
+
+    public Usuario getLocatario() {
+        return locatario;
+    }
+
+    public void setLocatario(Usuario locatario) {
+        this.locatario = locatario;
     }
 
     @Override

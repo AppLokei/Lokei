@@ -1,5 +1,6 @@
 package Lokei.aplication.infrastructure.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -14,13 +15,18 @@ public class Imagem implements Serializable {
     private Integer id;
     private String imagemUrl;
 
+    @ManyToOne
+    @JoinColumn(name = "anuncio_id")
+    private Anuncio anuncio;
+
     public Imagem(){
 
     }
 
-    public Imagem(Integer id, String imagemUrl) {
+    public Imagem(Integer id, String imagemUrl, Anuncio anuncio) {
         this.id = id;
         this.imagemUrl = imagemUrl;
+        this.anuncio = anuncio;
     }
 
     public Integer getId() {
@@ -37,6 +43,15 @@ public class Imagem implements Serializable {
 
     public void setImagemUrl(String imagemUrl) {
         this.imagemUrl = imagemUrl;
+    }
+
+    @JsonIgnore
+    public Anuncio getAnuncio() {
+        return anuncio;
+    }
+
+    public void setAnuncio(Anuncio anuncio) {
+        this.anuncio = anuncio;
     }
 
     @Override

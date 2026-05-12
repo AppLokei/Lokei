@@ -2,6 +2,7 @@ package Lokei.aplication.infrastructure.persistence.entity;
 
 import Lokei.aplication.infrastructure.persistence.enums.categoriaEnum;
 import Lokei.aplication.infrastructure.persistence.enums.statusAnuncioEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -24,14 +25,21 @@ public class Anuncio implements Serializable {
     @Enumerated(EnumType.STRING)
     private categoriaEnum categoria;
 
+    @ManyToOne
+    @JoinColumn(name = "proprietario_id")
+    private Usuario proprietario;
+
     @OneToMany(mappedBy = "anuncio")
     private Set<Aluguel> aluguel= new HashSet<>();
+
+    @OneToMany(mappedBy = "anuncio", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Imagem> imagens = new LinkedHashSet<>();
 
     public Anuncio(){
 
     }
 
-    public Anuncio(Integer id, String titulo, String descricao, BigDecimal valorDiario, statusAnuncioEnum status, Date dateCriacao, categoriaEnum categoria, Set<Aluguel> aluguel) {
+    public Anuncio(Integer id, String titulo, String descricao, BigDecimal valorDiario, statusAnuncioEnum status, Date dateCriacao, categoriaEnum categoria, Usuario proprietario, Set<Aluguel> aluguel, Set<Imagem> imagens) {
         this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
@@ -39,7 +47,9 @@ public class Anuncio implements Serializable {
         this.status = status;
         this.dateCriacao = dateCriacao;
         this.categoria = categoria;
+        this.proprietario = proprietario;
         this.aluguel = aluguel;
+        this.imagens = imagens;
     }
 
     public Integer getId() {
@@ -90,12 +100,29 @@ public class Anuncio implements Serializable {
         this.categoria = categoria;
     }
 
+    public Usuario getProprietario() {
+        return proprietario;
+    }
+
+    public void setProprietario(Usuario proprietario) {
+        this.proprietario = proprietario;
+    }
+
+    @JsonIgnore
     public Set<Aluguel> getAluguel() {
         return aluguel;
     }
 
     public void setAluguel(Set<Aluguel> aluguel) {
         this.aluguel = aluguel;
+    }
+
+    public Set<Imagem> getImagens() {
+        return imagens;
+    }
+
+    public void setImagens(Set<Imagem> imagens) {
+        this.imagens = imagens;
     }
 
     public statusAnuncioEnum getStatus() {
@@ -118,4 +145,3 @@ public class Anuncio implements Serializable {
         return Objects.hashCode(id);
     }
 }
-

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -16,7 +16,7 @@ public class Avaliacao implements Serializable {
     private Integer id;
     private Integer nota;
     private String comentario;
-    private Date dataCriacao;
+    private LocalDateTime dataCriacao;
 
     @OneToOne
     @JoinColumn(name = "aluguel_id")
@@ -27,7 +27,7 @@ public class Avaliacao implements Serializable {
 
     }
 
-    public Avaliacao(Integer id, Integer nota, String comentario, Date dataCriacao, Aluguel aluguel) {
+    public Avaliacao(Integer id, Integer nota, String comentario, LocalDateTime dataCriacao, Aluguel aluguel) {
         this.id = id;
         this.nota = nota;
         this.comentario = comentario;
@@ -59,14 +59,15 @@ public class Avaliacao implements Serializable {
         this.comentario = comentario;
     }
 
-    public Date getDataCriacao() {
+    public LocalDateTime getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
+    public void setDataCriacao(LocalDateTime dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
+    @JsonIgnore
     public Aluguel getAluguel() {
         return aluguel;
     }
@@ -88,5 +89,3 @@ public class Avaliacao implements Serializable {
         return Objects.hashCode(id);
     }
 }
-
-
