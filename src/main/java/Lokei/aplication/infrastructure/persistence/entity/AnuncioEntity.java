@@ -23,7 +23,6 @@ public class AnuncioEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String titulo;
     private String descricao;
     private BigDecimal valorDiario;
 
@@ -33,22 +32,22 @@ public class AnuncioEntity implements Serializable {
     @Enumerated(EnumType.STRING)
     private StatusAnuncioEnum status;
 
-    @Enumerated(EnumType.STRING)
-    private CategoriaEnum categoria;
+    @OneToOne
+    @JoinColumn(name = "ferramenta_id")
+    private FerramentaEntity ferramenta;
 
     @OneToMany(mappedBy = "anuncio", cascade = CascadeType.ALL)
     private List<ImagemEntity> imagens = new ArrayList<>();
 
     public AnuncioEntity(){}
 
-    public AnuncioEntity(Long id, String titulo, String descricao, BigDecimal valorDiario, LocalDateTime dataCriacao, StatusAnuncioEnum status, CategoriaEnum categoria) {
+    public AnuncioEntity(Long id, String descricao, BigDecimal valorDiario, LocalDateTime dataCriacao, StatusAnuncioEnum status, FerramentaEntity ferramenta) {
         this.id = id;
-        this.titulo = titulo;
         this.descricao = descricao;
         this.valorDiario = valorDiario;
         this.dataCriacao = dataCriacao;
         this.status = status;
-        this.categoria = categoria;
+        this.ferramenta = ferramenta;
     }
 
     public Long getId() {
@@ -57,14 +56,6 @@ public class AnuncioEntity implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
     }
 
     public String getDescricao() {
@@ -99,12 +90,12 @@ public class AnuncioEntity implements Serializable {
         this.status = status;
     }
 
-    public CategoriaEnum getCategoria() {
-        return categoria;
+    public FerramentaEntity getFerramenta() {
+        return ferramenta;
     }
 
-    public void setCategoria(CategoriaEnum categoria) {
-        this.categoria = categoria;
+    public void setFerramenta(FerramentaEntity ferramenta) {
+        this.ferramenta = ferramenta;
     }
 
     public List<ImagemEntity> getImagens() {

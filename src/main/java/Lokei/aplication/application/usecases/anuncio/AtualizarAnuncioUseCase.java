@@ -1,7 +1,7 @@
 package Lokei.aplication.application.usecases.anuncio;
 
 import Lokei.aplication.domain.entities.Anuncio;
-import Lokei.aplication.domain.gateway.AnuncioGateway;
+import Lokei.aplication.domain.gateways.AnuncioGateway;
 
 public class AtualizarAnuncioUseCase {
 

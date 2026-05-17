@@ -1,4 +1,4 @@
-package Lokei.aplication.domain.gateway;
+package Lokei.aplication.domain.gateways;
 
 import org.springframework.web.multipart.MultipartFile;
 

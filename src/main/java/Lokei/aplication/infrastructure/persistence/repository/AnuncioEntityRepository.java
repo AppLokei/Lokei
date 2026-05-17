@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface AnuncioEntityRepository extends JpaRepository<AnuncioEntity, Long> {
 
-    List<AnuncioEntity> findByCategoria(CategoriaEnum categoria);
+    List<AnuncioEntity> findByFerramenta_Categoria(CategoriaEnum categoria);
 }

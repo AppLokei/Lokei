@@ -2,7 +2,7 @@ package Lokei.aplication.application.usecases.anuncio;
 
 import Lokei.aplication.domain.entities.Anuncio;
 import Lokei.aplication.domain.exceptions.AnuncioNotFoundException;
-import Lokei.aplication.domain.gateway.AnuncioGateway;
+import Lokei.aplication.domain.gateways.AnuncioGateway;
 
 import java.util.Optional;
 

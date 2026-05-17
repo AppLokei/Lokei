@@ -12,11 +12,10 @@ public class AnuncioMapper {
     public static Anuncio toDomain(AnuncioEntity entity) {
         Anuncio anuncio = new Anuncio(
                 entity.getId(),
-                entity.getTitulo(),
                 entity.getDescricao(),
                 entity.getValorDiario(),
                 entity.getStatus(),
-                entity.getCategoria()
+                FerramentaMapper.toDomain(entity.getFerramenta())
         );
 
         for (ImagemEntity imagemEntity : entity.getImagens()) {
@@ -30,12 +29,11 @@ public class AnuncioMapper {
         AnuncioEntity entity = new AnuncioEntity();
 
         entity.setId(anuncio.getId());
-        entity.setTitulo(anuncio.getTitulo());
         entity.setDescricao(anuncio.getDescricao());
         entity.setValorDiario(anuncio.getValorDiario());
         entity.setDataCriacao(anuncio.getDataCriacao());
         entity.setStatus(anuncio.getStatus());
-        entity.setCategoria(anuncio.getCategoria());
+        entity.setFerramenta(FerramentaMapper.toEntity(anuncio.getFerramenta()));
 
         List<ImagemEntity> imagens = new ArrayList<>();
         for (Imagem imagem : anuncio.getImagens()) {

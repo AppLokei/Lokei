@@ -3,7 +3,7 @@ package Lokei.aplication.infrastructure.beans;
 import Lokei.aplication.application.usecases.imagem.ApagarImagemUseCase;
 import Lokei.aplication.application.usecases.imagem.BuscarImagensPorAnuncioUseCase;
 import Lokei.aplication.application.usecases.imagem.SalvarImagemUseCase;
-import Lokei.aplication.domain.gateway.ImagemGateway;
+import Lokei.aplication.domain.gateways.ImagemGateway;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

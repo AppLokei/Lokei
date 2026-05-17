@@ -1,8 +1,8 @@
-package Lokei.aplication.infrastructure.gateway;
+package Lokei.aplication.infrastructure.gateways;
 
 import Lokei.aplication.domain.entities.Imagem;
 import Lokei.aplication.domain.exceptions.AnuncioNotFoundException;
-import Lokei.aplication.domain.gateway.ImagemGateway;
+import Lokei.aplication.domain.gateways.ImagemGateway;
 import Lokei.aplication.infrastructure.persistence.entity.AnuncioEntity;
 import Lokei.aplication.infrastructure.persistence.entity.ImagemEntity;
 import Lokei.aplication.infrastructure.persistence.mapper.AnuncioMapper;
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class ImagemGatewayImpl implements ImagemGateway {

@@ -1,6 +1,6 @@
 package Lokei.aplication.application.usecases.imagem;
 
-import Lokei.aplication.domain.gateway.ImagemGateway;
+import Lokei.aplication.domain.gateways.ImagemGateway;
 
 public class ApagarImagemUseCase {
     private final ImagemGateway imagemGateway;

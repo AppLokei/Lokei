@@ -1,8 +1,7 @@
 package Lokei.aplication.application.usecases.imagem;
 
-import Lokei.aplication.domain.entities.Anuncio;
 import Lokei.aplication.domain.entities.Imagem;
-import Lokei.aplication.domain.gateway.ImagemGateway;
+import Lokei.aplication.domain.gateways.ImagemGateway;
 
 public class SalvarImagemUseCase {
 

@@ -1,8 +1,8 @@
-package Lokei.aplication.infrastructure.gateway;
+package Lokei.aplication.infrastructure.gateways;
 
 import Lokei.aplication.domain.entities.Anuncio;
 import Lokei.aplication.domain.enums.CategoriaEnum;
-import Lokei.aplication.domain.gateway.AnuncioGateway;
+import Lokei.aplication.domain.gateways.AnuncioGateway;
 import Lokei.aplication.infrastructure.persistence.entity.AnuncioEntity;
 import Lokei.aplication.infrastructure.persistence.mapper.AnuncioMapper;
 import Lokei.aplication.infrastructure.persistence.repository.AnuncioEntityRepository;
@@ -61,7 +61,7 @@ public class AnuncioGatewayImpl implements AnuncioGateway {
 
     @Override
     public List<Anuncio> buscarAnuncioPorCategoria(CategoriaEnum categoria) {
-        List<AnuncioEntity> entities = anuncioEntityRepository.findByCategoria(categoria);
+        List<AnuncioEntity> entities = anuncioEntityRepository.findByFerramenta_Categoria(categoria);
         List<Anuncio> anuncios = new ArrayList<>();
         for (AnuncioEntity entity : entities) {
             anuncios.add(AnuncioMapper.toDomain(entity));

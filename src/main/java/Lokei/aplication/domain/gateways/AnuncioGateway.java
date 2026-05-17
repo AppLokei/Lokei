@@ -1,4 +1,4 @@
-package Lokei.aplication.domain.gateway;
+package Lokei.aplication.domain.gateways;
 
 import Lokei.aplication.domain.entities.Anuncio;
 import Lokei.aplication.domain.enums.CategoriaEnum;

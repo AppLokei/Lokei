@@ -8,11 +8,11 @@ import java.time.LocalDateTime;
 
 public record AnuncioResponseDTO (
         Long id,
-        String titulo,
+        String nome,
+        CategoriaEnum categoriaEnum,
         String descricao,
         BigDecimal valorDiario,
         LocalDateTime dataCriacao,
-        StatusAnuncioEnum status,
-        CategoriaEnum categoria
+        StatusAnuncioEnum status
 ) {
 }

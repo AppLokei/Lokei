@@ -1,6 +1,5 @@
 package Lokei.aplication.domain.entities;
 
-import Lokei.aplication.domain.enums.CategoriaEnum;
 import Lokei.aplication.domain.enums.StatusAnuncioEnum;
 import Lokei.aplication.domain.exceptions.AnuncioLimiteFotosException;
 
@@ -12,25 +11,22 @@ import java.util.Objects;
 
 public class Anuncio {
     private Long id;
-    private String titulo;
     private String descricao;
     private BigDecimal valorDiario;
     private StatusAnuncioEnum status;
     private LocalDateTime dataCriacao;
-    private CategoriaEnum categoria;
 
     private List<Imagem> imagens = new ArrayList<>();
 
-    public Anuncio(){}
+    private Ferramenta ferramenta;
 
-    public Anuncio(Long id, String titulo, String descricao, BigDecimal valorDiario, StatusAnuncioEnum status, CategoriaEnum categoria) {
+    public Anuncio(Long id, String descricao, BigDecimal valorDiario, StatusAnuncioEnum status, Ferramenta ferramenta) {
         this.id = id;
-        this.titulo = titulo;
         this.descricao = descricao;
         this.valorDiario = valorDiario;
         this.status = status;
         this.dataCriacao = LocalDateTime.now();
-        this.categoria = categoria;
+        this.ferramenta = ferramenta;
     }
 
     public Long getId() {
@@ -39,14 +35,6 @@ public class Anuncio {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
     }
 
     public String getDescricao() {
@@ -77,16 +65,16 @@ public class Anuncio {
         return dataCriacao;
     }
 
-    public CategoriaEnum getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(CategoriaEnum categoria) {
-        this.categoria = categoria;
-    }
-
     public List<Imagem> getImagens() {
         return imagens;
+    }
+
+    public Ferramenta getFerramenta() {
+        return ferramenta;
+    }
+
+    public void setFerramenta(Ferramenta ferramenta) {
+        this.ferramenta = ferramenta;
     }
 
     public void adicionarImagem(Imagem imagem) {

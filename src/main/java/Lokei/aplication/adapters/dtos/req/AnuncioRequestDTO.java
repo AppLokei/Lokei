@@ -9,8 +9,8 @@ import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 public record AnuncioRequestDTO (
-        @NotBlank(message = "O titulo é obrigatório")
-        String titulo,
+        @NotNull
+        CriarFerramentaRequest ferramenta,
 
         @NotBlank(message = "A descrição é obrigatória")
         String descricao,
@@ -18,9 +18,7 @@ public record AnuncioRequestDTO (
         @NotNull(message = "O valor da diaria é obrigatória")
         @DecimalMin(value = "0.01", message = "O valor deve ser maior que R$ 0,00")
         BigDecimal valorDiario,
-        StatusAnuncioEnum status,
 
-        @NotNull(message = "Selecione uma categoria para a ferramenta")
-        CategoriaEnum categoria
+        StatusAnuncioEnum status
 ) {
 }
