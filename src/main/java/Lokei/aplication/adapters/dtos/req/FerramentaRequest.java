@@ -2,7 +2,7 @@ package Lokei.aplication.adapters.dtos.req;
 
 import Lokei.aplication.domain.enums.CategoriaEnum;
 
-public record CriarFerramentaRequest(
+public record FerramentaRequest(
         String nome,
         CategoriaEnum categoria
 ) {

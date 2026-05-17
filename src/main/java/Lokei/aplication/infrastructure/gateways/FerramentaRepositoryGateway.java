@@ -26,7 +26,9 @@ public class FerramentaRepositoryGateway implements FerramentaGateway {
     }
 
     @Override
-    public Optional<Ferramenta> buscarFerramentaPorId(Long id) {
-        return Optional.empty();
+    public Ferramenta atualizarFerramenta(Ferramenta ferramenta) {
+        FerramentaEntity ferramentaEntity = FerramentaMapper.toEntity(ferramenta);
+        FerramentaEntity salvo = ferramentaRepository.save(ferramentaEntity);
+        return FerramentaMapper.toDomain(salvo);
     }
 }

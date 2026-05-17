@@ -8,8 +8,7 @@ import java.time.LocalDateTime;
 
 public record AnuncioResponseDTO (
         Long id,
-        String nome,
-        CategoriaEnum categoriaEnum,
+        FerramentaResponse ferramentaResponse,
         String descricao,
         BigDecimal valorDiario,
         LocalDateTime dataCriacao,

@@ -1,6 +1,5 @@
 package Lokei.aplication.adapters.dtos.req;
 
-import Lokei.aplication.domain.enums.CategoriaEnum;
 import Lokei.aplication.domain.enums.StatusAnuncioEnum;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
@@ -10,7 +9,7 @@ import java.math.BigDecimal;
 
 public record AnuncioRequestDTO (
         @NotNull
-        CriarFerramentaRequest ferramenta,
+        FerramentaRequest ferramenta,
 
         @NotBlank(message = "A descrição é obrigatória")
         String descricao,

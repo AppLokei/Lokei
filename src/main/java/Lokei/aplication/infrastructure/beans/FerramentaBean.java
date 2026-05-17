@@ -1,7 +1,8 @@
 package Lokei.aplication.infrastructure.beans;
 
 import Lokei.aplication.adapters.mapper.FerramentaDTOMapper;
-import Lokei.aplication.application.usecases.ferramenta.CriarFerramentaUseCase;
+import Lokei.aplication.application.usecases.anuncio.AtualizarAnuncioUseCase;
+import Lokei.aplication.domain.gateways.AnuncioGateway;
 import Lokei.aplication.domain.gateways.FerramentaGateway;
 import Lokei.aplication.infrastructure.gateways.FerramentaRepositoryGateway;
 import Lokei.aplication.infrastructure.persistence.mapper.FerramentaMapper;
@@ -18,11 +19,6 @@ public class FerramentaBean {
     }
 
     @Bean
-    CriarFerramentaUseCase criarFerramentaUseCase(FerramentaGateway ferramentaGateway) {
-        return new CriarFerramentaUseCase(ferramentaGateway);
-    }
-
-    @Bean
     FerramentaMapper ferramentaMapper() {
         return new FerramentaMapper();
     }
@@ -31,6 +27,4 @@ public class FerramentaBean {
     FerramentaDTOMapper ferramentaDTOMapper() {
         return new FerramentaDTOMapper();
     }
-
-
 }

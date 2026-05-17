@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/anuncio")
 public class AnuncioController {
 
     private final CriarAnuncioUseCase criarAnuncioUseCase;
@@ -34,7 +33,7 @@ public class AnuncioController {
         this.buscarAnunciosPorCategoriaUseCase = buscarAnunciosPorCategoriaUseCase;
     }
 
-    @PostMapping
+    @PostMapping(value = "/anuncio")
     public ResponseEntity<AnuncioResponseDTO> criar(@RequestBody @Valid AnuncioRequestDTO dto) {
         Anuncio anuncio = AnuncioControllerMapper.toAnuncio(dto);
         Anuncio criado = criarAnuncioUseCase.execute(anuncio);
@@ -42,7 +41,7 @@ public class AnuncioController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @PutMapping(value = "/{id}")
+    @PutMapping(value = "/anuncio/{id}")
     public ResponseEntity<AnuncioResponseDTO> atualizar(@PathVariable Long id, @RequestBody @Valid AnuncioRequestDTO dto) {
         Anuncio anuncio = AnuncioControllerMapper.toAnuncio(dto);
         anuncio.setId(id);
@@ -51,13 +50,13 @@ public class AnuncioController {
         return ResponseEntity.ok(response);
     }
 
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/anuncio/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         excluirAnuncioUseCase.execute(id);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping
+    @GetMapping(value = "/anuncios")
     public ResponseEntity<List<AnuncioResponseDTO>> buscarTodos() {
         List<Anuncio> anuncios = buscarTodosAnunciosUseCase.execute();
         List<AnuncioResponseDTO> response = new ArrayList<>();
@@ -67,13 +66,13 @@ public class AnuncioController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/anuncio/{id}")
     public ResponseEntity<AnuncioResponseDTO> buscarPorId(@PathVariable Long id) {
         Anuncio anuncio = buscarAnuncioPorIdUseCase.execute(id);
         return ResponseEntity.ok(AnuncioControllerMapper.toResponseDTO(anuncio));
     }
 
-    @GetMapping("/categorias/{categoria}")
+    @GetMapping("/anuncios/categorias/{categoria}")
     public ResponseEntity<List<AnuncioResponseDTO>> buscarPorCategoria(@PathVariable CategoriaEnum categoria) {
         List<Anuncio> anuncios = buscarAnunciosPorCategoriaUseCase.execute(categoria);
         List<AnuncioResponseDTO> response = new ArrayList<>();

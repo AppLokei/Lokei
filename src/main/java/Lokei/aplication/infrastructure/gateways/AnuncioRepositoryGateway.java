@@ -13,11 +13,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class AnuncioGatewayImpl implements AnuncioGateway {
+public class AnuncioRepositoryGateway implements AnuncioGateway {
 
     private final AnuncioEntityRepository anuncioEntityRepository;
 
-    public AnuncioGatewayImpl(AnuncioEntityRepository anuncioEntityRepository) {
+    public AnuncioRepositoryGateway(AnuncioEntityRepository anuncioEntityRepository) {
         this.anuncioEntityRepository = anuncioEntityRepository;
     }
 

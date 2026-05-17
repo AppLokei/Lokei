@@ -1,15 +1,15 @@
 package Lokei.aplication.adapters.mapper;
 
-import Lokei.aplication.adapters.dtos.req.CriarFerramentaRequest;
-import Lokei.aplication.adapters.dtos.res.CriarFerramentaResponse;
+import Lokei.aplication.adapters.dtos.req.FerramentaRequest;
+import Lokei.aplication.adapters.dtos.res.FerramentaResponse;
 import Lokei.aplication.domain.entities.Ferramenta;
 
 public class FerramentaDTOMapper {
-    public static CriarFerramentaResponse toResponse(Ferramenta ferramenta) {
-        return new CriarFerramentaResponse(ferramenta.id(), ferramenta.nome(), ferramenta.categoria());
+    public static FerramentaResponse toResponse(Ferramenta ferramenta) {
+        return new FerramentaResponse(ferramenta.id(), ferramenta.nome(), ferramenta.categoria());
     }
 
-    public static Ferramenta toFerramenta(CriarFerramentaRequest request) {
+    public static Ferramenta toFerramenta(FerramentaRequest request) {
         return new Ferramenta(null, request.nome(), request.categoria());
     }
 }
