@@ -6,7 +6,9 @@ import Lokei.aplication.adapters.dtos.res.AnuncioResponseDTO;
 import Lokei.aplication.adapters.mapper.AnuncioControllerMapper;
 import Lokei.aplication.application.usecases.anuncio.*;
 import Lokei.aplication.domain.entities.Anuncio;
+import Lokei.aplication.domain.entities.Imagem;
 import Lokei.aplication.domain.enums.CategoriaEnum;
+import Lokei.aplication.domain.exceptions.ImagemInvalidaException;
 import Lokei.aplication.infrastructure.config.CloudinaryService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -44,6 +47,9 @@ public class AnuncioController {
 
         List<String> imagensUrls = new ArrayList<>();
         for (MultipartFile imagem : imagens) {
+
+            Imagem.validaExtensaoDaImagem(imagem.getContentType());
+
             String url = cloudinaryService.uploadImagem(imagem);
             imagensUrls.add(url);
         }
@@ -56,8 +62,9 @@ public class AnuncioController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @PutMapping(value = "/anuncio/{id}")
-    public ResponseEntity<AnuncioResponseDTO> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizarAnuncioRequest dto) {
+    @PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, value = "/anuncio/{id}")
+    public ResponseEntity<AnuncioResponseDTO> atualizar(@PathVariable Long id, @RequestPart("dados") @Valid AtualizarAnuncioRequest dto, @RequestPart("imagens") List<MultipartFile> imagens) {
+
         Anuncio anuncio = AnuncioControllerMapper.toAnuncioUpdate(dto);
         anuncio.setId(id);
         Anuncio atualizado = atualizarAnuncioUseCase.execute(id, anuncio);

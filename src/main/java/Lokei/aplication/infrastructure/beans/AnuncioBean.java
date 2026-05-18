@@ -16,8 +16,8 @@ public class AnuncioBean {
     }
 
     @Bean
-    public AtualizarAnuncioUseCase atualizarAnuncioUseCase(AnuncioGateway anuncioGateway, FerramentaGateway ferramentaGateway) {
-        return new AtualizarAnuncioUseCase(anuncioGateway, ferramentaGateway);
+    public AtualizarAnuncioUseCase atualizarAnuncioUseCase(AnuncioGateway anuncioGateway, FerramentaGateway ferramentaGateway, ImagemGateway imagemGateway) {
+        return new AtualizarAnuncioUseCase(anuncioGateway, ferramentaGateway, imagemGateway);
     }
 
     @Bean

@@ -3,7 +3,7 @@ package Lokei.aplication.adapters.controllers;
 import Lokei.aplication.adapters.dtos.res.ImagemResponseDTO;
 import Lokei.aplication.adapters.mapper.ImagemControllerMapper;
 import Lokei.aplication.application.usecases.anuncio.BuscarAnuncioPorIdUseCase;
-import Lokei.aplication.application.usecases.imagem.ApagarImagemUseCase;
+import Lokei.aplication.application.usecases.imagem.DeletarImagemPorAnuncioUseCase;
 import Lokei.aplication.application.usecases.imagem.BuscarImagensPorAnuncioUseCase;
 import Lokei.aplication.application.usecases.imagem.SalvarImagemUseCase;
 import Lokei.aplication.domain.entities.Anuncio;
@@ -20,12 +20,12 @@ import java.util.List;
 public class ImagemController {
 
     private final SalvarImagemUseCase salvarImagemUseCase;
-    private final ApagarImagemUseCase apagarImagemUseCase;
+    private final DeletarImagemPorAnuncioUseCase apagarImagemUseCase;
     private final BuscarImagensPorAnuncioUseCase buscarImagensPorAnuncioUseCase;
     private final BuscarAnuncioPorIdUseCase buscarAnuncioPorIdUseCase;
     private final CloudinaryService cloudinaryService;
 
-    public ImagemController(SalvarImagemUseCase salvarImagemUseCase, ApagarImagemUseCase apagarImagemUseCase, BuscarImagensPorAnuncioUseCase buscarImagensPorAnuncioUseCase, BuscarAnuncioPorIdUseCase buscarAnuncioPorIdUseCase, CloudinaryService cloudinaryService) {
+    public ImagemController(SalvarImagemUseCase salvarImagemUseCase, DeletarImagemPorAnuncioUseCase apagarImagemUseCase, BuscarImagensPorAnuncioUseCase buscarImagensPorAnuncioUseCase, BuscarAnuncioPorIdUseCase buscarAnuncioPorIdUseCase, CloudinaryService cloudinaryService) {
         this.salvarImagemUseCase = salvarImagemUseCase;
         this.apagarImagemUseCase = apagarImagemUseCase;
         this.buscarImagensPorAnuncioUseCase = buscarImagensPorAnuncioUseCase;

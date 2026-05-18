@@ -1,6 +1,6 @@
 package Lokei.aplication.infrastructure.beans;
 
-import Lokei.aplication.application.usecases.imagem.ApagarImagemUseCase;
+import Lokei.aplication.application.usecases.imagem.DeletarImagemPorAnuncioUseCase;
 import Lokei.aplication.application.usecases.imagem.BuscarImagensPorAnuncioUseCase;
 import Lokei.aplication.application.usecases.imagem.SalvarImagemUseCase;
 import Lokei.aplication.domain.gateways.ImagemGateway;
@@ -16,8 +16,8 @@ public class ImagemBean {
     }
 
     @Bean
-    public ApagarImagemUseCase apagarImagemUseCase(ImagemGateway imagemGateway) {
-        return new ApagarImagemUseCase(imagemGateway);
+    public DeletarImagemPorAnuncioUseCase apagarImagemUseCase(ImagemGateway imagemGateway) {
+        return new DeletarImagemPorAnuncioUseCase(imagemGateway);
     }
 
     @Bean

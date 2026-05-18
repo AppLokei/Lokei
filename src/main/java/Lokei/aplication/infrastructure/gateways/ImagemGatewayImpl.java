@@ -8,7 +8,8 @@ import Lokei.aplication.infrastructure.persistence.entity.ImagemEntity;
 import Lokei.aplication.infrastructure.persistence.mapper.AnuncioMapper;
 import Lokei.aplication.infrastructure.persistence.mapper.ImagemMapper;
 import Lokei.aplication.infrastructure.persistence.repository.AnuncioEntityRepository;
-import Lokei.aplication.infrastructure.persistence.repository.ImagemEntityRepository;
+import Lokei.aplication.infrastructure.persistence.repository.ImagemRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -17,10 +18,10 @@ import java.util.List;
 @Component
 public class ImagemGatewayImpl implements ImagemGateway {
 
-    private final ImagemEntityRepository imagemEntityRepository;
+    private final ImagemRepository imagemEntityRepository;
     private final AnuncioEntityRepository anuncioEntityRepository;
 
-    public ImagemGatewayImpl(ImagemEntityRepository imagemEntityRepository, AnuncioEntityRepository anuncioEntityRepository) {
+    public ImagemGatewayImpl(ImagemRepository imagemEntityRepository, AnuncioEntityRepository anuncioEntityRepository) {
         this.imagemEntityRepository = imagemEntityRepository;
         this.anuncioEntityRepository = anuncioEntityRepository;
     }
@@ -34,8 +35,14 @@ public class ImagemGatewayImpl implements ImagemGateway {
     }
 
     @Override
-    public void apagarImagem(Long id) {
-        imagemEntityRepository.deleteById(id);
+    public void deletarImagemPorAnuncio(Long id) {
+        imagemEntityRepository.deleteImagemEntitiesByAnuncioId(id);
+    }
+
+    @Transactional
+    @Override
+    public void deletarImagemPorIdEAnuncioId(Long imagemId, Long anuncioId) {
+        imagemEntityRepository.deleteImagemEntitiesByIdAndAnuncioId(imagemId, anuncioId);
     }
 
     @Override

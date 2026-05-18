@@ -6,9 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ImagemEntityRepository extends JpaRepository<ImagemEntity, Long> {
+public interface ImagemRepository extends JpaRepository<ImagemEntity, Long> {
 
     List<ImagemEntity> findImagemEntitiesByAnuncio(AnuncioEntity anuncio);
+    void deleteImagemEntitiesByAnuncioId(Long anuncioId);
+    void deleteImagemEntitiesByIdAndAnuncioId(Long imagemId, Long anuncioId);
 }
 
 

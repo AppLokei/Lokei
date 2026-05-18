@@ -19,7 +19,7 @@ public class Ferramenta {
             throw new FerramentaInvalidaException("O nome da ferramenta é obrigatório.");
         }
         if (categoria == null) {
-            throw new FerramentaInvalidaException("A categoria da ferramenta é obrigatória.");
+            throw new FerramentaInvalidaException("Selecione uma categoria para a ferramenta.");
         }
 
         this.id = id;

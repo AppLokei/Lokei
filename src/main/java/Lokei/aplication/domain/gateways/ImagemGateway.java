@@ -7,5 +7,6 @@ import java.util.List;
 public interface ImagemGateway {
     Imagem salvarImagem(Imagem imagem, Long anuncioId);
     List<Imagem> buscarImagensPorAnuncio(Long anuncioId);
-    void apagarImagem(Long id);
+    void deletarImagemPorAnuncio(Long id);
+    void deletarImagemPorIdEAnuncioId(Long imagemId, Long anuncioId);
 }

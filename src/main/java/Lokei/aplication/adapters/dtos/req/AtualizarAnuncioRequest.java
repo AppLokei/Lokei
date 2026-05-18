@@ -1,11 +1,13 @@
 package Lokei.aplication.adapters.dtos.req;
 
+import Lokei.aplication.adapters.dtos.res.ImagemResponseDTO;
 import Lokei.aplication.domain.enums.StatusAnuncioEnum;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public record AtualizarAnuncioRequest(
         @NotNull
@@ -19,6 +21,8 @@ public record AtualizarAnuncioRequest(
         BigDecimal valorDiario,
 
         @NotNull
-        StatusAnuncioEnum status
+        StatusAnuncioEnum status,
+
+        List<ImagemResponseDTO> imagens
 ) {
 }
