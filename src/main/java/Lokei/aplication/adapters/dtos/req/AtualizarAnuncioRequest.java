@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
-public record AnuncioRequestDTO (
+public record AtualizarAnuncioRequest(
         @NotNull
         FerramentaRequest ferramenta,
 
@@ -18,6 +18,7 @@ public record AnuncioRequestDTO (
         @DecimalMin(value = "0.01", message = "O valor deve ser maior que R$ 0,00")
         BigDecimal valorDiario,
 
+        @NotNull
         StatusAnuncioEnum status
 ) {
 }

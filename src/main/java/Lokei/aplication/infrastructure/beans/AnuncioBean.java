@@ -3,6 +3,7 @@ package Lokei.aplication.infrastructure.beans;
 import Lokei.aplication.application.usecases.anuncio.*;
 import Lokei.aplication.domain.gateways.AnuncioGateway;
 import Lokei.aplication.domain.gateways.FerramentaGateway;
+import Lokei.aplication.domain.gateways.ImagemGateway;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,8 +11,8 @@ import org.springframework.context.annotation.Configuration;
 public class AnuncioBean {
 
     @Bean
-    public CriarAnuncioUseCase criarAnuncioUseCase(AnuncioGateway anuncioGateway, FerramentaGateway ferramentaGateway) {
-        return new CriarAnuncioUseCase(anuncioGateway, ferramentaGateway);
+    public CriarAnuncioUseCase criarAnuncioUseCase(AnuncioGateway anuncioGateway, FerramentaGateway ferramentaGateway, ImagemGateway imagemGateway) {
+        return new CriarAnuncioUseCase(anuncioGateway, ferramentaGateway, imagemGateway);
     }
 
     @Bean

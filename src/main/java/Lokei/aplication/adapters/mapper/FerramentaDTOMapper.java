@@ -6,7 +6,7 @@ import Lokei.aplication.domain.entities.Ferramenta;
 
 public class FerramentaDTOMapper {
     public static FerramentaResponse toResponse(Ferramenta ferramenta) {
-        return new FerramentaResponse(ferramenta.id(), ferramenta.nome(), ferramenta.categoria());
+        return new FerramentaResponse(ferramenta.getId(), ferramenta.getNome(), ferramenta.getCategoria());
     }
 
     public static Ferramenta toFerramenta(FerramentaRequest request) {

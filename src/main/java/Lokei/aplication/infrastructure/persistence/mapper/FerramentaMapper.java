@@ -6,9 +6,9 @@ import Lokei.aplication.infrastructure.persistence.entity.FerramentaEntity;
 public class FerramentaMapper {
     public static FerramentaEntity toEntity(Ferramenta ferramenta) {
         return new FerramentaEntity(
-                ferramenta.id(),
-                ferramenta.nome(),
-                ferramenta.categoria()
+                ferramenta.getId(),
+                ferramenta.getNome(),
+                ferramenta.getCategoria()
         );
     }
 

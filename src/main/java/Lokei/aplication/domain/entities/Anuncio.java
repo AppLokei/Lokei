@@ -1,6 +1,7 @@
 package Lokei.aplication.domain.entities;
 
 import Lokei.aplication.domain.enums.StatusAnuncioEnum;
+import Lokei.aplication.domain.exceptions.AnuncioInvalidoException;
 import Lokei.aplication.domain.exceptions.AnuncioLimiteFotosException;
 
 import java.math.BigDecimal;
@@ -20,7 +21,20 @@ public class Anuncio {
 
     private Ferramenta ferramenta;
 
+    public Anuncio(Long id, String descricao, BigDecimal valorDiario, Ferramenta ferramenta) {
+        validaDadosDeAnuncio(descricao, valorDiario);
+
+        this.id = id;
+        this.descricao = descricao;
+        this.valorDiario = valorDiario;
+        this.status = StatusAnuncioEnum.ATIVO;
+        this.dataCriacao = LocalDateTime.now();
+        this.ferramenta = ferramenta;
+    }
+
     public Anuncio(Long id, String descricao, BigDecimal valorDiario, StatusAnuncioEnum status, Ferramenta ferramenta) {
+        validaDadosDeAnuncio(descricao, valorDiario);
+
         this.id = id;
         this.descricao = descricao;
         this.valorDiario = valorDiario;
@@ -82,6 +96,21 @@ public class Anuncio {
             throw new AnuncioLimiteFotosException();
         }
         imagens.add(imagem);
+    }
+
+    public void validaDadosDeAnuncio(String descricao, BigDecimal valorDiario) {
+        if (descricao == null || descricao.isBlank()) {
+            throw new AnuncioInvalidoException("A descrição é obrigatória");
+        }
+        if (valorDiario.signum() <= 0) {
+            throw new AnuncioInvalidoException("O valor deve ser maior que R$ 0,00.");
+        }
+    }
+
+    public void validaImagens(List<String> imagensUrl) {
+        if (imagensUrl == null || imagensUrl.isEmpty()) {
+            throw new AnuncioInvalidoException("Adicione pelo menos uma foto para publicar seu anúncio");
+        }
     }
 
     @Override

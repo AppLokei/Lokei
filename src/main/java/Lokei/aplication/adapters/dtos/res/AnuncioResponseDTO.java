@@ -5,6 +5,7 @@ import Lokei.aplication.domain.enums.StatusAnuncioEnum;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public record AnuncioResponseDTO (
         Long id,
@@ -12,6 +13,7 @@ public record AnuncioResponseDTO (
         String descricao,
         BigDecimal valorDiario,
         LocalDateTime dataCriacao,
-        StatusAnuncioEnum status
+        StatusAnuncioEnum status,
+        List<ImagemResponseDTO> imagens
 ) {
 }
