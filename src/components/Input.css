@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+.inputField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: "Poppins", sans-serif;
+}
+
+.inputLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1f1f1f;
+}
+
+.inputControlWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputControl {
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  background: #ffffff;
+  color: #1f1f1f;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+}
+
+.inputControl:focus {
+  border-color: #f0b429;
+  box-shadow: 0 0 0 3px rgba(240, 180, 41, 0.2);
+}
+
+.inputControl:disabled {
+  background: #f3f4f6;
+  color: rgba(31, 31, 31, 0.45);
+  border-color: #e5e7eb;
+  cursor: not-allowed;
+}
+
+.inputControl--error {
+  border-color: #d64545;
+}
+
+.inputAction {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputActionButton {
+  border: none;
+  background: transparent;
+  color: #8a6a00;
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.inputError {
+  font-size: 0.75rem;
+  color: #d64545;
+}

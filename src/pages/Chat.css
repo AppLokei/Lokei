@@ -1,0 +1,455 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+/* ══════════════════════════════════════
+   Page shell — ocupa 100vh, desconta nav
+   ══════════════════════════════════════ */
+.chatPage {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Poppins", sans-serif;
+  background: #f8f7f4;
+  overflow: hidden;
+}
+
+/* ══════════════════════════════════════
+   Layout principal (sidebar + main)
+   ══════════════════════════════════════ */
+.chatLayout {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  /* Mobile: desconta a nav-bar inferior (~80px) */
+  padding-bottom: 80px;
+}
+
+/* ══════════════════════════════════════
+   Sidebar — lista de conversas
+   ══════════════════════════════════════ */
+.chatSidebar {
+  width: 100%;
+  max-width: 360px;
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  /* Mobile: off-canvas por padrão */
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 20;
+  transform: translateX(-100%);
+  transition: transform 0.25s ease;
+}
+
+.chatSidebar--open {
+  transform: translateX(0);
+}
+
+.chatSidebarOverlay {
+  display: block;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 15;
+}
+
+.chatSidebarHeader {
+  padding: 20px 20px 14px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.chatSidebarHeader h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1f1f1f;
+}
+
+/* ── Lista de conversas ── */
+.chatConversationList {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.chatConversationItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 20px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  position: relative;
+  font-family: "Poppins", sans-serif;
+}
+
+.chatConversationItem:hover {
+  background: #fafafa;
+}
+
+.chatConversationItem--active {
+  background: rgba(240, 180, 41, 0.1);
+}
+
+.chatConversationItem + .chatConversationItem {
+  border-top: 1px solid #f3f4f6;
+}
+
+.chatConversationImage {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.chatConversationInfo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.chatConversationTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.chatConversationName {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1f1f1f;
+}
+
+.chatConversationTime {
+  font-size: 0.7rem;
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+.chatConversationTool {
+  font-size: 0.72rem;
+  color: #8a6a00;
+  font-weight: 500;
+}
+
+.chatConversationPreview {
+  font-size: 0.78rem;
+  color: #6b7280;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chatConversationBadge {
+  position: absolute;
+  right: 20px;
+  bottom: 14px;
+  background: #f0b429;
+  color: #1f1f1f;
+  font-size: 0.65rem;
+  font-weight: 700;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ══════════════════════════════════════
+   Area principal — conversa ativa
+   ══════════════════════════════════════ */
+.chatMain {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: linear-gradient(180deg, #fff7e7 0%, #f8f7f4 30%, #f3f4f6 100%);
+}
+
+/* ── Header da conversa ── */
+.chatConvHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+.chatMenuBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #4b5563;
+  transition: background 0.15s ease;
+}
+
+.chatMenuBtn:hover {
+  background: #f3f4f6;
+}
+
+.chatMenuBtn svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+}
+
+.chatConvHeaderInfo {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.chatConvHeaderImage {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.chatConvHeaderInfo div {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.chatConvHeaderInfo strong {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1f1f1f;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chatConvHeaderInfo span {
+  font-size: 0.75rem;
+  color: #8a6a00;
+  font-weight: 500;
+}
+
+.chatReportBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #9ca3af;
+  transition: background 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.chatReportBtn:hover {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.chatReportBtn svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+/* ── Mensagens ── */
+.chatMessages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chatBubble {
+  max-width: 75%;
+  padding: 10px 14px;
+  border-radius: 18px;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  position: relative;
+  word-wrap: break-word;
+}
+
+.chatBubble p {
+  margin: 0;
+}
+
+.chatBubbleTime {
+  display: block;
+  font-size: 0.65rem;
+  margin-top: 4px;
+  opacity: 0.6;
+}
+
+/* Enviada (eu): amarelo */
+.chatBubble--sent {
+  align-self: flex-end;
+  background: #f0b429;
+  color: #1f1f1f;
+  border-bottom-right-radius: 6px;
+}
+
+.chatBubble--sent .chatBubbleTime {
+  text-align: right;
+  color: #6b5200;
+}
+
+/* Recebida (outro): cinza claro */
+.chatBubble--received {
+  align-self: flex-start;
+  background: #ffffff;
+  color: #1f1f1f;
+  border: 1px solid #e5e7eb;
+  border-bottom-left-radius: 6px;
+}
+
+.chatBubble--received .chatBubbleTime {
+  color: #9ca3af;
+}
+
+/* ── Input bar ── */
+.chatInputBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+.chatInput {
+  flex: 1;
+  border: 1px solid #d9d9d9;
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  font-family: "Poppins", sans-serif;
+  background: #fafafa;
+  color: #1f1f1f;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.chatInput:focus {
+  border-color: #f0b429;
+  box-shadow: 0 0 0 3px rgba(240, 180, 41, 0.2);
+  background: #ffffff;
+}
+
+.chatSendBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 14px;
+  background: #f0b429;
+  color: #1f1f1f;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 4px 12px rgba(240, 180, 41, 0.35);
+}
+
+.chatSendBtn:hover:not(:disabled) {
+  background: #e0a420;
+  transform: translateY(-1px);
+}
+
+.chatSendBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.chatSendBtn svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ══════════════════════════════════════
+   Desktop (≥900px): Split View
+   ══════════════════════════════════════ */
+@media (min-width: 900px) {
+  .chatLayout {
+    /* Desconta o header fixo do NavigationBar (~60px) */
+    padding-top: 60px;
+    padding-bottom: 0;
+  }
+
+  /* Sidebar sempre visível no desktop */
+  .chatSidebar {
+    position: relative;
+    transform: none;
+    width: 30%;
+    max-width: 380px;
+    min-width: 280px;
+    z-index: auto;
+  }
+
+  .chatSidebarOverlay {
+    display: none;
+  }
+
+  /* Esconde o botão hamburger no desktop */
+  .chatMenuBtn {
+    display: none;
+  }
+
+  .chatConvHeader {
+    padding: 14px 24px;
+  }
+
+  .chatMessages {
+    padding: 24px;
+  }
+
+  .chatInputBar {
+    padding: 14px 24px;
+  }
+
+  .chatBubble {
+    max-width: 60%;
+  }
+}
+
+/* ══════════════════════════════════════
+   Desktop largo (≥1200px)
+   ══════════════════════════════════════ */
+@media (min-width: 1200px) {
+  .chatBubble {
+    max-width: 50%;
+  }
+}

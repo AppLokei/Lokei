@@ -1,0 +1,434 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+.homePage {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #fff7e7 0%, #f8f7f4 40%, #ffffff 100%);
+  padding: 28px 20px 120px;
+  font-family: "Poppins", sans-serif;
+}
+
+.homeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.homeGreeting {
+  font-size: 0.95rem;
+  color: #6b6b6b;
+}
+
+.homeTitle {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1f1f1f;
+  margin-top: 4px;
+}
+
+.homeIcons {
+  display: flex;
+  gap: 10px;
+}
+
+.homeIconButton {
+  position: relative;
+  border: none;
+  background: #ffffff;
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  box-shadow: 0 10px 20px rgba(24, 24, 24, 0.1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #1f1f1f;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.homeIconButton:hover {
+  background: #f9f9f9;
+}
+
+.homeIconButton svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+.homeSearch {
+  margin-bottom: 24px;
+}
+
+.homeSectionTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1f1f1f;
+}
+
+.homeSectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.homeSectionLink {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #9b6b00;
+  text-decoration: none;
+}
+
+.homeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.homeEmpty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 20px;
+  color: #6b6b6b;
+  font-size: 0.9rem;
+}
+
+/* ══════════════════════════════════════
+   Notificações — Dropdown
+   ══════════════════════════════════════ */
+.homeNotifWrapper {
+  position: relative;
+}
+
+.homeNotifBadge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #d64545;
+  color: #ffffff;
+  font-size: 0.6rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.homeNotifDropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 320px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(24, 24, 24, 0.15);
+  border: 1px solid rgba(240, 180, 41, 0.15);
+  z-index: 50;
+  overflow: hidden;
+  animation: homeDropdownIn 0.15s ease;
+}
+
+@keyframes homeDropdownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.homeNotifHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.homeNotifHeader strong {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1f1f1f;
+}
+
+.homeNotifHeader span {
+  font-size: 0.72rem;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.homeNotifList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.homeNotifItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 18px;
+  transition: background 0.12s ease;
+  cursor: pointer;
+}
+
+.homeNotifItem:hover {
+  background: #fafafa;
+}
+
+.homeNotifItem + .homeNotifItem {
+  border-top: 1px solid #f3f4f6;
+}
+
+/* Ícones semânticos */
+.homeNotifIcon {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.homeNotifIcon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.homeNotifIcon--success {
+  background: #dcfce7;
+}
+
+.homeNotifIcon--success svg {
+  fill: none;
+  stroke: #166534;
+}
+
+.homeNotifIcon--message {
+  background: #fef3c7;
+}
+
+.homeNotifIcon--message svg {
+  fill: #92400e;
+  stroke: #92400e;
+}
+
+.homeNotifIcon--alert {
+  background: #fee2e2;
+}
+
+.homeNotifIcon--alert svg {
+  fill: none;
+  stroke: #b91c1c;
+}
+
+.homeNotifText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.homeNotifText p {
+  font-size: 0.82rem;
+  color: #1f1f1f;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.homeNotifText span {
+  font-size: 0.7rem;
+  color: #9ca3af;
+}
+
+/* ══════════════════════════════════════
+   Filtros — Modal
+   ══════════════════════════════════════ */
+.homeFilterOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 100;
+  animation: homeOverlayIn 0.15s ease;
+}
+
+@keyframes homeOverlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.homeFilterModal {
+  background: #ffffff;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.18);
+  animation: homeModalIn 0.2s ease;
+}
+
+@keyframes homeModalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.homeFilterHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 24px 0;
+}
+
+.homeFilterHeader h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1f1f1f;
+}
+
+.homeFilterClose {
+  border: none;
+  background: transparent;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #6b6b6b;
+  border-radius: 8px;
+  transition: background 0.15s ease;
+}
+
+.homeFilterClose:hover {
+  background: #f3f4f6;
+}
+
+.homeFilterClose svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+}
+
+.homeFilterBody {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.homeFilterField {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.homeFilterLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1f1f1f;
+}
+
+.homeFilterSelect,
+.homeFilterInput {
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  font-family: "Poppins", sans-serif;
+  background: #ffffff;
+  color: #1f1f1f;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.homeFilterSelect:focus,
+.homeFilterInput:focus {
+  border-color: #f0b429;
+  box-shadow: 0 0 0 3px rgba(240, 180, 41, 0.2);
+}
+
+.homeFilterRange {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.homeFilterRange .homeFilterInput {
+  flex: 1;
+  min-width: 0;
+}
+
+.homeFilterRangeSep {
+  font-size: 0.82rem;
+  color: #9ca3af;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.homeFilterFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px 22px;
+  gap: 12px;
+}
+
+.homeFilterClear {
+  border: none;
+  background: transparent;
+  color: #6b6b6b;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 10px 0;
+  transition: color 0.15s ease;
+}
+
+.homeFilterClear:hover {
+  color: #1f1f1f;
+}
+
+/* ══════════════════════════════════════
+   Desktop
+   ══════════════════════════════════════ */
+@media (min-width: 900px) {
+  .homePage {
+    padding: 110px 40px 80px;
+  }
+
+  .homeGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .homeNotifDropdown {
+    width: 360px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .homeGrid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}

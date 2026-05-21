@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+.toolCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 12px;
+  box-sizing: border-box;
+  overflow: hidden;
+  box-shadow: 0 18px 35px rgba(24, 24, 24, 0.08);
+  border: 1px solid rgba(240, 180, 41, 0.15);
+  font-family: "Poppins", sans-serif;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.toolCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 45px rgba(24, 24, 24, 0.12);
+}
+
+.toolCardImage {
+  border-radius: 16px;
+  background: linear-gradient(135deg, #f7e7c0, #fef6e4);
+  height: 110px;
+  background-size: cover;
+  background-position: center;
+}
+
+.toolCardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.toolCardTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1f1f1f;
+}
+
+.toolCardLocation {
+  font-size: 0.8rem;
+  color: #6b6b6b;
+}
+
+.toolCardPrice {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #9b6b00;
+}
+
+.toolCardCta {
+  margin-top: auto;
+  width: 100%;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 12px;
+  background: #f0b429;
+  color: #1f1f1f;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.toolCardCta:hover {
+  background: #e0a420;
+}
+
+.toolCardCta:active {
+  opacity: 0.9;
+}
+
+.toolCardCta:focus-visible {
+  outline: 2px solid #9b6b00;
+  outline-offset: 2px;
+}

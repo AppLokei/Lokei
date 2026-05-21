@@ -1,0 +1,12 @@
+export { default as Home } from "./Home";
+export { default as Login } from "./Login";
+export { default as Cadastro } from "./Cadastro";
+export { default as Anuncios } from "./Anuncios";
+export { default as AnuncioDetalhe } from "./AnuncioDetalhe";
+export { default as Perfil } from "./Perfil";
+export { default as Anunciar } from "./Anunciar";
+export { default as MeusAlugueis } from "./MeusAlugueis";
+export { default as Chat } from "./Chat";
+export { default as EditarPerfil } from "./EditarPerfil";
+export { default as Avaliacao } from "./Avaliacao";
+export { default as EditarAnuncio } from "./EditarAnuncio";

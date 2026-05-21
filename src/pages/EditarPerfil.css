@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+.editarPerfilPage {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #fff7e7 0%, #f8f7f4 45%, #ffffff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px 100px;
+  font-family: "Poppins", sans-serif;
+}
+
+.editarPerfilCard {
+  width: 100%;
+  max-width: 520px;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 32px 28px;
+  box-shadow: 0 24px 50px rgba(24, 24, 24, 0.08);
+  border: 1px solid rgba(240, 180, 41, 0.15);
+}
+
+.editarPerfilHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.editarPerfilHeader h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f1f1f;
+}
+
+.editarPerfilHeader p {
+  font-size: 0.9rem;
+  color: #6b6b6b;
+}
+
+.editarPerfilBadge {
+  align-self: flex-start;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(240, 180, 41, 0.2);
+  color: #9b6b00;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.editarPerfilForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.editarPerfilHint {
+  font-size: 0.75rem;
+  color: #6b6b6b;
+  margin-top: -8px;
+}
+
+@media (min-width: 900px) {
+  .editarPerfilPage {
+    padding: 110px 40px 100px;
+  }
+}

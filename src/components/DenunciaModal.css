@@ -1,0 +1,207 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+/* ── Overlay ── */
+.denunciaOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 100;
+}
+
+/* ── Modal ── */
+.denunciaModal {
+  background: #ffffff;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  font-family: "Poppins", sans-serif;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.18);
+}
+
+/* ── Header ── */
+.denunciaHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 24px 0;
+}
+
+.denunciaHeader h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1f1f1f;
+}
+
+.denunciaClose {
+  border: none;
+  background: transparent;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #6b6b6b;
+  border-radius: 8px;
+  transition: background 0.15s ease;
+}
+
+.denunciaClose:hover {
+  background: #f3f4f6;
+}
+
+.denunciaClose svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+}
+
+/* ── Body ── */
+.denunciaBody {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Field genérico ── */
+.denunciaField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.denunciaLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1f1f1f;
+}
+
+.denunciaSelect {
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  font-family: "Poppins", sans-serif;
+  background: #ffffff;
+  color: #1f1f1f;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  appearance: none;
+}
+
+.denunciaSelect:focus {
+  border-color: #f0b429;
+  box-shadow: 0 0 0 3px rgba(240, 180, 41, 0.2);
+}
+
+.denunciaSelect--error {
+  border-color: #d64545;
+}
+
+.denunciaError {
+  font-size: 0.75rem;
+  color: #d64545;
+}
+
+/* ── Imagens ── */
+.denunciaImages {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.denunciaImageList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.denunciaImageItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 0.82rem;
+  color: #4b5563;
+}
+
+.denunciaImageName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  margin-right: 8px;
+}
+
+.denunciaImageRemove {
+  border: none;
+  background: transparent;
+  color: #9ca3af;
+  font-size: 1.1rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.denunciaImageRemove:hover {
+  color: #6b7280;
+  background: #f3f4f6;
+}
+
+/* Botão "Adicionar imagens" — ação SECUNDÁRIA (cinza), não vermelho */
+.denunciaAddImageBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border: 1px dashed #d1d5db;
+  border-radius: 14px;
+  background: #f9fafb;
+  color: #4b5563;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.denunciaAddImageBtn:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.denunciaAddImageIcon {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+}
+
+.denunciaFileInput {
+  display: none;
+}
+
+/* ── Footer ── */
+.denunciaFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 0 24px 22px;
+}

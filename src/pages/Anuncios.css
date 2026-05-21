@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+.anunciosPage {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #fff7e7 0%, #f8f7f4 45%, #ffffff 100%);
+  padding: 32px 20px 120px;
+  font-family: "Poppins", sans-serif;
+}
+
+.anunciosContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.anunciosHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.anunciosHeader h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f1f1f;
+}
+
+.anunciosHeader p {
+  font-size: 0.9rem;
+  color: #6b6b6b;
+}
+
+.anunciosCta {
+  align-self: flex-start;
+  background: #f0b429;
+  color: #1f1f1f;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 10px 18px rgba(240, 180, 41, 0.35);
+}
+
+.anunciosGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.anunciosLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+@media (min-width: 900px) {
+  .anunciosPage {
+    padding: 110px 40px 80px;
+  }
+
+  .anunciosContainer {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .anunciosGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .anunciosGrid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}

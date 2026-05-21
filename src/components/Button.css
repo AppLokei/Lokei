@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+.button {
+  border: none;
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.button--primary {
+  background: #f0b429;
+  color: #1a1a1a;
+  box-shadow: 0 10px 18px rgba(240, 180, 41, 0.35);
+}
+
+.button--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 22px rgba(240, 180, 41, 0.45);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+  box-shadow: none;
+}
+
+.button--secondary {
+  background: #f3f4f6;
+  color: #4b5563;
+  border: 1px solid #d1d5db;
+  box-shadow: none;
+}
+
+.button--secondary:hover {
+  background: #e5e7eb;
+}
+
+.button--outlineRed {
+  background: transparent;
+  color: #c63737;
+  border: 1px solid rgba(198, 55, 55, 0.6);
+  box-shadow: none;
+}
+
+.button--outlineYellow {
+  background: transparent;
+  color: #9b6b00;
+  border: 1px solid rgba(240, 180, 41, 0.6);
+  box-shadow: none;
+}
+
+.button--outlineGreen {
+  background: transparent;
+  color: #2f7a34;
+  border: 1px solid rgba(47, 122, 52, 0.5);
+  box-shadow: none;
+}
+
+.button--solidGreen {
+  background: rgba(76, 175, 80, 0.2);
+  color: #2f7a34;
+  border: 1px solid rgba(47, 122, 52, 0.4);
+  box-shadow: none;
+}

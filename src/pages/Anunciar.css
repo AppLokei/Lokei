@@ -1,0 +1,209 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+.anunciarPage {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #fff7e7 0%, #f8f7f4 45%, #ffffff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px 100px;
+  font-family: "Poppins", sans-serif;
+}
+
+
+.anunciarCard {
+  width: 100%;
+  max-width: 520px;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 32px 28px;
+  box-shadow: 0 24px 50px rgba(24, 24, 24, 0.08);
+  border: 1px solid rgba(240, 180, 41, 0.15);
+}
+
+.anunciarHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.anunciarBadge {
+  align-self: flex-start;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(240, 180, 41, 0.2);
+  color: #9b6b00;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.anunciarTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f1f1f;
+}
+
+.anunciarSubtitle {
+  font-size: 0.9rem;
+  color: #6b6b6b;
+}
+
+.anunciarForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.anunciarUpload {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.anunciarUploadLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1f1f1f;
+}
+
+.anunciarUploadArea {
+  border: 1px dashed rgba(240, 180, 41, 0.6);
+  border-radius: 18px;
+  padding: 20px;
+  background: rgba(240, 180, 41, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  color: #6b6b6b;
+}
+
+.anunciarUploadArea strong {
+  font-size: 0.95rem;
+  color: #1f1f1f;
+}
+
+.anunciarUploadArea span {
+  font-size: 0.8rem;
+}
+
+.anunciarUploadButton {
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid rgba(240, 180, 41, 0.4);
+  font-weight: 600;
+  color: #8a6a00;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.anunciarUploadInput {
+  display: none;
+}
+
+.anunciarPreviewGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.anunciarPreview {
+  margin: 0;
+  background: #ffffff;
+  border: 1px solid rgba(240, 180, 41, 0.18);
+  border-radius: 14px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.anunciarPreviewImage {
+  position: relative;
+}
+
+.anunciarPreview img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.anunciarRemove {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  border: none;
+  background: rgba(198, 55, 55, 0.9);
+  color: #ffffff;
+  font-size: 0.65rem;
+  padding: 4px 8px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.anunciarPreview figcaption {
+  font-size: 0.72rem;
+  color: #5b5b5b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.anunciarSelectField,
+.anunciarTextareaField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1f1f1f;
+}
+
+.anunciarSelectField select,
+.anunciarTextareaField textarea {
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  font-family: "Poppins", sans-serif;
+  background: #ffffff;
+  color: #1f1f1f;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.anunciarSelectField select:focus,
+.anunciarTextareaField textarea:focus {
+  border-color: #f0b429;
+  box-shadow: 0 0 0 3px rgba(240, 180, 41, 0.2);
+}
+
+.anunciarTextareaField textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.anunciarError {
+  font-size: 0.75rem;
+  color: #d64545;
+  font-weight: 500;
+}
+
+.hasError {
+  border-color: #d64545;
+}
+
+@media (min-width: 900px) {
+  .anunciarPage {
+    padding: 110px 40px 80px;
+  }
+
+  .anunciarCard {
+    padding: 36px 34px;
+  }
+}
