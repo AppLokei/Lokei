@@ -3,70 +3,65 @@ package Lokei.aplication.infrastructure.gateways;
 import Lokei.aplication.domain.entities.Anuncio;
 import Lokei.aplication.domain.enums.CategoriaEnum;
 import Lokei.aplication.domain.gateways.AnuncioGateway;
-import Lokei.aplication.infrastructure.persistence.entity.AnuncioEntity;
+import Lokei.aplication.infrastructure.persistence.entities.AnuncioEntity;
 import Lokei.aplication.infrastructure.persistence.mapper.AnuncioMapper;
-import Lokei.aplication.infrastructure.persistence.repository.AnuncioEntityRepository;
+import Lokei.aplication.infrastructure.persistence.repository.AnuncioRepository;
+import Lokei.aplication.infrastructure.persistence.specification.AnuncioSpecification;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
 @Component
 public class AnuncioRepositoryGateway implements AnuncioGateway {
 
-    private final AnuncioEntityRepository anuncioEntityRepository;
+    private final AnuncioRepository anuncioRepository;
 
-    public AnuncioRepositoryGateway(AnuncioEntityRepository anuncioEntityRepository) {
-        this.anuncioEntityRepository = anuncioEntityRepository;
+    public AnuncioRepositoryGateway(AnuncioRepository anuncioRepository) {
+        this.anuncioRepository = anuncioRepository;
     }
 
     @Override
     public Anuncio criarAnuncio(Anuncio anuncio) {
         AnuncioEntity entity = AnuncioMapper.toEntity(anuncio);
-        AnuncioEntity salvo = anuncioEntityRepository.save(entity);
+        AnuncioEntity salvo = anuncioRepository.save(entity);
         return AnuncioMapper.toDomain(salvo);
     }
 
     @Override
     public Anuncio atualizarAnuncio(Anuncio anuncio) {
         AnuncioEntity entity = AnuncioMapper.toEntity(anuncio);
-        AnuncioEntity salvo = anuncioEntityRepository.save(entity);
+        AnuncioEntity salvo = anuncioRepository.save(entity);
         return AnuncioMapper.toDomain(salvo);
     }
 
     @Override
-    public void excluirAnuncio(Long id) {
-        anuncioEntityRepository.deleteById(id);
-    }
-
-    @Override
-    public List<Anuncio> buscarTodosAnuncios() {
-        List<AnuncioEntity> entities = anuncioEntityRepository.findAll();
-        List<Anuncio> anuncios = new ArrayList<>();
-        for (AnuncioEntity entity : entities) {
-            anuncios.add(AnuncioMapper.toDomain(entity));
-        }
-        return anuncios;
-    }
-
-    @Override
     public Optional<Anuncio> buscarAnuncioPorId(Long id) {
-        Optional<AnuncioEntity> entity = anuncioEntityRepository.findById(id);
-        if (entity.isEmpty()) {
-            return Optional.empty();
-        }
-        return Optional.of(AnuncioMapper.toDomain(entity.get()));
+        Optional<AnuncioEntity> entity = anuncioRepository.findById(id);
+        return entity.map(AnuncioMapper::toDomain);
     }
 
     @Override
-    public List<Anuncio> buscarAnuncioPorCategoria(CategoriaEnum categoria) {
-        List<AnuncioEntity> entities = anuncioEntityRepository.findByFerramenta_Categoria(categoria);
-        List<Anuncio> anuncios = new ArrayList<>();
-        for (AnuncioEntity entity : entities) {
-            anuncios.add(AnuncioMapper.toDomain(entity));
-        }
+    public Page<Anuncio> buscarAnunciosComFiltro(String titulo, CategoriaEnum categoria, BigDecimal valorMin, BigDecimal valorMax, int pagina, int tamanho) {
 
-        return anuncios;
+        Specification<AnuncioEntity> spec = Specification
+                .where(AnuncioSpecification.nomeContem(titulo))
+                .and(AnuncioSpecification.categoriaIgual(categoria))
+                .and(AnuncioSpecification.valorEntre(valorMin, valorMax));
+
+        Pageable pageable = PageRequest.of(pagina, tamanho);
+
+        return anuncioRepository.findAll(spec, pageable).map(AnuncioMapper::toDomain);
+
+    }
+
+    @Override
+    public List<Anuncio> buscarAnuncioPorUsuario(Long usuarioId) {
+        return List.of();
     }
 }

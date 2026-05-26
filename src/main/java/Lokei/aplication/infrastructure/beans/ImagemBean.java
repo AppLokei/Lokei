@@ -1,9 +1,10 @@
 package Lokei.aplication.infrastructure.beans;
 
-import Lokei.aplication.application.usecases.imagem.DeletarImagemPorAnuncioUseCase;
-import Lokei.aplication.application.usecases.imagem.BuscarImagensPorAnuncioUseCase;
-import Lokei.aplication.application.usecases.imagem.SalvarImagemUseCase;
+import Lokei.aplication.application.usecases.imagem.AdicionarImagemUseCase;
+import Lokei.aplication.application.usecases.imagem.DeletarImagemUseCase;
+import Lokei.aplication.domain.gateways.AnuncioGateway;
 import Lokei.aplication.domain.gateways.ImagemGateway;
+import Lokei.aplication.domain.gateways.UsuarioGateway;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,18 +12,13 @@ import org.springframework.context.annotation.Configuration;
 public class ImagemBean {
 
     @Bean
-    public SalvarImagemUseCase salvarImagemUseCase(ImagemGateway imagemGateway) {
-        return new SalvarImagemUseCase(imagemGateway);
+    public AdicionarImagemUseCase adicionarImagemUseCase(ImagemGateway imagemGateway, AnuncioGateway anuncioGateway, UsuarioGateway usuarioGateway) {
+        return new AdicionarImagemUseCase(imagemGateway, usuarioGateway, anuncioGateway);
     }
 
     @Bean
-    public DeletarImagemPorAnuncioUseCase apagarImagemUseCase(ImagemGateway imagemGateway) {
-        return new DeletarImagemPorAnuncioUseCase(imagemGateway);
-    }
-
-    @Bean
-    public BuscarImagensPorAnuncioUseCase buscarImagensPorAnuncioUseCase(ImagemGateway imagemGateway) {
-        return new BuscarImagensPorAnuncioUseCase(imagemGateway);
+    public DeletarImagemUseCase deletarImagemUseCase(ImagemGateway imagemGateway, AnuncioGateway anuncioGateway, UsuarioGateway usuarioGateway) {
+        return new DeletarImagemUseCase(imagemGateway, usuarioGateway, anuncioGateway);
     }
 
 }

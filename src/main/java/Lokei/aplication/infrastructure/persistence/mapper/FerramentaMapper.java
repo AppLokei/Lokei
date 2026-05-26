@@ -1,7 +1,7 @@
 package Lokei.aplication.infrastructure.persistence.mapper;
 
 import Lokei.aplication.domain.entities.Ferramenta;
-import Lokei.aplication.infrastructure.persistence.entity.FerramentaEntity;
+import Lokei.aplication.infrastructure.persistence.entities.FerramentaEntity;
 
 public class FerramentaMapper {
     public static FerramentaEntity toEntity(Ferramenta ferramenta) {
@@ -13,6 +13,10 @@ public class FerramentaMapper {
     }
 
     public static Ferramenta toDomain(FerramentaEntity entity) {
-        return new Ferramenta(entity.getId(), entity.getNome(), entity.getCategoria());
+        return new Ferramenta(
+                entity.getId(),
+                entity.getNome(),
+                entity.getCategoria()
+        );
     }
 }

@@ -3,7 +3,7 @@ package Lokei.aplication.domain.enums;
 public enum StatusAluguelEnum {
     EM_APROVACAO,
     CONFIRMADO,
-    ATIVO,
+    EM_ANDAMENTO,
     CONCLUIDO,
     CANCELADO,
     REPROVADO;

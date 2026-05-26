@@ -1,16 +1,15 @@
 package Lokei.aplication.infrastructure.persistence.mapper;
 
-import Lokei.aplication.domain.entities.Anuncio;
 import Lokei.aplication.domain.entities.Imagem;
-import Lokei.aplication.infrastructure.persistence.entity.AnuncioEntity;
-import Lokei.aplication.infrastructure.persistence.entity.ImagemEntity;
+import Lokei.aplication.infrastructure.persistence.entities.AnuncioEntity;
+import Lokei.aplication.infrastructure.persistence.entities.ImagemEntity;
 
 public class ImagemMapper {
-    public static Imagem toDomain(ImagemEntity entity, Anuncio anuncio){
+    public static Imagem toDomain(ImagemEntity entity){
         return new Imagem(
                 entity.getId(),
                 entity.getImagemUrl(),
-                anuncio
+                entity.getPublicId()
         );
     }
 
@@ -19,6 +18,7 @@ public class ImagemMapper {
 
         entity.setId(imagem.getId());
         entity.setImagemUrl(imagem.getImagemUrl());
+        entity.setPublicId(imagem.getPublicId());
         entity.setAnuncio(anuncio);
 
         return entity;

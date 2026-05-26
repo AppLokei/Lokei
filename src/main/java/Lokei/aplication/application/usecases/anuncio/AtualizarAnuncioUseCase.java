@@ -1,50 +1,50 @@
 package Lokei.aplication.application.usecases.anuncio;
 
 import Lokei.aplication.domain.entities.Anuncio;
-import Lokei.aplication.domain.entities.Ferramenta;
-import Lokei.aplication.domain.entities.Imagem;
 import Lokei.aplication.domain.exceptions.AnuncioNotFoundException;
+import Lokei.aplication.domain.exceptions.UsuarioNaoAutorizadoException;
+import Lokei.aplication.domain.exceptions.UsuarioNotFoundException;
+import Lokei.aplication.domain.gateways.AluguelGateway;
 import Lokei.aplication.domain.gateways.AnuncioGateway;
-import Lokei.aplication.domain.gateways.FerramentaGateway;
-import Lokei.aplication.domain.gateways.ImagemGateway;
-
-import java.util.List;
+import Lokei.aplication.domain.gateways.UsuarioGateway;
 
 public class AtualizarAnuncioUseCase {
 
     private final AnuncioGateway anuncioGateway;
-    private final FerramentaGateway ferramentaGateway;
-    private final ImagemGateway imagemGateway;
+    private final AluguelGateway aluguelGateway;
+    private final UsuarioGateway usuarioGateway;
 
-    public AtualizarAnuncioUseCase(AnuncioGateway anuncioGateway, FerramentaGateway ferramentaGateway, ImagemGateway imagemGateway) {
+    public AtualizarAnuncioUseCase(AnuncioGateway anuncioGateway, AluguelGateway aluguelGateway, UsuarioGateway usuarioGateway) {
         this.anuncioGateway = anuncioGateway;
-        this.ferramentaGateway = ferramentaGateway;
-        this.imagemGateway = imagemGateway;
+        this.aluguelGateway = aluguelGateway;
+        this.usuarioGateway = usuarioGateway;
     }
 
-    public Anuncio execute(Long id, Anuncio anuncio, List<String> imagensUrl) {
-        Anuncio existente = anuncioGateway.buscarAnuncioPorId(id).orElseThrow(() -> new AnuncioNotFoundException(id));
+    public Anuncio execute(Anuncio anuncio) {
+        Anuncio existente = anuncioGateway.buscarAnuncioPorId(anuncio.getId()).orElseThrow(() -> new AnuncioNotFoundException(anuncio.getId()));
 
-        Ferramenta ferramenta = new Ferramenta(
-          existente.getFerramenta().getId(),
-          anuncio.getFerramenta().getNome(),
-          anuncio.getFerramenta().getCategoria()
-        );
+        var usuarioExiste = usuarioGateway.buscarUsuarioPorId(anuncio.getUsuarioId());
 
-        anuncio.setFerramenta(ferramenta);
-        Ferramenta ferramentaAtualizada = ferramentaGateway.atualizarFerramenta(ferramenta);
-        anuncio.setFerramenta(ferramentaAtualizada);
-
-        Anuncio anuncioAtualizado = anuncioGateway.atualizarAnuncio(anuncio);
-
-        if (imagensUrl != null && !imagensUrl.isEmpty()) {
-            anuncio.validaImagens(imagensUrl);
-            imagemGateway.deletarImagemPorAnuncio(id);
-            for (String url : imagensUrl) {
-                imagemGateway.salvarImagem(new Imagem(null, url, anuncioAtualizado), id);
-            }
+        if (usuarioExiste.isEmpty()) {
+            throw new UsuarioNotFoundException(anuncio.getUsuarioId());
         }
 
-        return anuncioAtualizado;
+        if (!existente.getUsuarioId().equals(anuncio.getUsuarioId())) {
+            throw new UsuarioNaoAutorizadoException("Somente o proprietário do anúncio pode realizar esta operação");
+        }
+
+        boolean aluguelEmAndamento = aluguelGateway.existeAluguelEmAndamentoPorAnuncio(anuncio.getId());
+
+        existente.atualizarDados(
+                anuncio.getTitulo(),
+                anuncio.getDescricao(),
+                anuncio.getValorDiario(),
+                anuncio.getImagens(),
+                anuncio.getFerramenta(),
+                aluguelEmAndamento
+        );
+
+        return anuncioGateway.atualizarAnuncio(existente);
     }
+
 }

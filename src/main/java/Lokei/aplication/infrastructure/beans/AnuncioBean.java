@@ -1,9 +1,7 @@
 package Lokei.aplication.infrastructure.beans;
 
 import Lokei.aplication.application.usecases.anuncio.*;
-import Lokei.aplication.domain.gateways.AnuncioGateway;
-import Lokei.aplication.domain.gateways.FerramentaGateway;
-import Lokei.aplication.domain.gateways.ImagemGateway;
+import Lokei.aplication.domain.gateways.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,32 +9,33 @@ import org.springframework.context.annotation.Configuration;
 public class AnuncioBean {
 
     @Bean
-    public CriarAnuncioUseCase criarAnuncioUseCase(AnuncioGateway anuncioGateway, FerramentaGateway ferramentaGateway, ImagemGateway imagemGateway) {
-        return new CriarAnuncioUseCase(anuncioGateway, ferramentaGateway, imagemGateway);
+    public CriarAnuncioUseCase criarAnuncioUseCase(AnuncioGateway anuncioGateway, UsuarioGateway usuarioGateway) {
+        return new CriarAnuncioUseCase(anuncioGateway, usuarioGateway);
     }
 
     @Bean
-    public AtualizarAnuncioUseCase atualizarAnuncioUseCase(AnuncioGateway anuncioGateway, FerramentaGateway ferramentaGateway, ImagemGateway imagemGateway) {
-        return new AtualizarAnuncioUseCase(anuncioGateway, ferramentaGateway, imagemGateway);
+    public AtualizarAnuncioUseCase atualizarAnuncioUseCase(AnuncioGateway anuncioGateway, AluguelGateway aluguelGateway, UsuarioGateway usuarioGateway) {
+        return new AtualizarAnuncioUseCase(anuncioGateway, aluguelGateway, usuarioGateway);
     }
 
     @Bean
-    public ExcluirAnuncioUseCase excluirAnuncioUseCase(AnuncioGateway anuncioGateway) {
-        return new ExcluirAnuncioUseCase(anuncioGateway);
+    public PausarAnuncioUseCase pausarAnuncioUseCase(AnuncioGateway anuncioGateway, UsuarioGateway usuarioGateway, AluguelGateway aluguelGateway) {
+        return new PausarAnuncioUseCase(anuncioGateway, usuarioGateway, aluguelGateway);
     }
 
     @Bean
-    public BuscarAnuncioPorIdUseCase buscarAnuncioPorIdUseCase(AnuncioGateway anuncioGateway) {
-        return new BuscarAnuncioPorIdUseCase(anuncioGateway);
+    public ReativarAnuncioUseCase reativarAnuncioUseCase(AnuncioGateway anuncioGateway, UsuarioGateway usuarioGateway) {
+        return new ReativarAnuncioUseCase(anuncioGateway, usuarioGateway);
     }
 
     @Bean
-    public BuscarTodosAnunciosUseCase buscarTodosAnunciosUseCase(AnuncioGateway anuncioGateway) {
-        return new BuscarTodosAnunciosUseCase(anuncioGateway);
+    public DesativarAnuncioUseCase desativarAnuncioUseCase(AnuncioGateway anuncioGateway, UsuarioGateway usuarioGateway, AluguelGateway aluguelGateway) {
+        return new DesativarAnuncioUseCase(anuncioGateway, usuarioGateway, aluguelGateway);
     }
 
     @Bean
-    public BuscarAnunciosPorCategoriaUseCase buscarAnunciosPorCategoriaUseCase(AnuncioGateway anuncioGateway){
-        return new BuscarAnunciosPorCategoriaUseCase(anuncioGateway);
+    public BuscarAnunciosUseCase buscarAnunciosUseCase(AnuncioGateway anuncioGateway) {
+        return new BuscarAnunciosUseCase(anuncioGateway);
     }
+
 }

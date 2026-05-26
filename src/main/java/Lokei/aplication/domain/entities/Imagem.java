@@ -9,46 +9,36 @@ import java.util.Objects;
 public class Imagem {
     private Long id;
     private String imagemUrl;
+    private String publicId;
 
-    private Anuncio anuncio;
-
-    public Imagem(){}
-
-    public Imagem(Long id, String imagemUrl, Anuncio anuncio) {
+    public Imagem(Long id, String imagemUrl, String publicId) {
         this.id = id;
         this.imagemUrl = imagemUrl;
-        this.anuncio = anuncio;
+        this.publicId = publicId;
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getImagemUrl() {
         return imagemUrl;
     }
 
-    public void setImagemUrl(String imagemUrl) {
-        this.imagemUrl = imagemUrl;
+    public String getPublicId() {
+        return publicId;
     }
 
-    public Anuncio getAnuncio() {
-        return anuncio;
-    }
-
-    public void setAnuncio(Anuncio anuncio) {
-        this.anuncio = anuncio;
-    }
-
-    public static void validaExtensaoDaImagem(String extensao) {
+    public static void validaImagem(String extensao, long tamanho) {
         List<String> extensoesPermitidas = Arrays.asList("image/jpg", "image/jpeg", "image/png");
+        long tamanhoMaximo = 5 * 1024 * 1024;
 
         if (extensao == null || !extensoesPermitidas.contains(extensao.toLowerCase())){
             throw new ImagemInvalidaException("Formato não suportado. Envie imagens nos formatos JPG, JPEG ou PNG.");
+        }
+
+        if (tamanho > tamanhoMaximo) {
+            throw new ImagemInvalidaException("A imagem excede o tamanho máximo permitido de 5MB.");
         }
     }
 

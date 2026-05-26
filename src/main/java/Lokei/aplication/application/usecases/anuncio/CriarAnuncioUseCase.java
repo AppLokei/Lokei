@@ -1,41 +1,29 @@
 package Lokei.aplication.application.usecases.anuncio;
 
 import Lokei.aplication.domain.entities.Anuncio;
-import Lokei.aplication.domain.entities.Ferramenta;
-import Lokei.aplication.domain.entities.Imagem;
+import Lokei.aplication.domain.exceptions.UsuarioNotFoundException;
 import Lokei.aplication.domain.gateways.AnuncioGateway;
-import Lokei.aplication.domain.gateways.FerramentaGateway;
-import Lokei.aplication.domain.gateways.ImagemGateway;
+import Lokei.aplication.domain.gateways.UsuarioGateway;
 
-import java.util.List;
 
 public class CriarAnuncioUseCase {
 
     private final AnuncioGateway anuncioGateway;
-    private final FerramentaGateway ferramentaGateway;
-    private final ImagemGateway imagemGateway;
+    private final UsuarioGateway usuarioGateway;
 
-    public CriarAnuncioUseCase(AnuncioGateway anuncioGateway, FerramentaGateway ferramentaGateway, ImagemGateway imagemGateway) {
+    public CriarAnuncioUseCase(AnuncioGateway anuncioGateway, UsuarioGateway usuarioGateway) {
         this.anuncioGateway = anuncioGateway;
-        this.ferramentaGateway = ferramentaGateway;
-        this.imagemGateway = imagemGateway;
+        this.usuarioGateway = usuarioGateway;
     }
 
-    public Anuncio execute(Anuncio anuncio, List<String> imagensUrls) {
+    public Anuncio execute(Anuncio anuncio) {
+        var usuarioExiste = usuarioGateway.buscarUsuarioPorId(anuncio.getUsuarioId());
 
-        anuncio.validaImagens(imagensUrls);
-
-        Ferramenta ferramenta = ferramentaGateway.criarFerramenta(anuncio.getFerramenta());
-
-        anuncio.setFerramenta(ferramenta);
-
-        Anuncio criado = anuncioGateway.criarAnuncio(anuncio);
-
-        for (String url : imagensUrls) {
-            imagemGateway.salvarImagem(new Imagem(null, url, criado), criado.getId());
+        if (usuarioExiste.isEmpty()) {
+            throw new UsuarioNotFoundException(anuncio.getUsuarioId());
         }
 
-        return criado;
+        return anuncioGateway.criarAnuncio(anuncio);
     }
 
 }
