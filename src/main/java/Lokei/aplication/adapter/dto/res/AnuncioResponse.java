@@ -1,6 +1,6 @@
 package Lokei.aplication.adapter.dto.res;
 
-import Lokei.aplication.domain.enums.StatusAnuncioEnum;
+import Lokei.aplication.domain.enums.CategoriaEnum;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -12,7 +12,7 @@ public record AnuncioResponse(
         String descricao,
         BigDecimal valorDiario,
         LocalDateTime dataCriacao,
-        StatusAnuncioEnum status,
+        CategoriaEnum categoria,
         List<String> imagens
 ) {
 }

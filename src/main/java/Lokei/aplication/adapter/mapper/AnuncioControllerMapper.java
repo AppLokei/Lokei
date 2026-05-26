@@ -42,7 +42,7 @@ public class AnuncioControllerMapper {
                 anuncio.getDescricao(),
                 anuncio.getValorDiario(),
                 anuncio.getDataCriacao(),
-                anuncio.getStatus(),
+                anuncio.getFerramenta().getCategoria(),
                 imagensUrl
         );
     }

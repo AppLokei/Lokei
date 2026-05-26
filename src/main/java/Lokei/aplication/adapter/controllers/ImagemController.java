@@ -1,6 +1,6 @@
 package Lokei.aplication.adapter.controllers;
 
-import Lokei.aplication.adapter.dto.res.ImagemResponseDTO;
+import Lokei.aplication.adapter.dto.res.ImagemResponse;
 import Lokei.aplication.adapter.mapper.ImagemControllerMapper;
 import Lokei.aplication.application.usecases.imagem.AdicionarImagemUseCase;
 import Lokei.aplication.application.usecases.imagem.DeletarImagemUseCase;
@@ -26,7 +26,7 @@ public class ImagemController {
     }
 
     @PostMapping(value = "/anuncio/{id}/imagem")
-    public ResponseEntity<ImagemResponseDTO> salvar(@PathVariable Long id, @RequestParam("file") MultipartFile arquivo) {
+    public ResponseEntity<ImagemResponse> salvar(@PathVariable Long id, @RequestParam("file") MultipartFile arquivo) {
 
         Imagem.validaImagem(arquivo.getContentType(), arquivo.getSize());
         Long usuarioId = 1L; // substituir depois pelo metodo de autenticação
@@ -34,7 +34,7 @@ public class ImagemController {
         Imagem imagem = new Imagem(null, dadosImagem.get("url"), dadosImagem.get("publicId"));
         Imagem salvo = adicionarImagemUseCase.execute(imagem, id, usuarioId);
 
-        ImagemResponseDTO response = ImagemControllerMapper.toResponseDTO(salvo);
+        ImagemResponse response = ImagemControllerMapper.toResponseDTO(salvo);
 
         return ResponseEntity.ok(response);
     }

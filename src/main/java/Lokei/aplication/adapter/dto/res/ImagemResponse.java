@@ -1,6 +1,6 @@
 package Lokei.aplication.adapter.dto.res;
 
-public record ImagemResponseDTO(
+public record ImagemResponse(
         Long id,
         String imagemUrl
 ) {

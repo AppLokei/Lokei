@@ -2,6 +2,10 @@ package Lokei.aplication.infrastructure.persistence.entities;
 
 import Lokei.aplication.domain.enums.StatusAnuncioEnum;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.io.Serial;
@@ -14,6 +18,10 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tb_anuncio")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class AnuncioEntity implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -39,92 +47,12 @@ public class AnuncioEntity implements Serializable {
     @OneToMany(mappedBy = "anuncio", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ImagemEntity> imagens = new ArrayList<>();
 
-    private Long usuarioId;
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private UsuarioEntity usuario;
 
-    public AnuncioEntity(){}
-
-    public AnuncioEntity(Long id, String titulo, String descricao, BigDecimal valorDiario, LocalDateTime dataCriacao, StatusAnuncioEnum status, FerramentaEntity ferramenta, Long usuarioId) {
-        this.id = id;
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.valorDiario = valorDiario;
-        this.dataCriacao = dataCriacao;
-        this.status = status;
-        this.ferramenta = ferramenta;
-        this.usuarioId = usuarioId;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public BigDecimal getValorDiario() {
-        return valorDiario;
-    }
-
-    public void setValorDiario(BigDecimal valorDiario) {
-        this.valorDiario = valorDiario;
-    }
-
-    public LocalDateTime getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(LocalDateTime dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
-    public StatusAnuncioEnum getStatus() {
-        return status;
-    }
-
-    public void setStatus(StatusAnuncioEnum status) {
-        this.status = status;
-    }
-
-    public FerramentaEntity getFerramenta() {
-        return ferramenta;
-    }
-
-    public void setFerramenta(FerramentaEntity ferramenta) {
-        this.ferramenta = ferramenta;
-    }
-
-    public List<ImagemEntity> getImagens() {
-        return imagens;
-    }
-
-    public void setImagens(List<ImagemEntity> imagens) {
-        this.imagens = imagens;
-    }
-
-    public Long getUsuarioId() {
-        return usuarioId;
-    }
-
-    public void setUsuarioId(Long usuarioId) {
-        this.usuarioId = usuarioId;
-    }
+    @OneToMany(mappedBy = "anuncio")
+    private List<DenunciaEntity> denuncias = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {

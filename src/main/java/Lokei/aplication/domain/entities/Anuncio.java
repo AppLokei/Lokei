@@ -19,6 +19,7 @@ public class Anuncio {
 
     private List<Imagem> imagens = new ArrayList<>();
     private Ferramenta ferramenta;
+
     private final Long usuarioId;
 
     public Anuncio(Long id, String titulo, String descricao, BigDecimal valorDiario, StatusAnuncioEnum status, Ferramenta ferramenta, List<Imagem> imagens, Long usuarioId) {

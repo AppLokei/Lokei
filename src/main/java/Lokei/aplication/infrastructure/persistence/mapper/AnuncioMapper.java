@@ -4,6 +4,7 @@ import Lokei.aplication.domain.entities.Anuncio;
 import Lokei.aplication.domain.entities.Imagem;
 import Lokei.aplication.infrastructure.persistence.entities.AnuncioEntity;
 import Lokei.aplication.infrastructure.persistence.entities.ImagemEntity;
+import Lokei.aplication.infrastructure.persistence.entities.UsuarioEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ public class AnuncioMapper {
                 entity.getStatus(),
                 FerramentaMapper.toDomain(entity.getFerramenta()),
                 imagens,
-                entity.getUsuarioId()
+                entity.getUsuario().getId()
         );
     }
 
@@ -38,7 +39,10 @@ public class AnuncioMapper {
         entity.setDataCriacao(anuncio.getDataCriacao());
         entity.setStatus(anuncio.getStatus());
         entity.setFerramenta(FerramentaMapper.toEntity(anuncio.getFerramenta()));
-        entity.setUsuarioId(anuncio.getUsuarioId());
+
+        UsuarioEntity usuario = new UsuarioEntity();
+        usuario.setId(anuncio.getUsuarioId());
+        entity.setUsuario(usuario);
 
         List<ImagemEntity> imagens = new ArrayList<>();
         for (Imagem imagem : anuncio.getImagens()) {

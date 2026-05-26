@@ -1,6 +1,6 @@
 package Lokei.aplication.infrastructure.beans;
 
-import Lokei.aplication.adapter.mapper.FerramentaDTOMapper;
+import Lokei.aplication.adapter.mapper.FerramentaControllerMapper;
 import Lokei.aplication.domain.gateways.FerramentaGateway;
 import Lokei.aplication.infrastructure.gateways.FerramentaRepositoryGateway;
 import Lokei.aplication.infrastructure.persistence.mapper.FerramentaMapper;
@@ -22,7 +22,7 @@ public class FerramentaBean {
     }
 
     @Bean
-    FerramentaDTOMapper ferramentaDTOMapper() {
-        return new FerramentaDTOMapper();
+    FerramentaControllerMapper ferramentaDTOMapper() {
+        return new FerramentaControllerMapper();
     }
 }
