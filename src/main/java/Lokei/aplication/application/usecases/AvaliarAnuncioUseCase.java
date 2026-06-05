@@ -5,16 +5,15 @@ import Lokei.aplication.infrastructure.persistence.entities.AluguelEntity;
 import Lokei.aplication.infrastructure.persistence.entities.AvaliacaoEntity;
 import Lokei.aplication.infrastructure.persistence.repository.AluguelRepository;
 import Lokei.aplication.infrastructure.persistence.repository.AvaliacaoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+@RequiredArgsConstructor
 @Service
 public class AvaliarAnuncioUseCase {
 
-    @Autowired
-    private AluguelRepository repoAluguel;
-    @Autowired
-    private AvaliacaoRepository repoAvaliacao;
+    private final AluguelRepository repoAluguel;
+    private final AvaliacaoRepository repoAvaliacao;
 
     public String avaliarAnuncio(AvaliacaoEntity avaliacaoEntity){
 

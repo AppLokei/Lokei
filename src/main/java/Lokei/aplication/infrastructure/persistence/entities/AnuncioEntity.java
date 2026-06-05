@@ -2,39 +2,37 @@ package Lokei.aplication.infrastructure.persistence.entities;
 
 import Lokei.aplication.domain.enums.StatusAnuncioEnum;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "tb_anuncio")
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AnuncioEntity implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 1L;
+@Getter
+@Setter
+public class AnuncioEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    @Column(nullable = false)
     private String titulo;
+
+    @Column(nullable = false)
     private String descricao;
+
+    @Column(name = "valor_diario", nullable = false)
     private BigDecimal valorDiario;
 
     @CreationTimestamp
+    @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;
 
     @Enumerated(EnumType.STRING)
@@ -54,16 +52,5 @@ public class AnuncioEntity implements Serializable {
     @OneToMany(mappedBy = "anuncio")
     private List<DenunciaEntity> denuncias = new ArrayList<>();
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        AnuncioEntity entity = (AnuncioEntity) o;
-        return Objects.equals(id, entity.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
-    }
 }
 

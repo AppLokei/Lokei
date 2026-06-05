@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
@@ -17,17 +15,16 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DenunciaEntity implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 1L;
+public class DenunciaEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String motivo;
     private String descricao;
 
     @CreationTimestamp
+    @Column(name = "data_denuncia")
     private LocalDate dataDenuncia;
 
     @ManyToOne

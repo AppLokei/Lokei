@@ -1,6 +1,5 @@
 package Lokei.aplication.infrastructure.persistence.specification;
 
-import Lokei.aplication.adapter.dto.req.AnuncioFiltroRequest;
 import Lokei.aplication.domain.enums.CategoriaEnum;
 import Lokei.aplication.infrastructure.persistence.entities.AnuncioEntity;
 import org.springframework.data.jpa.domain.Specification;

@@ -1,13 +1,8 @@
 package Lokei.aplication.infrastructure.persistence.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,17 +12,22 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UsuarioEntity implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 1L;
+public class UsuarioEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String nome;
+
+    @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(nullable = false, unique = true)
     private String cpf;
+
+    @Column(nullable = false, unique = true)
     private String telefone;
+
     private String senha;
 
     @OneToMany(mappedBy = "usuario")
@@ -35,4 +35,8 @@ public class UsuarioEntity implements Serializable {
 
     @OneToMany(mappedBy = "usuario")
     private List<DenunciaEntity> denuncias = new ArrayList<>();
+
+    @OneToOne
+    @JoinColumn(name = "endereco_id")
+    private EnderecoEntity endereco;
 }

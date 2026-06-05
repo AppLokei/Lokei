@@ -1,7 +1,7 @@
 package Lokei.aplication.application.usecases.anuncio;
 
 import Lokei.aplication.domain.entities.Anuncio;
-import Lokei.aplication.domain.exceptions.AnuncioNotFoundException;
+import Lokei.aplication.domain.exceptions.NotFoundException;
 import Lokei.aplication.domain.gateways.AnuncioGateway;
 
 import java.util.Optional;
@@ -16,7 +16,7 @@ public class BuscarAnuncioPorIdUseCase {
     public Anuncio execute(Long id) {
         Optional<Anuncio> anuncio = anuncioGateway.buscarAnuncioPorId(id);
         if (anuncio.isEmpty()) {
-            throw new AnuncioNotFoundException(id);
+            throw new NotFoundException(id);
         }
         return anuncio.get();
     }

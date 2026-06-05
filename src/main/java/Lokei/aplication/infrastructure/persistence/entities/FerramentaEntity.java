@@ -2,54 +2,32 @@ package Lokei.aplication.infrastructure.persistence.entities;
 
 import Lokei.aplication.domain.enums.CategoriaEnum;
 import jakarta.persistence.*;
-
-import java.io.Serial;
-import java.io.Serializable;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "tb_ferramenta")
-public class FerramentaEntity implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 1L;
+@Getter
+@Setter
+@NoArgsConstructor
+public class FerramentaEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
     private String nome;
 
     @Enumerated(EnumType.STRING)
     private CategoriaEnum categoria;
 
-    public FerramentaEntity() {
-    }
+    @OneToOne(mappedBy = "ferramenta")
+    private AnuncioEntity anuncio;
 
     public FerramentaEntity(Long id, String nome, CategoriaEnum categoria) {
         this.id = id;
         this.nome = nome;
-        this.categoria = categoria;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public CategoriaEnum getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(CategoriaEnum categoria) {
         this.categoria = categoria;
     }
 }

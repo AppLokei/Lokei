@@ -1,127 +1,50 @@
 package Lokei.aplication.infrastructure.persistence.entities;
 
 import Lokei.aplication.domain.enums.StatusAluguelEnum;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.Objects;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "tb_aluguel")
-public class AluguelEntity implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 1L;
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+public class AluguelEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
-    private Date dataInicio;
-    private Date dataFim;
+
+    @CreationTimestamp
+    @Column(name = "data_inicio")
+    private LocalDate dataInicio;
+
+    @CreationTimestamp
+    @Column(name = "data_fim")
+    private LocalDate dataFim;
+
+    @Column(name = "valor_total")
     private BigDecimal valorTotal;
+
     @Enumerated(EnumType.STRING)
+    @Column(name = "status_aluguel")
     private StatusAluguelEnum statusAluguel;
-    private Date datacriacao;
+
+    @CreationTimestamp
+    @Column(name = "data_criacao")
+    private LocalDate datacriacao;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "avaliacao_id")
-    private AvaliacaoEntity avaliacaoEntity;
+    private AvaliacaoEntity avaliacao;
 
     @ManyToOne
     @JoinColumn(name = "anuncio_id")
     private AnuncioEntity anuncio;
-    public AluguelEntity(){
 
-    }
-
-    public AluguelEntity(Integer id, Date dataInicio, Date dataFim, BigDecimal valorTotal, StatusAluguelEnum statusAluguel, Date datacriacao, AvaliacaoEntity avaliacaoEntity, AnuncioEntity anuncio) {
-        this.id = id;
-        this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
-        this.valorTotal = valorTotal;
-        this.statusAluguel = statusAluguel;
-        this.datacriacao = datacriacao;
-        this.avaliacaoEntity = avaliacaoEntity;
-        this.anuncio = anuncio;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Date getDataInicio() {
-        return dataInicio;
-    }
-
-    public void setDataInicio(Date dataInicio) {
-        this.dataInicio = dataInicio;
-    }
-
-    public Date getDataFim() {
-        return dataFim;
-    }
-
-    public void setDataFim(Date dataFim) {
-        this.dataFim = dataFim;
-    }
-
-    public BigDecimal getValorTotal() {
-        return valorTotal;
-    }
-
-    public void setValorTotal(BigDecimal valorTotal) {
-        this.valorTotal = valorTotal;
-    }
-
-    public Date getDatacriacao() {
-        return datacriacao;
-    }
-
-    public void setDatacriacao(Date datacriacao) {
-        this.datacriacao = datacriacao;
-    }
-
-    public StatusAluguelEnum getStatusAluguel() {
-        return statusAluguel;
-    }
-
-    public void setStatusAluguel(StatusAluguelEnum statusAluguel) {
-        this.statusAluguel = statusAluguel;
-    }
-
-    public AvaliacaoEntity getAvaliacao() {
-        return avaliacaoEntity;
-    }
-
-    public void setAvaliacao(AvaliacaoEntity avaliacaoEntity) {
-        this.avaliacaoEntity = avaliacaoEntity;
-    }
-
-    @JsonIgnore
-    public AnuncioEntity getAnuncio() {
-        return anuncio;
-    }
-
-    public void setAnuncio(AnuncioEntity anuncio) {
-        this.anuncio = anuncio;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        AluguelEntity aluguelEntity = (AluguelEntity) o;
-        return Objects.equals(id, aluguelEntity.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
-    }
 }

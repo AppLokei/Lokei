@@ -6,6 +6,7 @@ import Lokei.aplication.application.usecases.imagem.AdicionarImagemUseCase;
 import Lokei.aplication.application.usecases.imagem.DeletarImagemUseCase;
 import Lokei.aplication.domain.entities.Imagem;
 import Lokei.aplication.infrastructure.config.CloudinaryService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,17 +14,12 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.Map;
 
 @RestController
+@RequiredArgsConstructor
 public class ImagemController {
 
     private final AdicionarImagemUseCase adicionarImagemUseCase;
     private final DeletarImagemUseCase deletarImagemUseCase;
     private final CloudinaryService cloudinaryService;
-
-    public ImagemController(AdicionarImagemUseCase adicionarImagemUseCase, DeletarImagemUseCase deletarImagemUseCase, CloudinaryService cloudinaryService) {
-        this.adicionarImagemUseCase = adicionarImagemUseCase;
-        this.deletarImagemUseCase = deletarImagemUseCase;
-        this.cloudinaryService = cloudinaryService;
-    }
 
     @PostMapping(value = "/anuncio/{id}/imagem")
     public ResponseEntity<ImagemResponse> salvar(@PathVariable Long id, @RequestParam("file") MultipartFile arquivo) {

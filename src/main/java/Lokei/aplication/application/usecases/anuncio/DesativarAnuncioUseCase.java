@@ -1,30 +1,25 @@
 package Lokei.aplication.application.usecases.anuncio;
 
 import Lokei.aplication.domain.entities.Anuncio;
-import Lokei.aplication.domain.exceptions.AnuncioNotFoundException;
+import Lokei.aplication.domain.exceptions.NotFoundException;
 import Lokei.aplication.domain.exceptions.UsuarioNaoAutorizadoException;
-import Lokei.aplication.domain.exceptions.UsuarioNotFoundException;
 import Lokei.aplication.domain.gateways.AluguelGateway;
 import Lokei.aplication.domain.gateways.AnuncioGateway;
 import Lokei.aplication.domain.gateways.UsuarioGateway;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class DesativarAnuncioUseCase {
     private final AnuncioGateway anuncioGateway;
     private final UsuarioGateway usuarioGateway;
     private final AluguelGateway aluguelGateway;
 
-    public DesativarAnuncioUseCase(AnuncioGateway anuncioGateway, UsuarioGateway usuarioGateway, AluguelGateway aluguelGateway) {
-        this.anuncioGateway = anuncioGateway;
-        this.usuarioGateway = usuarioGateway;
-        this.aluguelGateway = aluguelGateway;
-    }
-
     public void execute(Long anuncioId, Long usuarioId) {
-        Anuncio existente = anuncioGateway.buscarAnuncioPorId(anuncioId).orElseThrow(() -> new AnuncioNotFoundException(anuncioId));
+        Anuncio existente = anuncioGateway.buscarAnuncioPorId(anuncioId).orElseThrow(() -> new NotFoundException(anuncioId));
         var usuarioExiste = usuarioGateway.buscarUsuarioPorId(usuarioId);
 
         if (usuarioExiste.isEmpty()) {
-            throw new UsuarioNotFoundException(usuarioId);
+            throw new NotFoundException(usuarioId);
         }
 
         if (!existente.getUsuarioId().equals(usuarioId)) {

@@ -21,17 +21,17 @@ public class DeletarImagemUseCase {
     }
 
     public Imagem execute(Long id, Long anuncioId, Long usuarioId) {
-        Anuncio existente = anuncioGateway.buscarAnuncioPorId(anuncioId).orElseThrow(() -> new AnuncioNotFoundException(anuncioId));
+        Anuncio existente = anuncioGateway.buscarAnuncioPorId(anuncioId).orElseThrow(() -> new NotFoundException(anuncioId));
         var usuarioExiste = usuarioGateway.buscarUsuarioPorId(usuarioId);
 
         if (usuarioExiste.isEmpty()) {
-            throw new UsuarioNotFoundException(usuarioId);
+            throw new NotFoundException(usuarioId);
         }
         if (!existente.getUsuarioId().equals(usuarioId)) {
             throw new UsuarioNaoAutorizadoException("Somente o proprietário do anúncio pode realizar esta operação");
         }
 
-        Imagem imagem = imagemGateway.buscarImagemPorId(id).orElseThrow(() -> new ImagemNotFoundException(id));
+        Imagem imagem = imagemGateway.buscarImagemPorId(id).orElseThrow(() -> new NotFoundException(id));
         existente.removerImagem(imagem);
 
         imagemGateway.apagarImagem(imagem.getId());

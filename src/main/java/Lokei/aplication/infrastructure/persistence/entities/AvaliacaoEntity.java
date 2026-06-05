@@ -1,94 +1,36 @@
 package Lokei.aplication.infrastructure.persistence.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
-import java.io.Serial;
-import java.io.Serializable;
-import java.util.Date;
-import java.util.Objects;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "tb_avaliacao")
-public class AvaliacaoEntity implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 1L;
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class AvaliacaoEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
     private Integer nota;
     private String comentario;
-    private Date dataCriacao;
+
+    @CreationTimestamp
+    @Column(name = "data_criacao")
+    private LocalDate dataCriacao;
 
     @OneToOne
     @JoinColumn(name = "aluguel_id")
-    private AluguelEntity aluguelEntity;
+    private AluguelEntity aluguel;
 
-
-    public AvaliacaoEntity(){
-
-    }
-
-    public AvaliacaoEntity(Integer id, Integer nota, String comentario, Date dataCriacao, AluguelEntity aluguelEntity) {
-        this.id = id;
-        this.nota = nota;
-        this.comentario = comentario;
-        this.dataCriacao = dataCriacao;
-        this.aluguelEntity = aluguelEntity;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getNota() {
-        return nota;
-    }
-
-    public void setNota(Integer nota) {
-        this.nota = nota;
-    }
-
-    public String getComentario() {
-        return comentario;
-    }
-
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
-    }
-
-    public Date getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(Date dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
-    public AluguelEntity getAluguel() {
-        return aluguelEntity;
-    }
-
-    public void setAluguel(AluguelEntity aluguelEntity) {
-        this.aluguelEntity = aluguelEntity;
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        AvaliacaoEntity avaliacaoEntity = (AvaliacaoEntity) o;
-        return Objects.equals(id, avaliacaoEntity.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
-    }
 }
 
 

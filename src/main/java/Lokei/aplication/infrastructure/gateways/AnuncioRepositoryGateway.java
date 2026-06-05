@@ -7,6 +7,8 @@ import Lokei.aplication.infrastructure.persistence.entities.AnuncioEntity;
 import Lokei.aplication.infrastructure.persistence.mapper.AnuncioMapper;
 import Lokei.aplication.infrastructure.persistence.repository.AnuncioRepository;
 import Lokei.aplication.infrastructure.persistence.specification.AnuncioSpecification;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
@@ -18,13 +20,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
+@RequiredArgsConstructor
 public class AnuncioRepositoryGateway implements AnuncioGateway {
 
     private final AnuncioRepository anuncioRepository;
-
-    public AnuncioRepositoryGateway(AnuncioRepository anuncioRepository) {
-        this.anuncioRepository = anuncioRepository;
-    }
 
     @Override
     public Anuncio criarAnuncio(Anuncio anuncio) {
