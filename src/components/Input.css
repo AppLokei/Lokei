@@ -1,0 +1,73 @@
+/* font import handled globally */
+
+.inputField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: "Manrope", "Poppins", sans-serif;
+}
+
+.inputLabel {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-grafite-escuro);
+}
+
+.inputControlWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputControl {
+  border: 1px solid var(--color-cinza-borda);
+  border-radius: 14px;
+  padding: 12px 16px;
+  min-height: 44px;
+  font-size: 0.95rem;
+  background: var(--color-branco-brilhante);
+  color: var(--color-grafite-escuro);
+  outline: none;
+  transition: border-color 0.2s ease-out, box-shadow 0.2s ease-out;
+  width: 100%;
+}
+
+.inputControl:focus {
+  border-color: var(--color-amarelo-acao);
+  box-shadow: 0 0 0 3px oklch(80.4% 0.156 82.5 / 0.2);
+}
+
+.inputControl:disabled {
+  background: var(--color-cinza-fundo);
+  color: rgba(31, 31, 31, 0.45);
+  border-color: var(--color-cinza-borda-suave);
+  cursor: not-allowed;
+}
+
+.inputControl--error {
+  border-color: var(--color-vermelho-alerta);
+}
+
+.inputAction {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputActionButton {
+  border: none;
+  background: transparent;
+  color: var(--color-ocre-acao-escuro);
+  font-weight: 700;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.inputError {
+  font-size: 0.75rem;
+  color: var(--color-vermelho-alerta);
+}

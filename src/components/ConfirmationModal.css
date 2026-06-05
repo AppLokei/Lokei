@@ -1,0 +1,94 @@
+/* ══════════════════════════════════════
+   Confirmation Modal Stylesheet
+   ══════════════════════════════════════ */
+
+/* Backdrop overlay with blur */
+.confirmOverlay {
+  position: fixed;
+  inset: 0;
+  background: oklch(21.8% 0.01 96 / 0.45);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+  padding: 20px;
+  box-sizing: border-box;
+  animation: confirmFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes confirmFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Modal Card */
+.confirmCard {
+  background: var(--color-marfim-matizado);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 24px 50px oklch(21.8% 0.01 96 / 0.18);
+  border: 1px solid var(--color-warm-border);
+  padding: 28px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transform: scale(0.95);
+  opacity: 0;
+  animation: confirmScaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes confirmScaleIn {
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Content */
+.confirmHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.confirmHeader h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-grafite-escuro);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.confirmBody p {
+  font-size: 0.95rem;
+  color: var(--color-cinza-texto);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.confirmBody strong {
+  color: var(--color-grafite-escuro);
+  font-weight: 700;
+}
+
+/* Footer layout */
+.confirmFooter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.confirmFooter .button {
+  flex: 1;
+}
+
+@media (max-width: 480px) {
+  .confirmCard {
+    padding: 24px 20px;
+  }
+}

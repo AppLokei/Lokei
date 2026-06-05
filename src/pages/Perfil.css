@@ -1,0 +1,228 @@
+/* font import handled globally */
+
+.perfilPage {
+  min-height: 100vh;
+  background: linear-gradient(180deg, oklch(97% 0.02 85) 0%, oklch(96% 0.01 80) 55%, oklch(95% 0.01 75) 100%);
+  padding: 32px 20px 72px;
+  font-family: "Manrope", "Poppins", sans-serif;
+  color: var(--color-grafite-escuro);
+}
+
+.perfilShell {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.perfilHero {
+  background: oklch(98% 0.01 90);
+  border-radius: 24px;
+  padding: 26px 26px 22px;
+  border: 1px solid oklch(90% 0.02 85);
+  box-shadow: 0 18px 35px rgba(24, 24, 24, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.perfilIdentity {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.perfilAvatar {
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  background: oklch(90% 0.08 85);
+  color: oklch(34% 0.08 82);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.perfilAvatarInitials {
+  font-size: 1.3rem;
+}
+
+.perfilIdentityText {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.perfilNameRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.perfilName {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-grafite-escuro);
+}
+
+.perfilMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  color: var(--color-cinza-apoio);
+  font-size: 0.9rem;
+}
+
+.perfilRating {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: oklch(40% 0.08 82);
+  font-weight: 600;
+}
+
+.perfilStars {
+  letter-spacing: 1px;
+  color: oklch(60% 0.12 80);
+}
+
+.perfilSince {
+  font-size: 0.85rem;
+  color: var(--color-cinza-texto);
+}
+
+.perfilPanel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+}
+
+.perfilNav {
+  background: oklch(98% 0.01 90);
+  border-radius: 22px;
+  padding: 22px;
+  border: 1px solid oklch(90% 0.02 85);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.perfilSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.perfilSectionTitle {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--color-ocre-acao);
+  margin: 0 0 8px;
+}
+
+.perfilList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.perfilItem {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+  padding: 12px 8px;
+  border-radius: 12px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  cursor: pointer;
+  color: var(--color-grafite-escuro);
+  font-family: "Manrope", "Poppins", sans-serif;
+}
+
+.perfilItem:hover {
+  background: oklch(97% 0.02 85);
+}
+
+.perfilItemIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: oklch(94% 0.03 85);
+  color: var(--color-ocre-acao);
+  font-weight: 700;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid oklch(90% 0.02 85);
+  flex-shrink: 0;
+}
+
+.perfilItemText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.perfilItemLabel {
+  font-weight: 600;
+  color: var(--color-grafite-escuro);
+}
+
+.perfilItemDesc {
+  font-size: 0.85rem;
+  color: var(--color-cinza-texto);
+}
+
+
+.perfilLogoutSection {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 0 0;
+  border-top: 1px solid oklch(90% 0.02 85);
+}
+
+.perfilLogout {
+  align-self: flex-start;
+  background: transparent;
+  border: 1px solid oklch(82% 0.02 30);
+  color: oklch(36% 0.02 30);
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: "Manrope", "Poppins", sans-serif;
+}
+
+.perfilLogoutHint {
+  font-size: 0.8rem;
+  color: var(--color-cinza-texto);
+  margin: 0;
+}
+
+@media (min-width: 900px) {
+  .perfilPage {
+    padding: 110px 40px 100px;
+  }
+
+  .perfilHero {
+    padding: 28px 34px;
+  }
+}
+
+@media (max-width: 899px) {
+  .perfilIdentity {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

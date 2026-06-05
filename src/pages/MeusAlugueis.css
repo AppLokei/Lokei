@@ -1,0 +1,67 @@
+/* font import handled globally */
+
+.rentalsPage {
+  min-height: 100vh;
+  background: linear-gradient(180deg, oklch(97% 0.02 85) 0%, oklch(96% 0.01 80) 55%, oklch(95% 0.01 75) 100%);
+  padding: 32px 20px 100px;
+  font-family: "Manrope", "Poppins", sans-serif;
+}
+
+.rentalsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1140px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.rentalsHeader h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-grafite-escuro);
+}
+
+.rentalsHeader p {
+  margin-top: 6px;
+  color: var(--color-cinza-texto);
+  font-size: 0.9rem;
+}
+
+.rentalsTabs {
+  display: inline-flex;
+  gap: 10px;
+  background: var(--color-branco-brilhante);
+  padding: 6px;
+  border-radius: 999px;
+  border: 1px solid oklch(80.4% 0.156 82.5 / 0.15);
+}
+
+.rentalsTab {
+  min-height: 44px;
+  border: none;
+  background: transparent;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  color: var(--color-cinza-texto);
+  cursor: pointer;
+  font-family: "Manrope", "Poppins", sans-serif;
+}
+
+.rentalsTab.active {
+  background: oklch(80.4% 0.156 82.5 / 0.25);
+  color: var(--color-grafite-escuro);
+}
+
+.rentalsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 900px) {
+  .rentalsPage {
+    padding: 110px 40px 100px;
+  }
+}

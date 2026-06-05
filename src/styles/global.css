@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap");
+
+:root {
+  font-family: "Manrope", "Poppins", sans-serif;
+
+  /* Primary Action */
+  --color-amarelo-acao: oklch(80.4% 0.156 82.5); /* #f0b429 */
+  --color-amarelo-acao-deep: oklch(75.6% 0.149 80.7); /* #e0a420 */
+
+  /* Neutral Warm Backgrounds & Surfaces */
+  --color-bege-areia: oklch(97% 0.02 85); /* #fff7e7 */
+  --color-marfim-matizado: oklch(96% 0.01 80); /* #f8f7f4 */
+  --color-branco-calmo: oklch(98.5% 0.003 90); /* #fafafa */
+  --color-branco-brilhante: oklch(98% 0.01 90); /* #ffffff (safe warm surface tint) */
+
+  /* Neutral Dark Text & Elements */
+  --color-grafite-escuro: oklch(23.9% 0.01 96); /* #1f1f1f */
+  --color-grafite-solido: oklch(21.8% 0.01 96); /* #1a1a1a */
+  --color-cinza-texto: oklch(52.8% 0.002 96); /* #6b6b6b */
+  --color-cinza-apoio: oklch(41.3% 0.002 96); /* #4b4b4b */
+  --color-cinza-frio: oklch(71.4% 0.019 261.3); /* #9ca3af */
+  --color-ardosia: oklch(44.6% 0.026 256.8); /* #4b5563 */
+
+  /* Borders & Dividers */
+  --color-cinza-borda: oklch(88.5% 0.002 96); /* #d9d9d9 */
+  --color-cinza-borda-suave: oklch(92.8% 0.006 264.5); /* #e5e7eb */
+  --color-cinza-fundo: oklch(96.7% 0.003 264.5); /* #f3f4f6 */
+  --color-warm-border: oklch(90% 0.02 85); /* #efe4cf / oklch border */
+
+  /* Semantic - Alerts, Errors, Success & Badges */
+  --color-vermelho-alerta: oklch(59.7% 0.182 24.5); /* #d64545 */
+  --color-vermelho-alerta-escuro: oklch(55.3% 0.180 25.3); /* #c63737 */
+  --color-vermelho-suave: oklch(93.6% 0.031 17.7); /* #fee2e2 */
+  --color-verde-sucesso: oklch(51.6% 0.128 144.6); /* #2f7a34 */
+  --color-verde-sucesso-tinta: oklch(96.2% 0.043 156.7); /* #dcfce7 */
+  --color-amarelo-suave: oklch(96.2% 0.058 95.6); /* #fef3c7 */
+
+  /* Support & Secondary Actions */
+  --color-ocre-acao: oklch(56.3% 0.118 77.7); /* #9b6b00 */
+  --color-ocre-acao-escuro: oklch(54.1% 0.111 87.7); /* #8a6a00 */
+  --color-ocre-apoio: oklch(47.3% 0.125 46.2); /* #92400e */
+}
+
+body {
+  font-family: "Manrope", "Poppins", sans-serif;
+  font-kerning: normal;
+}
+
+*,
+*::before,
+*::after {
+  font-family: inherit;
+}

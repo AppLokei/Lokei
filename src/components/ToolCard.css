@@ -1,0 +1,136 @@
+/* font import handled globally */
+
+.toolCard {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--color-branco-brilhante);
+  border-radius: 20px;
+  padding: 14px;
+  box-sizing: border-box;
+  overflow: hidden;
+  box-shadow: 0 18px 35px rgba(24, 24, 24, 0.08);
+  border: 1px solid oklch(80.4% 0.156 82.5 / 0.15);
+  font-family: "Manrope", "Poppins", sans-serif;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out;
+  container-type: inline-size;
+}
+
+.toolCard:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 22px 42px rgba(24, 24, 24, 0.12);
+  border-color: oklch(80.4% 0.156 82.5 / 0.3);
+}
+
+.toolCardImage {
+  border-radius: 18px;
+  background: linear-gradient(135deg, oklch(93.1% 0.054 88.4), oklch(97.5% 0.025 86.9));
+  height: 140px;
+  background-size: cover;
+  background-position: center;
+}
+
+.toolCardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.toolCardHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.toolCardTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-grafite-escuro);
+}
+
+.toolCardLocation {
+  font-size: 0.8rem;
+  color: var(--color-cinza-texto);
+}
+
+.toolCardPrice {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-grafite-escuro);
+}
+
+.toolCardPriceCurrency {
+  font-size: 0.78rem;
+  color: var(--color-ocre-acao-escuro);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.toolCardPriceValue {
+  font-size: 1.55rem;
+  letter-spacing: -0.02em;
+}
+
+.toolCardPriceUnit {
+  font-size: 0.72rem;
+  color: var(--color-cinza-texto);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.toolCardCta {
+  margin-top: auto;
+  width: 100%;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 16px;
+  background: var(--color-amarelo-acao);
+  color: var(--color-grafite-escuro);
+  font-family: "Manrope", "Poppins", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  min-height: 44px;
+  transition: background 0.2s ease-out, box-shadow 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.toolCardCta:hover {
+  background: var(--color-amarelo-acao-deep);
+  box-shadow: 0 10px 20px oklch(80.4% 0.156 82.5 / 0.25);
+  transform: translateY(-1px);
+}
+
+.toolCardCta:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 14px oklch(80.4% 0.156 82.5 / 0.18);
+}
+
+.toolCardCta:focus-visible {
+  outline: 2px solid oklch(80.4% 0.156 82.5 / 0.6);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px oklch(80.4% 0.156 82.5 / 0.18);
+}
+
+@container (max-width: 250px) {
+  .toolCardTitle {
+    font-size: 0.9rem;
+  }
+  .toolCardPriceValue {
+    font-size: 1.3rem;
+  }
+  .toolCardCta {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    min-height: 40px;
+  }
+}

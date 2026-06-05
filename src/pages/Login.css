@@ -1,0 +1,182 @@
+/* font import handled globally */
+
+.loginPage {
+  min-height: 100vh;
+  background: linear-gradient(135deg, oklch(97% 0.02 85) 0%, oklch(96% 0.01 80) 55%, oklch(95% 0.01 75) 100%);
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding: 0;
+  font-family: "Manrope", "Poppins", sans-serif;
+}
+
+.loginSplit {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 1325px;
+  margin: 0 auto;
+}
+
+.loginBrand {
+  background: var(--color-bege-areia);
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  min-height: 100vh;
+}
+
+.loginBrandInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  text-align: left;
+  max-width: 380px;
+  width: 100%;
+}
+
+.loginBrandLogo {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 4px;
+}
+
+.loginBrandTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-grafite-escuro);
+  letter-spacing: -0.02em;
+  max-width: 20ch;
+}
+
+.loginBrandSubtitle {
+  font-size: 1rem;
+  color: var(--color-cinza-apoio);
+  line-height: 1.6;
+  max-width: 38ch;
+}
+
+.loginFormPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 48px 40px;
+  gap: 24px;
+  background: var(--color-marfim-matizado);
+  min-height: 100vh;
+}
+
+.loginFormPanel > * {
+  max-width: 390px;
+  width: 100%;
+}
+
+.loginHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.loginEyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ocre-acao-escuro);
+}
+
+.loginTitle {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--color-grafite-escuro);
+  letter-spacing: -0.02em;
+}
+
+.loginSubtitle {
+  font-size: 0.98rem;
+  color: var(--color-cinza-texto);
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.loginPrivacy {
+  font-size: 0.82rem;
+  color: var(--color-cinza-texto);
+  margin-top: -8px;
+}
+
+.loginForgot {
+  align-self: flex-start;
+  font-size: 0.85rem;
+  color: var(--color-ocre-acao);
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: -6px;
+}
+
+.loginForgot:hover {
+  color: var(--color-grafite-escuro);
+}
+
+.loginFooter {
+  font-size: 0.9rem;
+  color: var(--color-cinza-texto);
+}
+
+.loginFooter a {
+  color: var(--color-ocre-acao);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.loginFooter a:hover {
+  color: var(--color-grafite-escuro);
+}
+
+@media (min-width: 900px) {
+  .loginSplit {
+    grid-template-columns: minmax(0, 0.48fr) minmax(0, 0.52fr);
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 899px) {
+  .loginPage {
+    padding: 24px 20px 40px;
+  }
+
+  .loginSplit {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .loginBrand {
+    border-radius: 24px;
+    padding: 32px 24px;
+    min-height: auto;
+    align-items: flex-start;
+  }
+
+  .loginFormPanel {
+    padding: 24px 12px 8px;
+    min-height: auto;
+    align-items: flex-start;
+  }
+
+  .loginBrandInner {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
