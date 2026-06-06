@@ -31,16 +31,18 @@ public class AnuncioController {
     private final PausarAnuncioUseCase pausarAnuncioUseCase;
     private final ReativarAnuncioUseCase reativarAnuncioUseCase;
     private final BuscarAnunciosUseCase buscarAnunciosUseCase;
+    private final BuscarAnuncioPorUsuarioUseCase buscarAnuncioPorUsuarioUseCase;
     private final CloudinaryService cloudinaryService;
     private final AnuncioGateway anuncioGateway;
 
-    public AnuncioController(CriarAnuncioUseCase criarAnuncioUseCase, AtualizarAnuncioUseCase atualizarAnuncioUseCase, DesativarAnuncioUseCase desativarAnuncioUseCase, PausarAnuncioUseCase pausarAnuncioUseCase, ReativarAnuncioUseCase reativarAnuncioUseCase, BuscarAnunciosUseCase buscarAnunciosUseCase, CloudinaryService cloudinaryService, AnuncioGateway anuncioGateway) {
+    public AnuncioController(CriarAnuncioUseCase criarAnuncioUseCase, AtualizarAnuncioUseCase atualizarAnuncioUseCase, DesativarAnuncioUseCase desativarAnuncioUseCase, PausarAnuncioUseCase pausarAnuncioUseCase, ReativarAnuncioUseCase reativarAnuncioUseCase, BuscarAnunciosUseCase buscarAnunciosUseCase, BuscarAnuncioPorUsuarioUseCase buscarAnuncioPorUsuarioUseCase, CloudinaryService cloudinaryService, AnuncioGateway anuncioGateway) {
         this.criarAnuncioUseCase = criarAnuncioUseCase;
         this.atualizarAnuncioUseCase = atualizarAnuncioUseCase;
         this.desativarAnuncioUseCase = desativarAnuncioUseCase;
         this.pausarAnuncioUseCase = pausarAnuncioUseCase;
         this.reativarAnuncioUseCase = reativarAnuncioUseCase;
         this.buscarAnunciosUseCase = buscarAnunciosUseCase;
+        this.buscarAnuncioPorUsuarioUseCase = buscarAnuncioPorUsuarioUseCase;
         this.cloudinaryService = cloudinaryService;
         this.anuncioGateway = anuncioGateway;
     }
@@ -110,6 +112,17 @@ public class AnuncioController {
             @RequestParam(defaultValue = "12") int tamanho) {
 
         Page<Anuncio> anuncios = buscarAnunciosUseCase.execute(filtro, pagina, tamanho);
+
+        return ResponseEntity.ok(anuncios.map(AnuncioControllerMapper::toResponse));
+    }
+
+    @GetMapping(value = "/anuncios-por-usuario")
+    public ResponseEntity<Page<AnuncioResponse>> buscarAnunciosPorUsuario(
+            @RequestParam String identificador,
+            @RequestParam(defaultValue = "0") int pagina,
+            @RequestParam(defaultValue = "12") int tamanho) {
+
+        Page<Anuncio> anuncios = buscarAnuncioPorUsuarioUseCase.buscarAnuncioPorUsuario(identificador, pagina, tamanho);
 
         return ResponseEntity.ok(anuncios.map(AnuncioControllerMapper::toResponse));
     }

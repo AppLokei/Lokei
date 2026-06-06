@@ -23,4 +23,15 @@ public class UsuarioRepositoryGateway implements UsuarioGateway {
     public Optional<UsuarioEntity> buscarUsuarioPorId(long id) {
         return usuarioRepository.findById(id);
     }
+
+    @Override
+    public Optional<UsuarioEntity> buscarUsuarioPorEmail(String email) {
+        return usuarioRepository.findByEmail(email);
+    }
+
+    @Override
+    public Optional<UsuarioEntity> buscarUsuarioPorCpf(String cpf) {
+        return usuarioRepository.findByCpf(cpf);
+    }
+
 }

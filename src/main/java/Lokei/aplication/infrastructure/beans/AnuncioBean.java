@@ -38,4 +38,9 @@ public class AnuncioBean {
         return new BuscarAnunciosUseCase(anuncioGateway);
     }
 
+    @Bean
+    public BuscarAnuncioPorUsuarioUseCase buscarAnuncioPorUsuarioUseCase(AnuncioGateway anuncioGateway, UsuarioGateway usuarioGateway) {
+        return new BuscarAnuncioPorUsuarioUseCase(anuncioGateway, usuarioGateway);
+    }
+
 }

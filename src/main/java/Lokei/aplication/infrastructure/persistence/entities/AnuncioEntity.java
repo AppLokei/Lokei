@@ -39,7 +39,9 @@ public class AnuncioEntity implements Serializable {
     @OneToMany(mappedBy = "anuncio", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ImagemEntity> imagens = new ArrayList<>();
 
-    private Long usuarioId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id", nullable = false)
+    private UsuarioEntity usuario;
 
     public AnuncioEntity(){}
 
@@ -51,7 +53,7 @@ public class AnuncioEntity implements Serializable {
         this.dataCriacao = dataCriacao;
         this.status = status;
         this.ferramenta = ferramenta;
-        this.usuarioId = usuarioId;
+        setUsuarioId(usuarioId);
     }
 
     public Long getId() {
@@ -118,12 +120,29 @@ public class AnuncioEntity implements Serializable {
         this.imagens = imagens;
     }
 
+    public UsuarioEntity getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioEntity usuario) {
+        this.usuario = usuario;
+    }
+
     public Long getUsuarioId() {
-        return usuarioId;
+        return usuario != null ? usuario.getId() : null;
     }
 
     public void setUsuarioId(Long usuarioId) {
-        this.usuarioId = usuarioId;
+        if (usuarioId == null) {
+            this.usuario = null;
+            return;
+        }
+
+        if (this.usuario == null) {
+            this.usuario = new UsuarioEntity();
+        }
+
+        this.usuario.setId(usuarioId);
     }
 
     @Override
