@@ -1,5 +1,6 @@
 package Lokei.aplication.infrastructure.persistence.entities;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -14,17 +15,18 @@ public class UsuarioEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String nome;
     private String email;
     private String cpf;
     private String telefone;
     private String senha;
+    private boolean ativo;
 
     public UsuarioEntity(){
     }
 
-    public UsuarioEntity(Integer id, String nome, String email, String cpf, String telefone, String senha) {
+    public UsuarioEntity(Long id, String nome, String email, String cpf, String telefone, String senha, Boolean ativo) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -33,11 +35,11 @@ public class UsuarioEntity implements Serializable {
         this.senha = senha;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -91,5 +93,12 @@ public class UsuarioEntity implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
+    }
+
+    public JsonSubTypes.Type getPapel() {
+
+    }
+
+    public boolean isAtivo() {
     }
 }
