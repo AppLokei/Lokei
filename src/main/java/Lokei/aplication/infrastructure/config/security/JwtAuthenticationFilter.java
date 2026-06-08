@@ -1,4 +1,4 @@
-package Lokei.aplication.infrastructure.security;
+package Lokei.aplication.infrastructure.config.security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -16,11 +16,11 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
-    private final UsuarioDetailsService usuarioDetailsService;
+    private final UserDetailsService userDetailsService;
 
-    public JwtAuthenticationFilter(JwtService jwtService, UsuarioDetailsService usuarioDetailsService) {
+    public JwtAuthenticationFilter(JwtService jwtService, UserDetailsService userDetailsService) {
         this.jwtService = jwtService;
-        this.usuarioDetailsService = usuarioDetailsService;
+        this.userDetailsService = userDetailsService;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         try {
             String username = jwtService.extrairUsername(token);
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                UsuarioAutenticado usuario = (UsuarioAutenticado) usuarioDetailsService.loadUserByUsername(username);
+                UsuarioAutenticado usuario = (UsuarioAutenticado) userDetailsService.loadUserByUsername(username);
                 if (jwtService.tokenValido(token, usuario)) {
                     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                             usuario,

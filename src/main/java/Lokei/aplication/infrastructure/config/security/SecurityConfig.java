@@ -27,16 +27,16 @@ import java.time.OffsetDateTime;
 public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    private final UsuarioDetailsService usuarioDetailsService;
+    private final UserDetailsService userDetailsService;
     private final ObjectMapper objectMapper;
 
     public SecurityConfig(
             JwtAuthenticationFilter jwtAuthenticationFilter,
-            UsuarioDetailsService usuarioDetailsService,
+            UserDetailsService userDetailsService,
             ObjectMapper objectMapper
     ) {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
-        this.usuarioDetailsService = usuarioDetailsService;
+        this.userDetailsService = userDetailsService;
         this.objectMapper = objectMapper;
     }
 
@@ -63,7 +63,7 @@ public class SecurityConfig {
     }
 
     private DaoAuthenticationProvider daoAuthenticationProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(usuarioDetailsService);
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailsService);
         provider.setPasswordEncoder(passwordEncoder());
         return provider;
     }
@@ -83,4 +83,4 @@ public class SecurityConfig {
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         objectMapper.writeValue(response.getOutputStream(), new ApiErrorResponse(OffsetDateTime.now().toString(), code, message));
     }
-}}
+}
