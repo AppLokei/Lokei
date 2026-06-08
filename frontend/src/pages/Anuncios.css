@@ -1,0 +1,66 @@
+/* font import handled globally */
+
+.anunciosPage {
+  min-height: 100vh;
+  background: linear-gradient(180deg, oklch(97% 0.02 85) 0%, oklch(96% 0.01 80) 55%, oklch(95% 0.01 75) 100%);
+  padding: 32px 20px 120px;
+  font-family: "Manrope", "Poppins", sans-serif;
+}
+
+.anunciosContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.anunciosHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.anunciosHeader h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-grafite-escuro);
+}
+
+.anunciosHeader p {
+  font-size: 0.9rem;
+  color: var(--color-cinza-texto);
+}
+
+.anunciosCta {
+  align-self: flex-start;
+  background: var(--color-amarelo-acao);
+  color: var(--color-grafite-escuro);
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 10px 18px oklch(80.4% 0.156 82.5 / 0.35);
+}
+
+.anunciosGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (min-width: 500px) {
+  .anunciosGrid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (min-width: 900px) {
+  .anunciosPage {
+    padding: 110px 40px 80px;
+  }
+
+  .anunciosContainer {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+}

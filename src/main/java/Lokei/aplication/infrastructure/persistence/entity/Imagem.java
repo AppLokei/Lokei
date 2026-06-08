@@ -1,33 +1,36 @@
 package Lokei.aplication.infrastructure.persistence.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table
-public class Imagem implements Serializable {
+@Table(name = "imagens")
+public class Imagem extends EntidadeAuditavel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(nullable = false)
+    private String nomeArquivo;
+
+    @Column(nullable = false)
     private String imagemUrl;
 
-    @ManyToOne
+    @Column(nullable = false)
+    private String contentType;
+
+    @Column(nullable = false)
+    private long tamanhoBytes;
+
+    @Column(nullable = false)
+    private int ordem;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "anuncio_id")
     private Anuncio anuncio;
-
-    public Imagem(){
-
-    }
-
-    public Imagem(Integer id, String imagemUrl, Anuncio anuncio) {
-        this.id = id;
-        this.imagemUrl = imagemUrl;
-        this.anuncio = anuncio;
-    }
 
     public Integer getId() {
         return id;
@@ -35,6 +38,14 @@ public class Imagem implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getNomeArquivo() {
+        return nomeArquivo;
+    }
+
+    public void setNomeArquivo(String nomeArquivo) {
+        this.nomeArquivo = nomeArquivo;
     }
 
     public String getImagemUrl() {
@@ -45,7 +56,30 @@ public class Imagem implements Serializable {
         this.imagemUrl = imagemUrl;
     }
 
-    @JsonIgnore
+    public String getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
+    public long getTamanhoBytes() {
+        return tamanhoBytes;
+    }
+
+    public void setTamanhoBytes(long tamanhoBytes) {
+        this.tamanhoBytes = tamanhoBytes;
+    }
+
+    public int getOrdem() {
+        return ordem;
+    }
+
+    public void setOrdem(int ordem) {
+        this.ordem = ordem;
+    }
+
     public Anuncio getAnuncio() {
         return anuncio;
     }
@@ -56,8 +90,12 @@ public class Imagem implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Imagem imagem = (Imagem) o;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Imagem imagem)) {
+            return false;
+        }
         return Objects.equals(id, imagem.id);
     }
 

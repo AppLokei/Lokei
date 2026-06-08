@@ -1,0 +1,212 @@
+/* font import handled globally */
+
+.esqueciSenhaPage {
+  min-height: 100vh;
+  background: linear-gradient(135deg, oklch(97% 0.02 85) 0%, oklch(96% 0.01 80) 55%, oklch(95% 0.01 75) 100%);
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding: 0;
+  font-family: "Manrope", "Poppins", sans-serif;
+}
+
+.esqueciSenhaSplit {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 1325px;
+  margin: 0 auto;
+}
+
+.esqueciSenhaBrand {
+  background: var(--color-bege-areia);
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  min-height: 100vh;
+}
+
+.esqueciSenhaBrandInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  text-align: left;
+  max-width: 380px;
+  width: 100%;
+}
+
+.esqueciSenhaBrandLogo {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 4px;
+}
+
+.esqueciSenhaBrandTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-grafite-escuro);
+  letter-spacing: -0.02em;
+  max-width: 20ch;
+}
+
+.esqueciSenhaBrandSubtitle {
+  font-size: 1rem;
+  color: var(--color-cinza-apoio);
+  line-height: 1.6;
+  max-width: 38ch;
+}
+
+.esqueciSenhaFormPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 48px 40px;
+  gap: 24px;
+  background: var(--color-marfim-matizado);
+  min-height: 100vh;
+}
+
+.esqueciSenhaFormPanel > * {
+  max-width: 390px;
+  width: 100%;
+}
+
+.esqueciSenhaHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.esqueciSenhaEyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ocre-acao-escuro);
+}
+
+.esqueciSenhaTitle {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--color-grafite-escuro);
+  letter-spacing: -0.02em;
+}
+
+.esqueciSenhaSubtitle {
+  font-size: 0.98rem;
+  color: var(--color-cinza-texto);
+  line-height: 1.4;
+}
+
+.esqueciSenhaForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.esqueciSenhaLink {
+  align-self: flex-start;
+  font-size: 0.85rem;
+  color: var(--color-ocre-acao);
+  text-decoration: none;
+  font-weight: 600;
+  text-align: center;
+  width: 100%;
+}
+
+.esqueciSenhaLink:hover {
+  color: var(--color-grafite-escuro);
+}
+
+/* ── Feedback de Sucesso ── */
+.esqueciSenhaSuccess {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  animation: slideUpSuccess 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideUpSuccess {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.esqueciSenhaSuccessIcon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: oklch(80.4% 0.156 82.5 / 0.15);
+  color: var(--color-amarelo-acao);
+  font-size: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 20px oklch(80.4% 0.156 82.5 / 0.15);
+}
+
+.esqueciSenhaSuccess h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-grafite-escuro);
+  letter-spacing: -0.02em;
+  margin: 8px 0 0;
+}
+
+.esqueciSenhaSuccess p {
+  font-size: 0.92rem;
+  color: var(--color-cinza-texto);
+  line-height: 1.5;
+  margin: 0;
+}
+
+@media (min-width: 900px) {
+  .esqueciSenhaSplit {
+    grid-template-columns: minmax(0, 0.48fr) minmax(0, 0.52fr);
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 899px) {
+  .esqueciSenhaPage {
+    padding: 24px 20px 40px;
+  }
+
+  .esqueciSenhaSplit {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .esqueciSenhaBrand {
+    border-radius: 24px;
+    padding: 32px 24px;
+    min-height: auto;
+    align-items: flex-start;
+  }
+
+  .esqueciSenhaFormPanel {
+    padding: 24px 12px 8px;
+    min-height: auto;
+    align-items: flex-start;
+  }
+
+  .esqueciSenhaBrandInner {
+    align-items: flex-start;
+    text-align: left;
+  }
+}

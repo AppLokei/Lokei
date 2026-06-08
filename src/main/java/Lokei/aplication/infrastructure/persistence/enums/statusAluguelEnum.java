@@ -6,7 +6,5 @@ public enum statusAluguelEnum {
     ATIVO,
     CONCLUIDO,
     CANCELADO,
-    REPROVADO;
-
-
+    REPROVADO
 }

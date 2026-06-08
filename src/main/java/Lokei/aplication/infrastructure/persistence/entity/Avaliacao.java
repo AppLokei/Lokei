@@ -1,39 +1,44 @@
 package Lokei.aplication.infrastructure.persistence.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import Lokei.aplication.infrastructure.persistence.enums.tipoAvaliacaoEnum;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
-@Table
-public class Avaliacao implements Serializable {
+@Table(name = "avaliacoes")
+public class Avaliacao extends EntidadeAuditavel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer nota;
-    private String comentario;
-    private LocalDateTime dataCriacao;
 
-    @OneToOne
-    @JoinColumn(name = "aluguel_id")
+    @Column(nullable = false)
+    private Integer nota;
+
+    @Column(nullable = false, columnDefinition = "text")
+    private String comentario;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private tipoAvaliacaoEnum tipo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "aluguel_id", nullable = false)
     private Aluguel aluguel;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "autor_id", nullable = false)
+    private Usuario autor;
 
-    public Avaliacao(){
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "alvo_usuario_id")
+    private Usuario alvoUsuario;
 
-    }
-
-    public Avaliacao(Integer id, Integer nota, String comentario, LocalDateTime dataCriacao, Aluguel aluguel) {
-        this.id = id;
-        this.nota = nota;
-        this.comentario = comentario;
-        this.dataCriacao = dataCriacao;
-        this.aluguel = aluguel;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "anuncio_id")
+    private Anuncio anuncio;
 
     public Integer getId() {
         return id;
@@ -59,15 +64,14 @@ public class Avaliacao implements Serializable {
         this.comentario = comentario;
     }
 
-    public LocalDateTime getDataCriacao() {
-        return dataCriacao;
+    public tipoAvaliacaoEnum getTipo() {
+        return tipo;
     }
 
-    public void setDataCriacao(LocalDateTime dataCriacao) {
-        this.dataCriacao = dataCriacao;
+    public void setTipo(tipoAvaliacaoEnum tipo) {
+        this.tipo = tipo;
     }
 
-    @JsonIgnore
     public Aluguel getAluguel() {
         return aluguel;
     }
@@ -76,11 +80,38 @@ public class Avaliacao implements Serializable {
         this.aluguel = aluguel;
     }
 
+    public Usuario getAutor() {
+        return autor;
+    }
+
+    public void setAutor(Usuario autor) {
+        this.autor = autor;
+    }
+
+    public Usuario getAlvoUsuario() {
+        return alvoUsuario;
+    }
+
+    public void setAlvoUsuario(Usuario alvoUsuario) {
+        this.alvoUsuario = alvoUsuario;
+    }
+
+    public Anuncio getAnuncio() {
+        return anuncio;
+    }
+
+    public void setAnuncio(Anuncio anuncio) {
+        this.anuncio = anuncio;
+    }
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Avaliacao avaliacao = (Avaliacao) o;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Avaliacao avaliacao)) {
+            return false;
+        }
         return Objects.equals(id, avaliacao.id);
     }
 

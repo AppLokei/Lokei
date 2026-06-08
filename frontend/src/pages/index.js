@@ -1,0 +1,15 @@
+export { default as Home } from "./Home.jsx";
+export { default as Login } from "./Login.jsx";
+export { default as Cadastro } from "./Cadastro.jsx";
+export { default as EsqueciSenha } from "./EsqueciSenha.jsx";
+export { default as RedefinirSenha } from "./RedefinirSenha.jsx";
+export { default as Anuncios } from "./Anuncios.jsx";
+export { default as AnuncioDetalhe } from "./AnuncioDetalhe.jsx";
+export { default as Perfil } from "./Perfil.jsx";
+export { default as EditarPerfil } from "./EditarPerfil.jsx";
+export { default as Anunciar } from "./Anunciar.jsx";
+export { default as EditarAnuncio } from "./EditarAnuncio.jsx";
+export { default as MeusAlugueis } from "./MeusAlugueis.jsx";
+export { default as Chat } from "./Chat.jsx";
+export { default as Avaliacao } from "./Avaliacao.jsx";
+export { default as AdminDenuncias } from "./AdminDenuncias.jsx";

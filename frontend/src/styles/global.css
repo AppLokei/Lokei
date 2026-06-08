@@ -1,0 +1,319 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap");
+
+:root {
+  font-family: "Manrope", "Poppins", sans-serif;
+  color: var(--color-grafite-escuro);
+  background: var(--color-bege-areia);
+
+  --color-amarelo-acao: oklch(80.4% 0.156 82.5);
+  --color-amarelo-acao-deep: oklch(75.6% 0.149 80.7);
+  --color-bege-areia: oklch(97% 0.02 85);
+  --color-marfim-matizado: oklch(96% 0.01 80);
+  --color-branco-calmo: oklch(98.5% 0.003 90);
+  --color-branco-brilhante: oklch(98% 0.01 90);
+  --color-grafite-escuro: oklch(23.9% 0.01 96);
+  --color-grafite-solido: oklch(21.8% 0.01 96);
+  --color-cinza-texto: oklch(52.8% 0.002 96);
+  --color-cinza-apoio: oklch(41.3% 0.002 96);
+  --color-cinza-frio: oklch(71.4% 0.019 261.3);
+  --color-ardosia: oklch(44.6% 0.026 256.8);
+  --color-cinza-borda: oklch(88.5% 0.002 96);
+  --color-cinza-borda-suave: oklch(92.8% 0.006 264.5);
+  --color-cinza-fundo: oklch(96.7% 0.003 264.5);
+  --color-warm-border: oklch(90% 0.02 85);
+  --color-vermelho-alerta: oklch(59.7% 0.182 24.5);
+  --color-vermelho-alerta-escuro: oklch(55.3% 0.180 25.3);
+  --color-vermelho-suave: oklch(93.6% 0.031 17.7);
+  --color-verde-sucesso: oklch(51.6% 0.128 144.6);
+  --color-verde-sucesso-tinta: oklch(96.2% 0.043 156.7);
+  --color-amarelo-suave: oklch(96.2% 0.058 95.6);
+  --color-ocre-acao: oklch(56.3% 0.118 77.7);
+  --color-ocre-acao-escuro: oklch(54.1% 0.111 87.7);
+  --color-ocre-apoio: oklch(47.3% 0.125 46.2);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Manrope", "Poppins", sans-serif;
+  background: linear-gradient(180deg, oklch(97% 0.02 85) 0%, oklch(96% 0.01 80) 55%, oklch(95% 0.01 75) 100%);
+  color: var(--color-grafite-escuro);
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+main {
+  width: 100%;
+}
+
+.pageNotice {
+  background: var(--color-amarelo-suave);
+  color: var(--color-ocre-apoio);
+  border: 1px solid oklch(80.4% 0.156 82.5 / 0.3);
+  border-radius: 16px;
+  padding: 14px 16px;
+  font-size: 0.88rem;
+}
+
+.pageErrorInline {
+  color: var(--color-vermelho-alerta);
+  font-size: 0.8rem;
+}
+
+.pageState {
+  border: 1px dashed var(--color-cinza-borda);
+  border-radius: 18px;
+  padding: 24px;
+  background: var(--color-branco-brilhante);
+  color: var(--color-cinza-texto);
+  text-align: center;
+}
+
+.pageState strong {
+  display: block;
+  color: var(--color-grafite-escuro);
+  margin-bottom: 8px;
+}
+
+.formCard {
+  background: var(--color-branco-brilhante);
+  border-radius: 24px;
+  border: 1px solid oklch(80.4% 0.156 82.5 / 0.12);
+  box-shadow: 0 18px 35px rgba(24, 24, 24, 0.08);
+  padding: 24px;
+}
+
+.formSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.formRow {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.formField,
+.formField textarea,
+.formField select {
+  width: 100%;
+}
+
+.fieldLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-grafite-escuro);
+}
+
+.fieldLabel input,
+.fieldLabel select,
+.fieldLabel textarea {
+  border: 1px solid var(--color-cinza-borda);
+  border-radius: 14px;
+  padding: 12px 16px;
+  min-height: 44px;
+  background: var(--color-branco-brilhante);
+  color: var(--color-grafite-escuro);
+  outline: none;
+}
+
+.fieldLabel textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.fieldLabel input:focus,
+.fieldLabel select:focus,
+.fieldLabel textarea:focus {
+  border-color: var(--color-amarelo-acao);
+  box-shadow: 0 0 0 3px oklch(80.4% 0.156 82.5 / 0.2);
+}
+
+.badgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.badge--warning {
+  background: var(--color-amarelo-suave);
+  color: var(--color-ocre-apoio);
+}
+
+.badge--success {
+  background: var(--color-verde-sucesso-tinta);
+  color: var(--color-verde-sucesso);
+}
+
+.badge--danger {
+  background: var(--color-vermelho-suave);
+  color: var(--color-vermelho-alerta-escuro);
+}
+
+.badge--neutral,
+.badge--info {
+  background: var(--color-cinza-fundo);
+  color: var(--color-ardosia);
+}
+
+.sectionTitle {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--color-grafite-escuro);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.inlineActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cardTextMuted {
+  color: var(--color-cinza-texto);
+  font-size: 0.84rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.heroTitle {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 800;
+  margin: 0;
+}
+
+.heroLead {
+  margin: 0;
+  max-width: 60ch;
+  color: var(--color-cinza-apoio);
+  line-height: 1.6;
+}
+
+.detailReview {
+  background: var(--color-branco-calmo);
+  border-radius: 14px;
+  padding: 12px 14px;
+  border: 1px solid oklch(21.8% 0.01 96 / 0.04);
+}
+
+.detailReviewHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  color: var(--color-grafite-escuro);
+}
+
+.siteFooter {
+  padding: 32px 20px 110px;
+}
+
+.siteFooterInner {
+  max-width: 1140px;
+  margin: 0 auto;
+  border-top: 1px solid oklch(80.4% 0.156 82.5 / 0.15);
+  padding-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  color: var(--color-cinza-texto);
+  font-size: 0.82rem;
+}
+
+.toastViewport {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 2000;
+}
+
+.toast {
+  min-width: 260px;
+  max-width: 360px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  box-shadow: 0 18px 35px rgba(24, 24, 24, 0.12);
+  background: var(--color-branco-brilhante);
+  border: 1px solid var(--color-cinza-borda-suave);
+}
+
+.toast--success {
+  border-color: oklch(51.6% 0.128 144.6 / 0.2);
+}
+
+.toast--error {
+  border-color: oklch(55.3% 0.18 25.3 / 0.2);
+}
+
+.toast--info {
+  border-color: oklch(80.4% 0.156 82.5 / 0.2);
+}
+
+@media (max-width: 899px) {
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .siteFooter {
+    padding-bottom: 120px;
+  }
+
+  .toastViewport {
+    right: 16px;
+    left: 16px;
+    top: 16px;
+  }
+
+  .toast {
+    min-width: auto;
+    max-width: none;
+  }
+}

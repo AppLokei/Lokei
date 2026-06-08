@@ -1,18 +1,15 @@
 package Lokei.aplication.application.useCases;
 
-import Lokei.aplication.application.dto.DisponibilidadeResponse;
-import Lokei.aplication.application.dto.PeriodoReservadoResponse;
-import Lokei.aplication.infrastructure.persistence.entity.Aluguel;
+import Lokei.aplication.application.dto.anuncio.DisponibilidadeResponse;
+import Lokei.aplication.application.dto.anuncio.PeriodoReservadoResponse;
+import Lokei.aplication.application.support.DataFormatUtils;
+import Lokei.aplication.application.service.AnuncioService;
 import Lokei.aplication.infrastructure.persistence.entity.Anuncio;
 import Lokei.aplication.infrastructure.persistence.enums.statusAluguelEnum;
 import Lokei.aplication.infrastructure.persistence.enums.statusAnuncioEnum;
 import Lokei.aplication.infrastructure.persistence.repository.AluguelRepository;
-import Lokei.aplication.infrastructure.persistence.repository.AnuncioRepository;
-import Lokei.aplication.infrastructure.shared.exception.RecursoNaoEncontradoException;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Set;
 
@@ -25,43 +22,32 @@ public class ConsultarDisponibilidadeAnuncioUseCase {
             statusAluguelEnum.ATIVO
     );
 
-    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE;
-
-    private final AnuncioRepository anuncioRepository;
+    private final AnuncioService anuncioService;
     private final AluguelRepository aluguelRepository;
 
-    public ConsultarDisponibilidadeAnuncioUseCase(
-            AnuncioRepository anuncioRepository,
-            AluguelRepository aluguelRepository
-    ) {
-        this.anuncioRepository = anuncioRepository;
+    public ConsultarDisponibilidadeAnuncioUseCase(AnuncioService anuncioService, AluguelRepository aluguelRepository) {
+        this.anuncioService = anuncioService;
         this.aluguelRepository = aluguelRepository;
     }
 
     public DisponibilidadeResponse executar(Integer anuncioId) {
-        Anuncio anuncio = anuncioRepository.findById(anuncioId)
-                .orElseThrow(() -> new RecursoNaoEncontradoException("Anúncio não encontrado."));
-
-        List<PeriodoReservadoResponse> periodosReservados = aluguelRepository
+        Anuncio anuncio = anuncioService.buscarAnuncioDetalhado(anuncioId);
+        List<PeriodoReservadoResponse> periodos = aluguelRepository
                 .findByAnuncio_IdAndStatusAluguelInOrderByDataInicioAsc(anuncioId, STATUS_QUE_BLOQUEIAM)
                 .stream()
-                .map(this::mapearPeriodo)
+                .map(aluguel -> new PeriodoReservadoResponse(
+                        aluguel.getId(),
+                        DataFormatUtils.formatarData(aluguel.getDataInicio()),
+                        DataFormatUtils.formatarData(aluguel.getDataFim()),
+                        aluguel.getStatusAluguel().name()
+                ))
                 .toList();
 
         return new DisponibilidadeResponse(
                 anuncioId,
-                anuncio.getStatus() == null ? null : anuncio.getStatus().name(),
+                anuncio.getStatus().name(),
                 anuncio.getStatus() == statusAnuncioEnum.ATIVO,
-                periodosReservados
-        );
-    }
-
-    private PeriodoReservadoResponse mapearPeriodo(Aluguel aluguel) {
-        return new PeriodoReservadoResponse(
-                aluguel.getId(),
-                aluguel.getDataInicio().format(DATE_FORMATTER),
-                aluguel.getDataFim().format(DATE_FORMATTER),
-                aluguel.getStatusAluguel().name()
+                periodos
         );
     }
 }

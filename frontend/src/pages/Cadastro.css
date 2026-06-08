@@ -1,0 +1,229 @@
+/* font import handled globally */
+
+.cadastroPage {
+  min-height: 100vh;
+  background: linear-gradient(135deg, oklch(97% 0.02 85) 0%, oklch(96% 0.01 80) 55%, oklch(95% 0.01 75) 100%);
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding: 0;
+  font-family: "Manrope", "Poppins", sans-serif;
+}
+
+.cadastroSplit {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 1325px;
+  margin: 0 auto;
+}
+
+.cadastroBrand {
+  background: oklch(97% 0.02 85);
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  min-height: 100vh;
+}
+
+.cadastroBrandInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  text-align: left;
+  max-width: 380px;
+  width: 100%;
+}
+
+.cadastroBrandLogo {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 4px;
+}
+
+.cadastroBrandTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-grafite-escuro);
+  letter-spacing: -0.02em;
+  max-width: 22ch;
+}
+
+.cadastroBrandSubtitle {
+  font-size: 1rem;
+  color: var(--color-cinza-apoio);
+  line-height: 1.6;
+  max-width: 38ch;
+}
+
+.cadastroFormPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 48px 40px;
+  gap: 24px;
+  background: oklch(96% 0.01 80);
+  min-height: 100vh;
+}
+
+.cadastroFormPanel > * {
+  max-width: 440px;
+  width: 100%;
+}
+
+.cadastroHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cadastroEyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ocre-acao-escuro);
+}
+
+.cadastroTitle {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--color-grafite-escuro);
+  letter-spacing: -0.02em;
+}
+
+.cadastroSubtitle {
+  font-size: 0.98rem;
+  color: var(--color-cinza-texto);
+}
+
+.cadastroForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cadastroSection {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 6px;
+  border-top: 1px solid oklch(90% 0.02 85);
+}
+
+.cadastroSection:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.cadastroSectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cadastroSectionTitle {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-ocre-acao-escuro);
+  margin: 0;
+}
+
+.cadastroSectionHint {
+  font-size: 0.85rem;
+  color: var(--color-cinza-texto);
+}
+
+.cadastroFieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cadastroFieldRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.cadastroTerms {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 0.85rem;
+  color: var(--color-cinza-apoio);
+}
+
+.cadastroTerms input {
+  margin-top: 4px;
+  accent-color: var(--color-amarelo-acao);
+}
+
+.cadastroTermsError {
+  color: var(--color-vermelho-alerta);
+  font-size: 0.75rem;
+}
+
+.cadastroActions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cadastroLink {
+  font-size: 0.85rem;
+  color: var(--color-ocre-acao);
+  text-decoration: none;
+  font-weight: 600;
+  text-align: center;
+}
+
+@media (min-width: 900px) {
+  .cadastroSplit {
+    grid-template-columns: minmax(0, 0.48fr) minmax(0, 0.52fr);
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 899px) {
+  .cadastroPage {
+    padding: 24px 20px 40px;
+  }
+
+  .cadastroSplit {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .cadastroBrand {
+    border-radius: 24px;
+    padding: 32px 24px;
+    min-height: auto;
+    align-items: flex-start;
+  }
+
+  .cadastroFormPanel {
+    padding: 24px 12px 16px;
+    min-height: auto;
+    align-items: flex-start;
+  }
+
+  .cadastroBrandInner {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .cadastroFieldRow {
+    grid-template-columns: 1fr;
+  }
+}

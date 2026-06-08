@@ -1,0 +1,19 @@
+.adminPage {
+  min-height: 100vh;
+  background: linear-gradient(180deg, oklch(97% 0.02 85) 0%, oklch(96% 0.01 80) 55%, oklch(95% 0.01 75) 100%);
+  padding: 32px 20px 100px;
+}
+
+.adminShell {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (min-width: 900px) {
+  .adminPage {
+    padding: 110px 40px 100px;
+  }
+}

@@ -1,34 +1,66 @@
 package Lokei.aplication.infrastructure.persistence.entity;
 
+import Lokei.aplication.infrastructure.persistence.enums.papelUsuarioEnum;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
-@Table
-public class Usuario implements Serializable {
+@Table(name = "usuarios", uniqueConstraints = {
+        @UniqueConstraint(name = "uk_usuario_email", columnNames = "email"),
+        @UniqueConstraint(name = "uk_usuario_cpf", columnNames = "cpf")
+})
+public class Usuario extends EntidadeAuditavel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false)
     private String email;
+
+    @Column(nullable = false, length = 11)
     private String cpf;
+
+    @Column(nullable = false, length = 11)
     private String telefone;
-    private String senha;
 
-    public Usuario(){
-    }
+    @Column(nullable = false)
+    private String senhaHash;
 
-    public Usuario(Integer id, String nome, String email, String cpf, String telefone, String senha) {
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
-        this.cpf = cpf;
-        this.telefone = telefone;
-        this.senha = senha;
-    }
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private papelUsuarioEnum papel;
+
+    @Column(nullable = false)
+    private boolean termosAceitos;
+
+    @Column(nullable = false)
+    private boolean cpfValidado;
+
+    @Column(nullable = false)
+    private boolean ativo = true;
+
+    @Column(nullable = false)
+    private boolean emailVerificado = true;
+
+    private String emailPendente;
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "endereco_id")
+    private Endereco endereco;
+
+    @OneToMany(mappedBy = "proprietario")
+    private Set<Anuncio> anuncios = new HashSet<>();
+
+    @OneToMany(mappedBy = "locatario")
+    private Set<Aluguel> alugueis = new HashSet<>();
 
     public Integer getId() {
         return id;
@@ -70,18 +102,94 @@ public class Usuario implements Serializable {
         this.telefone = telefone;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getSenhaHash() {
+        return senhaHash;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setSenhaHash(String senhaHash) {
+        this.senhaHash = senhaHash;
+    }
+
+    public papelUsuarioEnum getPapel() {
+        return papel;
+    }
+
+    public void setPapel(papelUsuarioEnum papel) {
+        this.papel = papel;
+    }
+
+    public boolean isTermosAceitos() {
+        return termosAceitos;
+    }
+
+    public void setTermosAceitos(boolean termosAceitos) {
+        this.termosAceitos = termosAceitos;
+    }
+
+    public boolean isCpfValidado() {
+        return cpfValidado;
+    }
+
+    public void setCpfValidado(boolean cpfValidado) {
+        this.cpfValidado = cpfValidado;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public boolean isEmailVerificado() {
+        return emailVerificado;
+    }
+
+    public void setEmailVerificado(boolean emailVerificado) {
+        this.emailVerificado = emailVerificado;
+    }
+
+    public String getEmailPendente() {
+        return emailPendente;
+    }
+
+    public void setEmailPendente(String emailPendente) {
+        this.emailPendente = emailPendente;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    public Set<Anuncio> getAnuncios() {
+        return anuncios;
+    }
+
+    public void setAnuncios(Set<Anuncio> anuncios) {
+        this.anuncios = anuncios;
+    }
+
+    public Set<Aluguel> getAlugueis() {
+        return alugueis;
+    }
+
+    public void setAlugueis(Set<Aluguel> alugueis) {
+        this.alugueis = alugueis;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Usuario usuario = (Usuario) o;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Usuario usuario)) {
+            return false;
+        }
         return Objects.equals(id, usuario.id);
     }
 

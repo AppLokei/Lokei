@@ -1,20 +1,18 @@
 package Lokei.aplication.infrastructure.persistence.enums;
 
 public enum categoriaEnum {
-    Alicates,
-    Aparadores_e_Cortadores_de_Grama,
-    Betoneiras,
-    Caixas_e_Maletas_de_Ferramentas,
-    Chaves_de_Fenda,
-    Equipamentos_de_proteção_Individual,
-    Escadas,
-    Esmilhadeiras,
-    Esquadros_FitasMetricas_e_Trenas,
-    Furadeiras_e_Parafusadeiras,
-    Lixadeiras,
-    Martelos,
-    Serras_e_Motoserras,
-    Outros
-
-
+    ALICATES,
+    APARADORES_E_CORTADORES_DE_GRAMA,
+    BETONEIRAS,
+    CAIXAS_E_MALETAS_DE_FERRAMENTAS,
+    CHAVES_DE_FENDA,
+    EQUIPAMENTOS_DE_PROTECAO_INDIVIDUAL,
+    ESCADAS,
+    ESMILHADEIRAS,
+    ESQUADROS_FITAS_METRICAS_E_TRENAS,
+    FURADEIRAS_E_PARAFUSADEIRAS,
+    LIXADEIRAS,
+    MARTELOS,
+    SERRAS_E_MOTOSSERRAS,
+    OUTROS
 }

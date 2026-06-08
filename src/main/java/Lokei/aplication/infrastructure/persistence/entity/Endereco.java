@@ -6,32 +6,32 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table
-public class Endereco implements Serializable {
+@Table(name = "enderecos")
+public class Endereco extends EntidadeAuditavel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(nullable = false)
     private String logradouro;
+
+    @Column(nullable = false)
     private String bairro;
-    private Integer numero;
+
+    @Column(nullable = false)
+    private String numero;
+
+    private String complemento;
+
+    @Column(nullable = false)
     private String cidade;
+
+    @Column(nullable = false, length = 2)
     private String estado;
+
+    @Column(nullable = false, length = 8)
     private String cep;
-
-    public Endereco(){
-
-    }
-
-    public Endereco(Integer id, String logradouro, String bairro, Integer numero, String cidade, String estado, String cep) {
-        this.id = id;
-        this.logradouro = logradouro;
-        this.bairro = bairro;
-        this.numero = numero;
-        this.cidade = cidade;
-        this.estado = estado;
-        this.cep = cep;
-    }
 
     public Integer getId() {
         return id;
@@ -57,12 +57,20 @@ public class Endereco implements Serializable {
         this.bairro = bairro;
     }
 
-    public Integer getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(Integer numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
 
     public String getCidade() {
@@ -91,8 +99,12 @@ public class Endereco implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Endereco endereco = (Endereco) o;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Endereco endereco)) {
+            return false;
+        }
         return Objects.equals(id, endereco.id);
     }
 

@@ -2,55 +2,46 @@ package Lokei.aplication.infrastructure.persistence.entity;
 
 import Lokei.aplication.infrastructure.persistence.enums.categoriaEnum;
 import Lokei.aplication.infrastructure.persistence.enums.statusAnuncioEnum;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.LinkedHashSet;
+import java.util.Objects;
+import java.util.Set;
 
 @Entity
-@Table
-public class Anuncio implements Serializable {
+@Table(name = "anuncios")
+public class Anuncio extends EntidadeAuditavel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(nullable = false)
     private String titulo;
+
+    @Column(nullable = false, columnDefinition = "text")
     private String descricao;
+
+    @Column(nullable = false, precision = 12, scale = 2)
     private BigDecimal valorDiario;
+
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private statusAnuncioEnum status;
-    private Date dateCriacao;
+
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private categoriaEnum categoria;
 
-    @ManyToOne
-    @JoinColumn(name = "proprietario_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "proprietario_id", nullable = false)
     private Usuario proprietario;
 
-    @OneToMany(mappedBy = "anuncio")
-    private Set<Aluguel> aluguel= new HashSet<>();
-
     @OneToMany(mappedBy = "anuncio", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OrderBy("ordem ASC, id ASC")
     private Set<Imagem> imagens = new LinkedHashSet<>();
-
-    public Anuncio(){
-
-    }
-
-    public Anuncio(Integer id, String titulo, String descricao, BigDecimal valorDiario, statusAnuncioEnum status, Date dateCriacao, categoriaEnum categoria, Usuario proprietario, Set<Aluguel> aluguel, Set<Imagem> imagens) {
-        this.id = id;
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.valorDiario = valorDiario;
-        this.status = status;
-        this.dateCriacao = dateCriacao;
-        this.categoria = categoria;
-        this.proprietario = proprietario;
-        this.aluguel = aluguel;
-        this.imagens = imagens;
-    }
 
     public Integer getId() {
         return id;
@@ -84,12 +75,12 @@ public class Anuncio implements Serializable {
         this.valorDiario = valorDiario;
     }
 
-    public Date getDateCriacao() {
-        return dateCriacao;
+    public statusAnuncioEnum getStatus() {
+        return status;
     }
 
-    public void setDateCriacao(Date dateCriacao) {
-        this.dateCriacao = dateCriacao;
+    public void setStatus(statusAnuncioEnum status) {
+        this.status = status;
     }
 
     public categoriaEnum getCategoria() {
@@ -108,15 +99,6 @@ public class Anuncio implements Serializable {
         this.proprietario = proprietario;
     }
 
-    @JsonIgnore
-    public Set<Aluguel> getAluguel() {
-        return aluguel;
-    }
-
-    public void setAluguel(Set<Aluguel> aluguel) {
-        this.aluguel = aluguel;
-    }
-
     public Set<Imagem> getImagens() {
         return imagens;
     }
@@ -125,18 +107,14 @@ public class Anuncio implements Serializable {
         this.imagens = imagens;
     }
 
-    public statusAnuncioEnum getStatus() {
-        return status;
-    }
-
-    public void setStatus(statusAnuncioEnum status) {
-        this.status = status;
-    }
-
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Anuncio anuncio = (Anuncio) o;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Anuncio anuncio)) {
+            return false;
+        }
         return Objects.equals(id, anuncio.id);
     }
 

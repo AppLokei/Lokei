@@ -34,3 +34,4 @@ build/
 
 ### Outros ###
 /docs
+/frontend/node_modules
