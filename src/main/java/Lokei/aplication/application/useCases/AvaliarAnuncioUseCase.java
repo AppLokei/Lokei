@@ -1,8 +1,8 @@
 package Lokei.aplication.application.useCases;
 
+import Lokei.aplication.infrastructure.exception.AluguelException;
 import Lokei.aplication.infrastructure.persistence.entity.Aluguel;
 import Lokei.aplication.infrastructure.persistence.entity.Avaliacao;
-import Lokei.aplication.infrastructure.persistence.enums.statusAluguelEnum;
 import Lokei.aplication.infrastructure.persistence.repository.AluguelRepository;
 import Lokei.aplication.infrastructure.persistence.repository.AvaliacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,21 +31,13 @@ public class AvaliarAnuncioUseCase {
             Aluguel aluguel = repoAluguel.findById(aluguelId)
                     .orElseThrow(() -> new RuntimeException("Aluguel não encontrado"));
 
-            statusAluguelEnum status = aluguel.getStatusAluguel();
+            avaliacao.statusavaliacao(aluguel.getStatusAluguel());
+            avaliacao.setAluguel(aluguel);
+            repoAvaliacao.save(avaliacao);
+            return "Avaliação realizada";
 
-            if (status == statusAluguelEnum.CONCLUIDO) {
-                avaliacao.setAluguel(aluguel);
-                repoAvaliacao.save(avaliacao);
-                return "Avaliação realizada";
-
-            } else if (status == statusAluguelEnum.ATIVO || status == statusAluguelEnum.CONFIRMADO) {
-                return "ainda não é possível avaliar este anúncio, seu periodo de reserva ainda não finalizou";
-            } else if (status == statusAluguelEnum.EM_APROVACAO) {
-                return "não é possível avaliar esse anúncio, a reserva ainda não foi finalizada";
-
-            } else {
-                return "não é possível avaliar esse anúncio, a reserva não foi utilizada";
-            }
+        } catch (AluguelException e) {
+            return e.getMessage();
         } catch (DataIntegrityViolationException e) {
             return "Erro ao realizar avaliação: essa reserva já possui avaliação";
         } catch (Exception e) {

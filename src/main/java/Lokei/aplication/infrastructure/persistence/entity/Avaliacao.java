@@ -1,7 +1,9 @@
 package Lokei.aplication.infrastructure.persistence.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import Lokei.aplication.infrastructure.exception.AluguelException;
+import Lokei.aplication.infrastructure.persistence.enums.statusAluguelEnum;
 import jakarta.persistence.*;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -23,7 +25,7 @@ public class Avaliacao implements Serializable {
     private Aluguel aluguel;
 
 
-    public Avaliacao(){
+    public Avaliacao() {
 
     }
 
@@ -75,6 +77,19 @@ public class Avaliacao implements Serializable {
         this.aluguel = aluguel;
     }
 
+    public void statusavaliacao(statusAluguelEnum status) {
+
+        if (status == statusAluguelEnum.CONCLUIDO) {
+            return;
+        } else if (status == statusAluguelEnum.ATIVO || status == statusAluguelEnum.CONFIRMADO) {
+            throw new AluguelException("ainda não é possível avaliar este anúncio, seu periodo de reserva ainda não finalizou");
+        } else if (status == statusAluguelEnum.EM_APROVACAO) {
+            throw new AluguelException("não é possível avaliar esse anúncio, a reserva ainda não foi finalizada");
+        } else {
+            throw new AluguelException("não é possível avaliar esse anúncio, a reserva não foi utilizada");
+        }
+
+    }
 
     @Override
     public boolean equals(Object o) {
