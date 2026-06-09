@@ -100,6 +100,15 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
+    // Handler Avaliacao
+
+    @ExceptionHandler(Lokei.aplication.domain.exceptions.AvaliacaoInvalidaException.class)
+    public ResponseEntity<Map<String, String>> handleAvaliacaoInvalida(Lokei.aplication.domain.exceptions.AvaliacaoInvalidaException ex) {
+        Map<String, String> error = new HashMap<>();
+        error.put("erro", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
     // Outros Handlers
 
     @ExceptionHandler(org.springframework.web.multipart.support.MissingServletRequestPartException.class)

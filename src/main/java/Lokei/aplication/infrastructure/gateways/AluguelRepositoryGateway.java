@@ -5,6 +5,7 @@ import Lokei.aplication.domain.gateways.AluguelGateway;
 import Lokei.aplication.infrastructure.persistence.mapper.AluguelMapper;
 import Lokei.aplication.infrastructure.persistence.repository.AluguelRepository;
 import org.springframework.data.domain.Page;
+import java.util.Optional;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,11 @@ public class AluguelRepositoryGateway implements AluguelGateway {
 
     public AluguelRepositoryGateway(AluguelRepository aluguelRepository) {
         this.aluguelRepository = aluguelRepository;
+    }
+
+    @Override
+    public Optional<Aluguel> buscarPorId(Long id) {
+        return aluguelRepository.findById(id).map(AluguelMapper::toDomain);
     }
 
     @Override

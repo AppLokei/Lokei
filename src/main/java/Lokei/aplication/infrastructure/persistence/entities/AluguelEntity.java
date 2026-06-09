@@ -33,11 +33,16 @@ public class AluguelEntity implements Serializable {
     @ManyToOne
     @JoinColumn(name = "anuncio_id")
     private AnuncioEntity anuncio;
+
+    @ManyToOne
+    @JoinColumn(name = "locatario_id")
+    private UsuarioEntity locatario;
+
     public AluguelEntity(){
 
     }
 
-    public AluguelEntity(Integer id, Date dataInicio, Date dataFim, BigDecimal valorTotal, StatusAluguelEnum statusAluguel, Date datacriacao, AvaliacaoEntity avaliacaoEntity, AnuncioEntity anuncio) {
+    public AluguelEntity(Integer id, Date dataInicio, Date dataFim, BigDecimal valorTotal, StatusAluguelEnum statusAluguel, Date datacriacao, AvaliacaoEntity avaliacaoEntity, AnuncioEntity anuncio, UsuarioEntity locatario) {
         this.id = id;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
@@ -46,6 +51,7 @@ public class AluguelEntity implements Serializable {
         this.datacriacao = datacriacao;
         this.avaliacaoEntity = avaliacaoEntity;
         this.anuncio = anuncio;
+        this.locatario = locatario;
     }
 
     public Integer getId() {
@@ -111,6 +117,14 @@ public class AluguelEntity implements Serializable {
 
     public void setAnuncio(AnuncioEntity anuncio) {
         this.anuncio = anuncio;
+    }
+
+    public UsuarioEntity getLocatario() {
+        return locatario;
+    }
+
+    public void setLocatario(UsuarioEntity locatario) {
+        this.locatario = locatario;
     }
 
     @Override
