@@ -15,7 +15,8 @@ public class AluguelMapper {
                 entity.getDataFim(),
                 entity.getValorTotal(),
                 entity.getStatusAluguel(),
-                entity.getAnuncio().getId()
+                entity.getAnuncio() != null ? entity.getAnuncio().getId() : null,
+                entity.getLocatario() != null ? entity.getLocatario().getId() : null
         );
     }
 }

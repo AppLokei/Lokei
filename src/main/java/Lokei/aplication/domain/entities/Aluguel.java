@@ -14,14 +14,16 @@ public class Aluguel {
     private final BigDecimal valorTotal;
     private final StatusAluguelEnum status;
     private final Long anuncioId;
+    private final Long locatarioId;
 
-    public Aluguel(Long id, Date dataInicio, Date dataFim, BigDecimal valorTotal, StatusAluguelEnum status, Long anuncioId) {
+    public Aluguel(Long id, Date dataInicio, Date dataFim, BigDecimal valorTotal, StatusAluguelEnum status, Long anuncioId, Long locatarioId) {
         this.id = id;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
         this.valorTotal = valorTotal;
         this.status = status;
         this.anuncioId = anuncioId;
+        this.locatarioId = locatarioId;
     }
 
     public Long getId() {
@@ -46,6 +48,10 @@ public class Aluguel {
 
     public Long getAnuncioId() {
         return anuncioId;
+    }
+
+    public Long getLocatarioId() {
+        return locatarioId;
     }
 
     @Override
