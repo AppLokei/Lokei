@@ -55,6 +55,12 @@ public class Anuncio {
         if (aluguelEmAndamento) {
             throw new AnuncioInvalidoException("Não é possivel pausar um anuncio com alugueis em andamento");
         }
+        if (this.status == StatusAnuncioEnum.PAUSADO) {
+            throw new AnuncioInvalidoException("O Anúncio já está pausado.");
+        }
+        if (this.status == StatusAnuncioEnum.DESATIVADO) {
+            throw new AnuncioInvalidoException("Não é possível pausar um anúncio desativado.");
+        }
         this.status = StatusAnuncioEnum.PAUSADO;
     }
 
@@ -69,6 +75,9 @@ public class Anuncio {
     public void desativarAnuncio(boolean aluguelEmAndamento) {
         if (aluguelEmAndamento) {
             throw new AnuncioInvalidoException("Não é possivel desativar um anuncio com alugueis em andamento");
+        }
+        if (this.status == StatusAnuncioEnum.DESATIVADO) {
+            throw new AnuncioInvalidoException("O anúncio já está desativado.");
         }
         this.status = StatusAnuncioEnum.DESATIVADO;
     }
