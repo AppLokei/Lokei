@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface UsuarioGateway {
     Optional<UsuarioEntity> buscarUsuarioPorId(long id);
+    Optional<UsuarioEntity> buscarUsuarioPorEmail(String id);
+    Optional<UsuarioEntity> buscarUsuarioPorCpf(String id);
 }

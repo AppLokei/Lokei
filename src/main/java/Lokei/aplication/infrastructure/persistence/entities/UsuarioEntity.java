@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -14,17 +16,20 @@ public class UsuarioEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String nome;
     private String email;
     private String cpf;
     private String telefone;
     private String senha;
 
+    @OneToMany(mappedBy = "usuario")
+    private List<AnuncioEntity> anuncios = new ArrayList<>();
+
     public UsuarioEntity(){
     }
 
-    public UsuarioEntity(Integer id, String nome, String email, String cpf, String telefone, String senha) {
+    public UsuarioEntity(Long id, String nome, String email, String cpf, String telefone, String senha) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -33,11 +38,11 @@ public class UsuarioEntity implements Serializable {
         this.senha = senha;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -79,6 +84,14 @@ public class UsuarioEntity implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public List<AnuncioEntity> getAnuncios() {
+        return anuncios;
+    }
+
+    public void setAnuncios(List<AnuncioEntity> anuncios) {
+        this.anuncios = anuncios;
     }
 
     @Override
