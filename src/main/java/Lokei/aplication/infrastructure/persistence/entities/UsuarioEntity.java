@@ -1,6 +1,6 @@
 package Lokei.aplication.infrastructure.persistence.entities;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
+
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -21,7 +21,6 @@ public class UsuarioEntity implements Serializable {
     private String cpf;
     private String telefone;
     private String senha;
-    private boolean ativo;
 
     public UsuarioEntity(){
     }
@@ -93,12 +92,5 @@ public class UsuarioEntity implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
-    }
-
-    public JsonSubTypes.Type getPapel() {
-
-    }
-
-    public boolean isAtivo() {
     }
 }
