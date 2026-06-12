@@ -1,5 +1,6 @@
 package Lokei.aplication.infrastructure.persistence.entities;
 
+
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -23,19 +24,29 @@ public class UsuarioEntity implements Serializable {
     private String telefone;
     private String senha;
 
-    @OneToMany(mappedBy = "usuario")
-    private List<AnuncioEntity> anuncios = new ArrayList<>();
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "endereco_id")
+    private EnderecoEntity endereco;
 
     public UsuarioEntity(){
     }
 
-    public UsuarioEntity(Long id, String nome, String email, String cpf, String telefone, String senha) {
+    public UsuarioEntity(Long id, String nome, String email, String cpf, String telefone, String senha, EnderecoEntity endereco) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
         this.telefone = telefone;
         this.senha = senha;
+        this.endereco = endereco;
+    }
+
+    public EnderecoEntity getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(EnderecoEntity endereco) {
+        this.endereco = endereco;
     }
 
     public Long getId() {
