@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -93,6 +95,14 @@ public class UsuarioEntity implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public List<AnuncioEntity> getAnuncios() {
+        return anuncios;
+    }
+
+    public void setAnuncios(List<AnuncioEntity> anuncios) {
+        this.anuncios = anuncios;
     }
 
     @Override

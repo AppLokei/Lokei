@@ -72,6 +72,43 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
     }
 
+    // Handler denuncia
+
+    @ExceptionHandler(Lokei.aplication.domain.exceptions.DenunciaInvalidaException.class)
+    public ResponseEntity<Map<String, String>> handleDenunciaInvalida(Lokei.aplication.domain.exceptions.DenunciaInvalidaException ex) {
+        Map<String, String> error = new HashMap<>();
+        error.put("erro", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
+    @ExceptionHandler(Lokei.aplication.domain.exceptions.DenunciaNotFoundException.class)
+    public ResponseEntity<String> handleDenunciaNotFound(Lokei.aplication.domain.exceptions.DenunciaNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    // Handler chat
+
+    @ExceptionHandler(Lokei.aplication.domain.exceptions.ChatInvalidoException.class)
+    public ResponseEntity<Map<String, String>> handleChatInvalido(Lokei.aplication.domain.exceptions.ChatInvalidoException ex) {
+        Map<String, String> error = new HashMap<>();
+        error.put("erro", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
+    @ExceptionHandler(Lokei.aplication.domain.exceptions.ChatNotFoundException.class)
+    public ResponseEntity<String> handleChatNotFound(Lokei.aplication.domain.exceptions.ChatNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    // Handler Avaliacao
+
+    @ExceptionHandler(Lokei.aplication.domain.exceptions.AvaliacaoInvalidaException.class)
+    public ResponseEntity<Map<String, String>> handleAvaliacaoInvalida(Lokei.aplication.domain.exceptions.AvaliacaoInvalidaException ex) {
+        Map<String, String> error = new HashMap<>();
+        error.put("erro", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
     // Outros Handlers
 
     @ExceptionHandler(org.springframework.web.multipart.support.MissingServletRequestPartException.class)

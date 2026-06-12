@@ -14,7 +14,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -61,7 +60,8 @@ public class AnuncioRepositoryGateway implements AnuncioGateway {
     }
 
     @Override
-    public List<Anuncio> buscarAnuncioPorUsuario(Long usuarioId) {
-        return List.of();
+    public Page<Anuncio> buscarAnuncioPorUsuario(Long usuarioId, int pagina, int tamanho) {
+        Pageable pageable = PageRequest.of(pagina, tamanho);
+        return anuncioRepository.findByUsuarioId(usuarioId, pageable).map(AnuncioMapper::toDomain);
     }
 }

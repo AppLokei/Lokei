@@ -5,14 +5,13 @@ import Lokei.aplication.domain.enums.CategoriaEnum;
 import org.springframework.data.domain.Page;
 
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Optional;
 
 public interface AnuncioGateway {
     Anuncio criarAnuncio(Anuncio anuncio);
     Anuncio atualizarAnuncio(Anuncio anuncio);
     Optional<Anuncio> buscarAnuncioPorId(Long id);
-    List<Anuncio> buscarAnuncioPorUsuario(Long usuarioId);
+    Page<Anuncio> buscarAnuncioPorUsuario(Long usuarioId, int pagina, int tamanho);
 
     Page<Anuncio> buscarAnunciosComFiltro(
             String titulo,

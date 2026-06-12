@@ -5,6 +5,7 @@ import Lokei.aplication.domain.gateways.UsuarioGateway;
 import Lokei.aplication.infrastructure.persistence.entities.AnuncioEntity;
 import Lokei.aplication.infrastructure.persistence.entities.UsuarioEntity;
 import Lokei.aplication.infrastructure.persistence.mapper.AnuncioMapper;
+import Lokei.aplication.infrastructure.persistence.mapper.UsuarioMapper;
 import Lokei.aplication.infrastructure.persistence.repository.UsuarioRepository;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +21,18 @@ public class UsuarioRepositoryGateway implements UsuarioGateway {
     }
 
     @Override
-    public Optional<UsuarioEntity> buscarUsuarioPorId(long id) {
-        return usuarioRepository.findById(id);
+    public Optional<Usuario> buscarUsuarioPorId(long id) {
+        return usuarioRepository.findById(id).map(UsuarioMapper::toDomain);
     }
+
+    @Override
+    public Optional<UsuarioEntity> buscarUsuarioPorEmail(String email) {
+        return usuarioRepository.findByEmail(email);
+    }
+
+    @Override
+    public Optional<UsuarioEntity> buscarUsuarioPorCpf(String cpf) {
+        return usuarioRepository.findByCpf(cpf);
+    }
+
 }

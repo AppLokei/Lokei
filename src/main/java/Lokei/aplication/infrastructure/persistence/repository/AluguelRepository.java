@@ -1,6 +1,8 @@
 package Lokei.aplication.infrastructure.persistence.repository;
 
 import Lokei.aplication.infrastructure.persistence.entities.AluguelEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -13,4 +15,7 @@ public interface AluguelRepository extends JpaRepository<AluguelEntity, Long> {
         AND a.statusAluguel = 'EM_ANDAMENTO'
     """)
     boolean existsAluguelEmAndamento(Long anuncioId);
+
+    @Query("SELECT a FROM AluguelEntity a WHERE a.anuncio.usuario.id = :usuarioId")
+    Page<AluguelEntity> findByUsuarioId(Long usuarioId, Pageable pageable);
 }
