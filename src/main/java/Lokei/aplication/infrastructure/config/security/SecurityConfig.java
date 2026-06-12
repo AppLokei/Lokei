@@ -42,29 +42,88 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
         return http
+
+
                 .csrf(AbstractHttpConfigurer::disable)
+
+                .headers(headers -> headers
+                        .frameOptions(frame -> frame.disable())
+                )
+
                 .cors(Customizer.withDefaults())
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+
+                .sessionManagement(session ->
+                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
+
                 .authorizeHttpRequests(authorize -> authorize
+
+
                         .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/anuncios", "/anuncios/*", "/anuncios/*/disponibilidade", "/anuncios/principais").permitAll()
+
+
+                        .requestMatchers("/h2-console/**").permitAll()
+
+
+                        .requestMatchers(HttpMethod.POST, "/**").permitAll()
+
+
+                        .requestMatchers(
+                                HttpMethod.GET,
+                                "/anuncios",
+                                "/anuncios/*",
+                                "/anuncios/*/disponibilidade",
+                                "/anuncios/principais"
+                        ).permitAll()
+
                         .requestMatchers(HttpMethod.GET, "/arquivos/**").permitAll()
+
                         .requestMatchers("/error").permitAll()
+
+
                         .anyRequest().authenticated()
                 )
+
                 .authenticationProvider(daoAuthenticationProvider())
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .exceptionHandling(exception -> exception
-                        .authenticationEntryPoint((request, response, authException) -> writeError(response, 401, "UNAUTHORIZED", "Autenticacao obrigatoria."))
-                        .accessDeniedHandler((request, response, accessDeniedException) -> writeError(response, 403, "FORBIDDEN", "Acesso negado."))
+
+                .addFilterBefore(
+                        jwtAuthenticationFilter,
+                        UsernamePasswordAuthenticationFilter.class
                 )
+
+                .exceptionHandling(exception -> exception
+
+                        .authenticationEntryPoint((request, response, authException) ->
+                                writeError(
+                                        response,
+                                        401,
+                                        "UNAUTHORIZED",
+                                        "Autenticacao obrigatoria."
+                                )
+                        )
+
+                        .accessDeniedHandler((request, response, accessDeniedException) ->
+                                writeError(
+                                        response,
+                                        403,
+                                        "FORBIDDEN",
+                                        "Acesso negado."
+                                )
+                        )
+                )
+
                 .build();
     }
 
     private DaoAuthenticationProvider daoAuthenticationProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailsService);
+
+        DaoAuthenticationProvider provider =
+                new DaoAuthenticationProvider(userDetailsService);
+
         provider.setPasswordEncoder(passwordEncoder());
+
         return provider;
     }
 
@@ -78,9 +137,24 @@ public class SecurityConfig {
         return new ProviderManager(daoAuthenticationProvider());
     }
 
-    private void writeError(jakarta.servlet.http.HttpServletResponse response, int status, String code, String message) throws IOException {
+    private void writeError(
+            jakarta.servlet.http.HttpServletResponse response,
+            int status,
+            String code,
+            String message
+    ) throws IOException {
+
         response.setStatus(status);
+
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        objectMapper.writeValue(response.getOutputStream(), new ApiErrorResponse(OffsetDateTime.now().toString(), code, message));
+
+        objectMapper.writeValue(
+                response.getOutputStream(),
+                new ApiErrorResponse(
+                        OffsetDateTime.now().toString(),
+                        code,
+                        message
+                )
+        );
     }
 }

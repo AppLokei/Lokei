@@ -1,8 +1,11 @@
 package Lokei.aplication.adapter.controllers;
 
-import Lokei.aplication.application.dto.auth.*;
-import Lokei.aplication.application.dto.common.MensagemResponse;
-import Lokei.aplication.application.service.AutenticacaoService;
+import Lokei.aplication.adapter.dto.req.EsqueciSenhaRequest;
+import Lokei.aplication.adapter.dto.req.LoginRequest;
+import Lokei.aplication.adapter.dto.req.RedefinirSenhaRequest;
+import Lokei.aplication.adapter.dto.res.AuthResponse;
+import Lokei.aplication.adapter.dto.res.MensagemResponse;
+import Lokei.aplication.application.usecases.usuario.AutenticacaoUseCase;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,34 +14,29 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/auth")
 public class AuthController {
 
-    private final AutenticacaoService autenticacaoService;
+    private final AutenticacaoUseCase autenticacaoUseCase;
 
-    public AuthController(AutenticacaoService autenticacaoService) {
-        this.autenticacaoService = autenticacaoService;
-    }
-
-    @PostMapping("/register")
-    public ResponseEntity<AuthResponse> register(@Valid @RequestBody CadastroUsuarioRequest request) {
-        return ResponseEntity.ok(autenticacaoService.cadastrar(request));
+    public AuthController(AutenticacaoUseCase autenticacaoUseCase) {
+        this.autenticacaoUseCase = autenticacaoUseCase;
     }
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest request) {
-        return ResponseEntity.ok(autenticacaoService.login(request));
+        return ResponseEntity.ok(autenticacaoUseCase.login(request));
     }
 
     @PostMapping("/logout")
     public ResponseEntity<MensagemResponse> logout() {
-        return ResponseEntity.ok(autenticacaoService.logout());
+        return ResponseEntity.ok(autenticacaoUseCase.logout());
     }
 
     @PostMapping("/forgot-password")
     public ResponseEntity<MensagemResponse> forgotPassword(@Valid @RequestBody EsqueciSenhaRequest request) {
-        return ResponseEntity.ok(autenticacaoService.esqueciSenha(request));
+        return ResponseEntity.ok(autenticacaoUseCase.esqueciSenha(request));
     }
 
     @PostMapping("/reset-password")
     public ResponseEntity<MensagemResponse> resetPassword(@Valid @RequestBody RedefinirSenhaRequest request) {
-        return ResponseEntity.ok(autenticacaoService.redefinirSenha(request));
+        return ResponseEntity.ok(autenticacaoUseCase.redefinirSenha(request));
     }
 }

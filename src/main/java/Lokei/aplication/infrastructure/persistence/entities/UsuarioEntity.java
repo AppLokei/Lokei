@@ -22,16 +22,29 @@ public class UsuarioEntity implements Serializable {
     private String telefone;
     private String senha;
 
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "endereco_id")
+    private EnderecoEntity endereco;
+
     public UsuarioEntity(){
     }
 
-    public UsuarioEntity(Long id, String nome, String email, String cpf, String telefone, String senha, Boolean ativo) {
+    public UsuarioEntity(Long id, String nome, String email, String cpf, String telefone, String senha, EnderecoEntity endereco) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
         this.telefone = telefone;
         this.senha = senha;
+        this.endereco = endereco;
+    }
+
+    public EnderecoEntity getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(EnderecoEntity endereco) {
+        this.endereco = endereco;
     }
 
     public Long getId() {

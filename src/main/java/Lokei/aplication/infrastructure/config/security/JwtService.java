@@ -48,13 +48,14 @@ public class JwtService {
     }
 
     private SecretKey getKey() {
-        return Keys.hmacShaKeyFor(Decoders.BASE64.decode(encodeIfNecessary(securityProperties.jwt().secret())));
+        String secret = securityProperties.jwt().secret();
+
+        secret = secret.replace("\"", "");
+        byte[] keyBytes = secret.getBytes(java.nio.charset.StandardCharsets.UTF_8);
+
+        byte[] padded = new byte[32];
+        System.arraycopy(keyBytes, 0, padded, 0, Math.min(keyBytes.length, 32));
+        return Keys.hmacShaKeyFor(padded);
     }
 
-    private String encodeIfNecessary(String secret) {
-        if (secret.matches("^[A-Za-z0-9+/=]+$") && secret.length() % 4 == 0) {
-            return secret;
-        }
-        return java.util.Base64.getEncoder().encodeToString(secret.getBytes());
-    }
 }
