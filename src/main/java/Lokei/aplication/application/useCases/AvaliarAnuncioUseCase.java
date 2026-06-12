@@ -18,11 +18,6 @@ public class AvaliarAnuncioUseCase {
     private AvaliacaoRepository repoAvaliacao;
 
 
-    public Aluguel teste(Aluguel aluguel) {
-
-        return repoAluguel.save(aluguel);
-    }
-
     public String avaliarAnuncio(Avaliacao avaliacao) {
 
         try {

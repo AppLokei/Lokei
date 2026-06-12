@@ -20,9 +20,5 @@ public class AvaliacaoController {
         return ResponseEntity.ok().body(mensagem);
     }
 
-    @PostMapping(value = "/teste")
-    public ResponseEntity<Aluguel> teste(@RequestBody Aluguel aluguel) {
-        return ResponseEntity.ok().body(avaliarUseCase.teste(aluguel));
-    }
 
 }

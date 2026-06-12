@@ -1,9 +1,11 @@
 package Lokei.aplication.infrastructure.persistence.entity;
 
+import Lokei.aplication.adapter.dto.CpfResponse;
 import Lokei.aplication.infrastructure.exception.UsuarioException;
 import Lokei.aplication.infrastructure.persistence.repository.UsuarioRepository;
 import jakarta.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -115,6 +117,9 @@ public class Usuario implements Serializable {
         }
 
     }
+
+
+
 
 
     @Override
