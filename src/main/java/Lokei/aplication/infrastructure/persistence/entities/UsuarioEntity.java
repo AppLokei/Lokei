@@ -5,9 +5,7 @@ import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_usuario")
@@ -28,10 +26,15 @@ public class UsuarioEntity implements Serializable {
     @JoinColumn(name = "endereco_id")
     private EnderecoEntity endereco;
 
+
+
+    @OneToMany(mappedBy = "usuario")
+    private Set<AnuncioEntity> anuncios = new HashSet<>();
+
     public UsuarioEntity(){
     }
 
-    public UsuarioEntity(Long id, String nome, String email, String cpf, String telefone, String senha, EnderecoEntity endereco) {
+    public UsuarioEntity(Long id, String nome, String email, String cpf, String telefone, String senha, EnderecoEntity endereco, Set<AnuncioEntity> anuncios) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -39,6 +42,7 @@ public class UsuarioEntity implements Serializable {
         this.telefone = telefone;
         this.senha = senha;
         this.endereco = endereco;
+        this.anuncios = anuncios;
     }
 
     public EnderecoEntity getEndereco() {
@@ -97,11 +101,11 @@ public class UsuarioEntity implements Serializable {
         this.senha = senha;
     }
 
-    public List<AnuncioEntity> getAnuncios() {
+    public Set<AnuncioEntity> getAnuncios() {
         return anuncios;
     }
 
-    public void setAnuncios(List<AnuncioEntity> anuncios) {
+    public void setAnuncios(Set<AnuncioEntity> anuncios) {
         this.anuncios = anuncios;
     }
 

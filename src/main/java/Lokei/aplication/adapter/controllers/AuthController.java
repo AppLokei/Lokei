@@ -5,6 +5,7 @@ import Lokei.aplication.adapter.dto.req.LoginRequest;
 import Lokei.aplication.adapter.dto.req.RedefinirSenhaRequest;
 import Lokei.aplication.adapter.dto.res.AuthResponse;
 import Lokei.aplication.adapter.dto.res.MensagemResponse;
+import Lokei.aplication.adapter.dto.res.MensagemResponseLog;
 import Lokei.aplication.application.usecases.usuario.AutenticacaoUseCase;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -26,17 +27,17 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<MensagemResponse> logout() {
+    public ResponseEntity<MensagemResponseLog> logout() {
         return ResponseEntity.ok(autenticacaoUseCase.logout());
     }
 
     @PostMapping("/forgot-password")
-    public ResponseEntity<MensagemResponse> forgotPassword(@Valid @RequestBody EsqueciSenhaRequest request) {
+    public ResponseEntity<MensagemResponseLog> forgotPassword(@Valid @RequestBody EsqueciSenhaRequest request) {
         return ResponseEntity.ok(autenticacaoUseCase.esqueciSenha(request));
     }
 
     @PostMapping("/reset-password")
-    public ResponseEntity<MensagemResponse> resetPassword(@Valid @RequestBody RedefinirSenhaRequest request) {
+    public ResponseEntity<MensagemResponseLog> resetPassword(@Valid @RequestBody RedefinirSenhaRequest request) {
         return ResponseEntity.ok(autenticacaoUseCase.redefinirSenha(request));
     }
 }

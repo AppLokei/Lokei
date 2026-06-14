@@ -6,6 +6,7 @@ import Lokei.aplication.adapter.dto.req.LoginRequest;
 import Lokei.aplication.adapter.dto.req.RedefinirSenhaRequest;
 import Lokei.aplication.adapter.dto.res.AuthResponse;
 import Lokei.aplication.adapter.dto.res.MensagemResponse;
+import Lokei.aplication.adapter.dto.res.MensagemResponseLog;
 import Lokei.aplication.adapter.dto.support.UsuarioMapperSupport;
 import Lokei.aplication.domain.enums.tipoNotificacaoEnum;
 import Lokei.aplication.domain.exceptions.RegraDeNegocioException;
@@ -68,12 +69,12 @@ public class AutenticacaoUseCase {
         return new AuthResponse(jwtService.gerarToken(principal), "Bearer", UsuarioMapperSupport.toSessaoResponse(principal.getUsuario()));
     }
 
-    public MensagemResponse logout() {
-        return new MensagemResponse("Logout realizado com sucesso.");
+    public MensagemResponseLog logout() {
+        return new MensagemResponseLog("Logout realizado com sucesso.");
     }
 
     @Transactional
-    public MensagemResponse esqueciSenha(EsqueciSenhaRequest request) {
+    public MensagemResponseLog esqueciSenha(EsqueciSenhaRequest request) {
         usuarioRepository.findByEmailIgnoreCase(normalizarEmail(request.email())).ifPresent(usuario -> {
             TokenRecSenha token = new TokenRecSenha();
             token.setUsuario(usuario);
@@ -88,7 +89,7 @@ public class AutenticacaoUseCase {
                     "Use o token " + token.getToken() + " para redefinir sua senha."
             );
         });
-        return new MensagemResponse("Se o e-mail existir, uma instrucao de recuperacao foi registrada.");
+        return new MensagemResponseLog("Se o e-mail existir, uma instrucao de recuperacao foi registrada.");
     }
 
     private void validarSenha(String senha) {
@@ -105,7 +106,7 @@ public class AutenticacaoUseCase {
     }
 
     @Transactional
-    public MensagemResponse redefinirSenha(RedefinirSenhaRequest request) {
+    public MensagemResponseLog redefinirSenha(RedefinirSenhaRequest request) {
         validarSenha(request.novaSenha());
         TokenRecSenha token = tokenRecuperacaoSenhaRepository.findByToken(request.token())
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Token de recuperacao nao encontrado."));
@@ -117,7 +118,7 @@ public class AutenticacaoUseCase {
         UsuarioEntity usuario = token.getUsuario();
         usuario.setSenha(passwordEncoder.encode(request.novaSenha()));
         token.setUsado(true);
-        return new MensagemResponse("Senha redefinida com sucesso.");
+        return new MensagemResponseLog("Senha redefinida com sucesso.");
     }
 
     private String normalizarEmail(String email) {

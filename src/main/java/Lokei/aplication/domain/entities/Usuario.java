@@ -19,6 +19,10 @@ public class Usuario {
         this.senha = senha;
     }
 
+    public Usuario() {
+
+    }
+
     public Long getId() {
         return id;
     }
