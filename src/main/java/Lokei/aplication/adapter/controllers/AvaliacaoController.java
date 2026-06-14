@@ -1,6 +1,6 @@
 package Lokei.aplication.adapter.controllers;
 
-import Lokei.aplication.application.usecases.AvaliarAnuncioUseCase;
+import Lokei.aplication.application.usecases.avaliacao.AvaliarAnuncioUseCase;
 import Lokei.aplication.infrastructure.persistence.entities.AvaliacaoEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

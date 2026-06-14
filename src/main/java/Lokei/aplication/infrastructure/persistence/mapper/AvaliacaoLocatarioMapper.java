@@ -33,7 +33,7 @@ public class AvaliacaoLocatarioMapper {
 
         if (domain.getAluguelId() != null) {
             AluguelEntity aluguel = new AluguelEntity();
-            aluguel.setId(domain.getAluguelId().intValue());
+            aluguel.setId(domain.getAluguelId());
             entity.setAluguel(aluguel);
         }
 

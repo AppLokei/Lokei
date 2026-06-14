@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface DenunciaRepository extends JpaRepository<DenunciaEntity, Long> {
 
-    List<DenunciaEntity> findByAnuncioId(Long anuncioId);
+    List<DenunciaEntity> findByAnuncio_Id(Long anuncioId);
 
     List<DenunciaEntity> findByStatus(StatusDenunciaEnum status);
 
-    boolean existsByAnuncioIdAndDenuncianteIdAndStatus(Long anuncioId, Long denuncianteId, StatusDenunciaEnum status);
+    boolean existsByAnuncio_IdAndDenunciante_IdAndStatus(Long anuncioId, Long denuncianteId, StatusDenunciaEnum status);
 }

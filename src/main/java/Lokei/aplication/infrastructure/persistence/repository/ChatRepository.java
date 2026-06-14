@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface ChatRepository extends JpaRepository<ChatEntity, Long> {
 
-    Optional<ChatEntity> findByAnuncioIdAndLocatarioId(Long anuncioId, Long locatarioId);
+    Optional<ChatEntity> findByAnuncio_IdAndLocatario_Id(Long anuncioId, Long locatarioId);
 
     @Query("SELECT c FROM ChatEntity c WHERE c.locatario.id = :usuarioId OR c.locador.id = :usuarioId")
     List<ChatEntity> findAllByUsuarioId(@Param("usuarioId") Long usuarioId);

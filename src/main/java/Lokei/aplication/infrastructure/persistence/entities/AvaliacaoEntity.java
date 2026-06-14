@@ -1,5 +1,7 @@
 package Lokei.aplication.infrastructure.persistence.entities;
 
+import Lokei.aplication.domain.enums.StatusAluguelEnum;
+import Lokei.aplication.domain.exceptions.AluguelException;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -77,6 +79,20 @@ public class AvaliacaoEntity implements Serializable {
         this.aluguelEntity = aluguelEntity;
     }
 
+
+    public void statusavaliacao(StatusAluguelEnum status) {
+
+        if (status == StatusAluguelEnum.CONCLUIDO) {
+            return;
+        } else if (status == StatusAluguelEnum.CONFIRMADO) {
+            throw new AluguelException("ainda não é possível avaliar este anúncio, seu periodo de reserva ainda não finalizou");
+        } else if (status == StatusAluguelEnum.EM_ANDAMENTO) {
+            throw new AluguelException("não é possível avaliar esse anúncio, a reserva ainda não foi finalizada");
+        } else {
+            throw new AluguelException("não é possível avaliar esse anúncio, a reserva não foi utilizada");
+        }
+
+    }
 
     @Override
     public boolean equals(Object o) {

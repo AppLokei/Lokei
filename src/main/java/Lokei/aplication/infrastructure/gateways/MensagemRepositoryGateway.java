@@ -33,7 +33,7 @@ public class MensagemRepositoryGateway implements MensagemGateway {
 
     @Override
     public List<Mensagem> buscarMensagensPorChat(Long chatId) {
-        return mensagemRepository.findByChatIdOrderByDataHoraEnvioAsc(chatId)
+        return mensagemRepository.findByChat_IdOrderByDataHoraEnvioAsc(chatId)
                 .stream().map(MensagemMapper::toDomain).toList();
     }
 

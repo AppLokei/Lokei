@@ -18,7 +18,7 @@ public class AluguelEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private Date dataInicio;
     private Date dataFim;
     private BigDecimal valorTotal;
@@ -42,7 +42,7 @@ public class AluguelEntity implements Serializable {
 
     }
 
-    public AluguelEntity(Integer id, Date dataInicio, Date dataFim, BigDecimal valorTotal, StatusAluguelEnum statusAluguel, Date datacriacao, AvaliacaoEntity avaliacaoEntity, AnuncioEntity anuncio, UsuarioEntity locatario) {
+    public AluguelEntity(Long id, Date dataInicio, Date dataFim, BigDecimal valorTotal, StatusAluguelEnum statusAluguel, Date datacriacao, AvaliacaoEntity avaliacaoEntity, AnuncioEntity anuncio, UsuarioEntity locatario) {
         this.id = id;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
@@ -54,11 +54,11 @@ public class AluguelEntity implements Serializable {
         this.locatario = locatario;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -33,7 +33,7 @@ public class ChatRepositoryGateway implements ChatGateway {
 
     @Override
     public Optional<Chat> buscarChatPorAnuncioELocatario(Long anuncioId, Long locatarioId) {
-        return chatRepository.findByAnuncioIdAndLocatarioId(anuncioId, locatarioId)
+        return chatRepository.findByAnuncio_IdAndLocatario_Id(anuncioId, locatarioId)
                 .map(ChatMapper::toDomain);
     }
 

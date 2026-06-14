@@ -1,6 +1,7 @@
 package Lokei.aplication.infrastructure.persistence.entities;
 
 
+import Lokei.aplication.domain.exceptions.UsuarioException;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -108,6 +109,44 @@ public class UsuarioEntity implements Serializable {
     public void setAnuncios(Set<AnuncioEntity> anuncios) {
         this.anuncios = anuncios;
     }
+
+    public void validacaoDadosUsuario() {
+
+        String regexSenha = "^(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+
+        String regex = "\\d{11}";
+        if (nome == null || nome.isBlank()) throw new UsuarioException("Campo obrigatório.");
+
+        if (email == null || email.isBlank()) {
+            throw new UsuarioException("Campo obrigatório.");
+        } else if (!email.contains("@")) {
+            throw new UsuarioException("Informe um e-mail válido");
+        }
+
+        if (cpf == null || cpf.isBlank()) {
+            throw new UsuarioException("Campo obrigatório.");
+        } else if (!cpf.matches(regex)) {
+            throw new UsuarioException("Informe um CPF válido.");
+        }
+
+        if (senha == null || senha.isBlank()) {
+            throw new UsuarioException("Campo obrigatório.");
+
+        } else if (!senha.matches(regexSenha)) {
+            throw new UsuarioException("A senha deve conter no mínimo 8 caracteres, incluindo letras, números e caracteres especiais.");
+
+        }
+
+        if (telefone == null || telefone.isBlank()) {
+            throw new UsuarioException("Campo obrigatório.");
+        } else if (!telefone.matches(regex)) {
+            throw new UsuarioException("Informe um telefone válido");
+        }
+
+    }
+
+
+
 
     @Override
     public boolean equals(Object o) {

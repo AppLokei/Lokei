@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface MensagemRepository extends JpaRepository<MensagemEntity, Long> {
 
-    List<MensagemEntity> findByChatIdOrderByDataHoraEnvioAsc(Long chatId);
+    List<MensagemEntity> findByChat_IdOrderByDataHoraEnvioAsc(Long chatId);
 
     /**
      * Marca como lidas todas as mensagens de um chat que NÃO foram enviadas pelo destinatário

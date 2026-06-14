@@ -41,7 +41,7 @@ public class DenunciaRepositoryGateway implements DenunciaGateway {
 
     @Override
     public List<Denuncia> buscarDenunciasPorAnuncio(Long anuncioId) {
-        return denunciaRepository.findByAnuncioId(anuncioId)
+        return denunciaRepository.findByAnuncio_Id(anuncioId)
                 .stream().map(DenunciaMapper::toDomain).toList();
     }
 
@@ -53,7 +53,7 @@ public class DenunciaRepositoryGateway implements DenunciaGateway {
 
     @Override
     public boolean existeDenunciaPendentePorAnuncioEDenunciante(Long anuncioId, Long denuncianteId) {
-        return denunciaRepository.existsByAnuncioIdAndDenuncianteIdAndStatus(
+        return denunciaRepository.existsByAnuncio_IdAndDenunciante_IdAndStatus(
                 anuncioId, denuncianteId, StatusDenunciaEnum.PENDENTE);
     }
 }
