@@ -43,6 +43,10 @@ public class AnuncioEntity implements Serializable {
     @JoinColumn(name = "usuario_id", referencedColumnName = "id", nullable = false)
     private UsuarioEntity usuario;
 
+
+    @OneToMany(mappedBy = "anuncio")
+    private List<AluguelEntity> alugueis = new ArrayList<>();
+
     public AnuncioEntity(){}
 
     public AnuncioEntity(Long id, String titulo, String descricao, BigDecimal valorDiario, LocalDateTime dataCriacao, StatusAnuncioEnum status, FerramentaEntity ferramenta, Long usuarioId) {
@@ -143,6 +147,14 @@ public class AnuncioEntity implements Serializable {
         }
 
         this.usuario.setId(usuarioId);
+    }
+
+    public List<AluguelEntity> getAlugueis() {
+        return alugueis;
+    }
+
+    public void setAlugueis(List<AluguelEntity> alugueis) {
+        this.alugueis = alugueis;
     }
 
     @Override

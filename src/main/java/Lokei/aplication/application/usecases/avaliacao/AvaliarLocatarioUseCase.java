@@ -1,4 +1,4 @@
-package Lokei.aplication.application.usecases;
+package Lokei.aplication.application.usecases.avaliacao;
 
 import Lokei.aplication.domain.entities.Aluguel;
 import Lokei.aplication.domain.entities.AvaliacaoLocatario;

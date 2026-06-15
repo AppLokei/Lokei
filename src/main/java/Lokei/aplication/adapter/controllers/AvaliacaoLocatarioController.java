@@ -2,7 +2,7 @@ package Lokei.aplication.adapter.controllers;
 
 import Lokei.aplication.adapter.dto.req.AvaliacaoLocatarioRequest;
 import Lokei.aplication.adapter.dto.res.AvaliacaoLocatarioResponse;
-import Lokei.aplication.application.usecases.AvaliarLocatarioUseCase;
+import Lokei.aplication.application.usecases.avaliacao.AvaliarLocatarioUseCase;
 import Lokei.aplication.domain.entities.AvaliacaoLocatario;
 import Lokei.aplication.domain.gateways.AvaliacaoLocatarioGateway;
 import org.springframework.data.domain.Page;

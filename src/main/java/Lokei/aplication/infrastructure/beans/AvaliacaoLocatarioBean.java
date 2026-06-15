@@ -1,6 +1,6 @@
 package Lokei.aplication.infrastructure.beans;
 
-import Lokei.aplication.application.usecases.AvaliarLocatarioUseCase;
+import Lokei.aplication.application.usecases.avaliacao.AvaliarLocatarioUseCase;
 import Lokei.aplication.domain.gateways.AluguelGateway;
 import Lokei.aplication.domain.gateways.AnuncioGateway;
 import Lokei.aplication.domain.gateways.AvaliacaoLocatarioGateway;
