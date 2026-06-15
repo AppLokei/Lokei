@@ -15,10 +15,4 @@ public class AplicationApplication {
 		SpringApplication.run(AplicationApplication.class, args);
 	}
 
-	@Bean
-	public CommandLineRunner gerarHash(PasswordEncoder passwordEncoder) {
-		return args -> {
-			System.out.println(passwordEncoder.encode("Teste123A@"));
-		};
-	}
 }
