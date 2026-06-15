@@ -74,6 +74,7 @@ public class DetalharAnuncioUseCase {
 
         return new AnuncioDetalheResponse(
                 anuncio.getId(),
+                anuncio.getUsuarioId(),
                 anuncio.getTitulo(),
                 anuncio.getDescricao(),
                 anuncio.getValorDiario(),

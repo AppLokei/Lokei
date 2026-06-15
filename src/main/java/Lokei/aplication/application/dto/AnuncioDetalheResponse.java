@@ -5,6 +5,7 @@ import java.util.List;
 
 public record AnuncioDetalheResponse(
         Long id,
+        Long usuarioId,
         String titulo,
         String descricao,
         BigDecimal valorDiario,

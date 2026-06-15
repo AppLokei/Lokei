@@ -69,6 +69,7 @@ class DetalharAnuncioUseCaseTest {
 
         AnuncioDetalheResponse response = useCase.executar(9L, 3L);
 
+        assertEquals(3L, response.usuarioId());
         assertEquals("EDITAR_ANUNCIO", response.acaoPrimaria());
         assertFalse(response.disponivelParaReserva());
         assertEquals("url-1", response.imagens().get(0));
