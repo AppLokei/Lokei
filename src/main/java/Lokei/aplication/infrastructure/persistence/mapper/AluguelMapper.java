@@ -19,5 +19,15 @@ public class AluguelMapper {
                 entity.getLocatario() != null ? entity.getLocatario().getId() : null
         );
     }
+
+    public static AluguelEntity toEntity(Aluguel aluguel) {
+        AluguelEntity entity = new AluguelEntity();
+        entity.setId(aluguel.getId());
+        entity.setDataInicio(aluguel.getDataInicio());
+        entity.setDataFim(aluguel.getDataFim());
+        entity.setValorTotal(aluguel.getValorTotal());
+        entity.setStatusAluguel(aluguel.getStatus());
+        return entity;
+    }
 }
 

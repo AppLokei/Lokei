@@ -5,6 +5,17 @@ import Lokei.aplication.infrastructure.persistence.entities.UsuarioEntity;
 
 public class UsuarioMapper {
     public static Usuario toDomain(UsuarioEntity entity) {
-        return new Usuario();
+        if (entity == null) {
+            return null;
+        }
+
+        return new Usuario(
+                entity.getId(),
+                entity.getNome(),
+                entity.getEmail(),
+                entity.getCpf(),
+                entity.getTelefone(),
+                entity.getSenha()
+        );
     }
 }

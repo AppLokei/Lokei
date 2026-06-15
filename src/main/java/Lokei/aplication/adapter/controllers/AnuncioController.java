@@ -1,6 +1,11 @@
 package Lokei.aplication.adapter.controllers;
 
 import Lokei.aplication.adapter.dto.req.AnuncioFiltroRequest;
+import Lokei.aplication.application.dto.AnuncioDetalheResponse;
+import Lokei.aplication.application.dto.DisponibilidadeResponse;
+import Lokei.aplication.application.dto.SolicitarAluguelRequest;
+import Lokei.aplication.application.dto.SolicitarAluguelResponse;
+import Lokei.aplication.application.usecases.aluguel.SolicitarAluguelUseCase;
 import Lokei.aplication.domain.entities.Imagem;
 import Lokei.aplication.domain.exceptions.AnuncioNotFoundException;
 import Lokei.aplication.domain.gateways.AnuncioGateway;
@@ -32,10 +37,13 @@ public class AnuncioController {
     private final ReativarAnuncioUseCase reativarAnuncioUseCase;
     private final BuscarAnunciosUseCase buscarAnunciosUseCase;
     private final BuscarAnuncioPorUsuarioUseCase buscarAnuncioPorUsuarioUseCase;
+    private final DetalharAnuncioUseCase detalharAnuncioUseCase;
+    private final ConsultarDisponibilidadeAnuncioUseCase consultarDisponibilidadeAnuncioUseCase;
+    private final SolicitarAluguelUseCase solicitarAluguelUseCase;
     private final CloudinaryService cloudinaryService;
     private final AnuncioGateway anuncioGateway;
 
-    public AnuncioController(CriarAnuncioUseCase criarAnuncioUseCase, AtualizarAnuncioUseCase atualizarAnuncioUseCase, DesativarAnuncioUseCase desativarAnuncioUseCase, PausarAnuncioUseCase pausarAnuncioUseCase, ReativarAnuncioUseCase reativarAnuncioUseCase, BuscarAnunciosUseCase buscarAnunciosUseCase, BuscarAnuncioPorUsuarioUseCase buscarAnuncioPorUsuarioUseCase, CloudinaryService cloudinaryService, AnuncioGateway anuncioGateway) {
+    public AnuncioController(CriarAnuncioUseCase criarAnuncioUseCase, AtualizarAnuncioUseCase atualizarAnuncioUseCase, DesativarAnuncioUseCase desativarAnuncioUseCase, PausarAnuncioUseCase pausarAnuncioUseCase, ReativarAnuncioUseCase reativarAnuncioUseCase, BuscarAnunciosUseCase buscarAnunciosUseCase, BuscarAnuncioPorUsuarioUseCase buscarAnuncioPorUsuarioUseCase, DetalharAnuncioUseCase detalharAnuncioUseCase, ConsultarDisponibilidadeAnuncioUseCase consultarDisponibilidadeAnuncioUseCase, SolicitarAluguelUseCase solicitarAluguelUseCase, CloudinaryService cloudinaryService, AnuncioGateway anuncioGateway) {
         this.criarAnuncioUseCase = criarAnuncioUseCase;
         this.atualizarAnuncioUseCase = atualizarAnuncioUseCase;
         this.desativarAnuncioUseCase = desativarAnuncioUseCase;
@@ -43,6 +51,9 @@ public class AnuncioController {
         this.reativarAnuncioUseCase = reativarAnuncioUseCase;
         this.buscarAnunciosUseCase = buscarAnunciosUseCase;
         this.buscarAnuncioPorUsuarioUseCase = buscarAnuncioPorUsuarioUseCase;
+        this.detalharAnuncioUseCase = detalharAnuncioUseCase;
+        this.consultarDisponibilidadeAnuncioUseCase = consultarDisponibilidadeAnuncioUseCase;
+        this.solicitarAluguelUseCase = solicitarAluguelUseCase;
         this.cloudinaryService = cloudinaryService;
         this.anuncioGateway = anuncioGateway;
     }
@@ -125,6 +136,27 @@ public class AnuncioController {
         Page<Anuncio> anuncios = buscarAnuncioPorUsuarioUseCase.buscarAnuncioPorUsuario(identificador, pagina, tamanho);
 
         return ResponseEntity.ok(anuncios.map(AnuncioControllerMapper::toResponse));
+    }
+
+    @GetMapping("/anuncios/{id}")
+    public ResponseEntity<AnuncioDetalheResponse> detalhar(
+            @PathVariable("id") Long anuncioId,
+            @RequestParam(value = "usuarioId", required = false) Long usuarioId) {
+
+        return ResponseEntity.ok(detalharAnuncioUseCase.executar(anuncioId, usuarioId));
+    }
+
+    @GetMapping("/anuncios/{id}/disponibilidade")
+    public ResponseEntity<DisponibilidadeResponse> consultarDisponibilidade(@PathVariable("id") Long anuncioId) {
+        return ResponseEntity.ok(consultarDisponibilidadeAnuncioUseCase.executar(anuncioId));
+    }
+
+    @PostMapping("/anuncios/{id}/reservas")
+    public ResponseEntity<SolicitarAluguelResponse> solicitarAluguel(
+            @PathVariable("id") Long anuncioId,
+            @RequestBody SolicitarAluguelRequest request) {
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(solicitarAluguelUseCase.executar(anuncioId, request));
     }
 
 }
