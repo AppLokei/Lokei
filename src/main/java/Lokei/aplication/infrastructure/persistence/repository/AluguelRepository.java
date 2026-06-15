@@ -22,7 +22,7 @@ public interface AluguelRepository extends JpaRepository<AluguelEntity, Long> {
     """)
     boolean existsAluguelEmAndamento(Long anuncioId);
 
-    @Query("SELECT a FROM AluguelEntity a WHERE a.anuncio.usuario.id = :usuarioId")
+    @Query("SELECT a FROM AluguelEntity a WHERE a.anuncio.usuario.id = :usuarioId OR a.locatario.id = :usuarioId")
     Page<AluguelEntity> findByUsuarioId(Long usuarioId, Pageable pageable);
 
     List<AluguelEntity> findByAnuncio_IdAndStatusAluguelInOrderByDataInicioAsc(

@@ -20,4 +20,6 @@ public interface AluguelGateway {
      boolean existeReservaSobreposta(Long anuncioId, Collection<StatusAluguelEnum> status, Date dataInicio, Date dataFim);
 
      Aluguel salvar(Aluguel aluguel, Long anuncioId, Long locatarioId);
+
+     Aluguel atualizarStatus(Long id, StatusAluguelEnum novoStatus);
 }

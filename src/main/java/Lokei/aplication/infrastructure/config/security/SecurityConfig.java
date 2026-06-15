@@ -81,6 +81,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/arquivos/**").permitAll()
 
                         .requestMatchers("/error").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/alugueis-por-usuario").permitAll()
                         .requestMatchers("/alugueis/**").permitAll()
 
 

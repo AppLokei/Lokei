@@ -2,6 +2,7 @@ package Lokei.aplication.infrastructure.gateways;
 
 import Lokei.aplication.domain.entities.Aluguel;
 import Lokei.aplication.domain.enums.StatusAluguelEnum;
+import Lokei.aplication.domain.exceptions.RecursoNaoEncontradoException;
 import Lokei.aplication.domain.gateways.AluguelGateway;
 import Lokei.aplication.infrastructure.persistence.entities.AluguelEntity;
 import Lokei.aplication.infrastructure.persistence.mapper.AluguelMapper;
@@ -70,6 +71,16 @@ public class AluguelRepositoryGateway implements AluguelGateway {
         entity.setAnuncio(anuncioRepository.getReferenceById(anuncioId));
         entity.setLocatario(usuarioRepository.getReferenceById(locatarioId));
 
+        AluguelEntity salvo = aluguelRepository.save(entity);
+        return AluguelMapper.toDomain(salvo);
+    }
+
+    @Override
+    public Aluguel atualizarStatus(Long id, StatusAluguelEnum novoStatus) {
+        AluguelEntity entity = aluguelRepository.findById(id)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Aluguel não encontrado."));
+
+        entity.setStatusAluguel(novoStatus);
         AluguelEntity salvo = aluguelRepository.save(entity);
         return AluguelMapper.toDomain(salvo);
     }

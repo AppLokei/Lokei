@@ -11,7 +11,8 @@ public record AluguelResponse(
         Date dataFim,
         BigDecimal valorTotal,
         StatusAluguelEnum status,
-        Long anuncioId
+        Long anuncioId,
+        Long locatarioId
 ) {
 }
 

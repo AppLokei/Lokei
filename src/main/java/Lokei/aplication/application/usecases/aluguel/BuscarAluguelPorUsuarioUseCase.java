@@ -21,6 +21,10 @@ public class BuscarAluguelPorUsuarioUseCase {
     public Page<Aluguel> buscarAluguelPorUsuario(String identificador, int pagina, int tamanho) {
         String identificadorTratado = identificador.trim();
 
+        if (identificadorTratado.matches("\\d+") && identificadorTratado.length() < 11) {
+            return aluguelGateway.buscarAluguelPorUsuario(Long.parseLong(identificadorTratado), pagina, tamanho);
+        }
+
         UsuarioEntity usuario = switch (CpfOrEmailUtil.identify(identificadorTratado)) {
             case CPF -> usuarioGateway.buscarUsuarioPorCpf(identificadorTratado)
                     .orElseThrow(() -> new UsuarioNotFoundException(identificadorTratado));

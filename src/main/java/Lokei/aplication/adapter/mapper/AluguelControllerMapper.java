@@ -15,7 +15,8 @@ public class AluguelControllerMapper {
                 aluguel.getDataFim(),
                 aluguel.getValorTotal(),
                 aluguel.getStatus(),
-                aluguel.getAnuncioId()
+                aluguel.getAnuncioId(),
+                aluguel.getLocatarioId()
         );
     }
 }
