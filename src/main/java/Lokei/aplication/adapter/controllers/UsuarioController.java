@@ -18,7 +18,7 @@ public class UsuarioController {
 
 
     @PostMapping(value = "/cadastro")
-    public ResponseEntity<String> cadastro(@RequestBody UsuarioEntity usuario, @RequestParam String data){
+    public ResponseEntity<String> cadastro(@RequestBody UsuarioEntity usuario, @RequestParam(required = false) String data){
 
         try{
             String mensagem = serviceCad.cadastro(usuario, data);

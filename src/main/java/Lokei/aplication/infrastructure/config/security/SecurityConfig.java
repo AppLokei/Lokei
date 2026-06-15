@@ -70,6 +70,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/**").permitAll()
 
 
+                        .requestMatchers(HttpMethod.PUT, "/usuario/**").permitAll()
+
+
                         .requestMatchers(
                                 HttpMethod.GET,
                                 "/anuncios",

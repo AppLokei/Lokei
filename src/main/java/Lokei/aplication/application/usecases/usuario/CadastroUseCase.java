@@ -23,6 +23,9 @@ public class CadastroUseCase {
     @Value("${tokenCpf}")
     private String token;
 
+    @Value("${app.cpf.validation.enabled:true}")
+    private boolean cpfValidationEnabled;
+
     public String validarStatusCpf(String cpf, String data) {
 
         try {
@@ -53,10 +56,13 @@ public class CadastroUseCase {
         if (cpfJaCadastrado) throw new UsuarioException("Este CPF já está associado a uma conta");
 
         usuario.validacaoDadosUsuario();
-        String situacaoCadastral = validarStatusCpf(usuario.getCpf(), data);
 
-        if (!"REGULAR".equals(situacaoCadastral)) {
-            return "Esse cpf não se encontra em situação regular.";
+        if (cpfValidationEnabled) {
+            String situacaoCadastral = validarStatusCpf(usuario.getCpf(), data);
+
+            if (!"REGULAR".equals(situacaoCadastral)) {
+                return "Esse cpf não se encontra em situação regular.";
+            }
         }
 
         usuario.setSenha(
