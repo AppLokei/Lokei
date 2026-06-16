@@ -13,6 +13,23 @@ import { CATEGORIAS } from "../lib/constants.js";
 import { useToast } from "../context/ToastContext.jsx";
 import "./Home.css";
 
+const ICONES_CATEGORIA = {
+  ALICATES: "🔧",
+  APARADORES_E_CORTADORES_DE_GRAMA: "🌿",
+  BETONEIRAS: "🛞",
+  CAIXAS_E_MALETAS_DE_FERRAMENTAS: "🧰",
+  CHAVES_DE_FENDA: "🪛",
+  EQUIPAMENTOS_DE_PROTECAO_INDIVIDUAL: "🦺",
+  ESCADAS: "🪜",
+  ESMILHADEIRAS: "⚙️",
+  ESQUADROS_FITAS_METRICAS_E_TRENAS: "📏",
+  FURADEIRAS_E_PARAFUSADEIRAS: "🔩",
+  LIXADEIRAS: "🪚",
+  MARTELOS: "🔨",
+  SERRAS_E_MOTOSSERRAS: "🪚",
+  OUTROS: "🧱",
+};
+
 const Home = () => {
   const navigate = useNavigate();
   const toast = useToast();
@@ -81,7 +98,7 @@ const Home = () => {
           <div className="homeCategoryRow">
             {CATEGORIAS.slice(0, 8).map((categoria) => (
               <button key={categoria.value} type="button" className="homeCategoryCard" onClick={() => navigate(`/anuncios?categoria=${categoria.value}`)}>
-                <span className="homeCategoryIcon">●</span>
+                <span className="homeCategoryIcon" aria-hidden="true">{ICONES_CATEGORIA[categoria.value] ?? "🛠️"}</span>
                 <span className="homeCategoryLabel">{categoria.label}</span>
               </button>
             ))}

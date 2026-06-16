@@ -127,16 +127,19 @@
 
 .homeCategoryRow {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 14px;
 }
 
 .homeCategoryCard {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
-  padding: 12px 14px;
-  min-height: 44px;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+  padding: 18px 12px;
+  min-height: 104px;
   border-radius: 18px;
   border: 1px solid oklch(80.4% 0.156 82.5 / 0.2);
   background: oklch(98% 0.01 90);
@@ -163,20 +166,45 @@
 }
 
 .homeCategoryIcon {
-  width: 40px;
-  height: 40px;
-  border-radius: 14px;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
   background: var(--color-amarelo-suave);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  font-size: 1.7rem;
+  line-height: 1;
 }
 
 .homeCategoryLabel {
   font-weight: 700;
   color: var(--color-grafite-escuro);
-  font-size: 0.98rem;
+  font-size: 0.9rem;
+  line-height: 1.25;
+  text-align: center;
+}
+
+/* Busca em destaque */
+.homeSearchField .inputField {
+  width: 100%;
+  max-width: 620px;
+}
+
+.homeSearchField .inputLabel {
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-grafite-escuro);
+  margin-bottom: 8px;
+}
+
+.homeSearchField .inputControl {
+  min-height: 54px;
+  font-size: 1.05rem;
+  border-radius: 18px;
+  padding: 14px 20px;
+  box-shadow: 0 12px 25px rgba(24, 24, 24, 0.06);
 }
 
 .homeGrid {
