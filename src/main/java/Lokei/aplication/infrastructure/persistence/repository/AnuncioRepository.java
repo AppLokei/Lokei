@@ -28,12 +28,12 @@ public interface AnuncioRepository extends JpaRepository<Anuncio, Integer> {
             join a.proprietario p
             left join p.endereco e
             where a.status = Lokei.aplication.infrastructure.persistence.enums.statusAnuncioEnum.ATIVO
-              and (:termo is null or lower(a.titulo) like lower(concat('%', :termo, '%'))
-                   or lower(a.descricao) like lower(concat('%', :termo, '%')))
+              and (:termo is null or lower(a.titulo) like lower(concat('%', cast(:termo as string), '%'))
+                   or lower(a.descricao) like lower(concat('%', cast(:termo as string), '%')))
               and (:categoria is null or a.categoria = :categoria)
               and (:precoMin is null or a.valorDiario >= :precoMin)
               and (:precoMax is null or a.valorDiario <= :precoMax)
-              and (:cidade is null or lower(e.cidade) = lower(:cidade))
+              and (:cidade is null or lower(e.cidade) = lower(cast(:cidade as string)))
             """)
     Page<Anuncio> buscarCatalogo(
             @Param("termo") String termo,
