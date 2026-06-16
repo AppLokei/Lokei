@@ -1,8 +1,10 @@
 package Lokei.aplication.adapter.controllers;
 
 
+import Lokei.aplication.application.usecases.usuario.BuscarUsuarioUseCase;
 import Lokei.aplication.application.usecases.usuario.CadastroUseCase;
 import Lokei.aplication.application.usecases.usuario.EditarUsuarioUseCase;
+import Lokei.aplication.adapter.dto.res.PerfilResponse;
 import Lokei.aplication.domain.exceptions.UsuarioException;
 import Lokei.aplication.infrastructure.persistence.entities.UsuarioEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,14 @@ public class UsuarioController {
 
     @Autowired
     private CadastroUseCase serviceCad;
+
+    @Autowired
+    private BuscarUsuarioUseCase buscarUsuarioUseCase;
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PerfilResponse> buscar(@PathVariable Long id) {
+        return ResponseEntity.ok(buscarUsuarioUseCase.buscarPorId(id));
+    }
 
 
     @PostMapping(value = "/cadastro")

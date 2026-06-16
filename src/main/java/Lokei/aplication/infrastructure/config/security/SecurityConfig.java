@@ -81,6 +81,10 @@ public class SecurityConfig {
                                 "/anuncios/principais"
                         ).permitAll()
 
+                        .requestMatchers(HttpMethod.GET, "/categorias").permitAll()
+
+                        .requestMatchers(HttpMethod.GET, "/usuario/*").permitAll()
+
                         .requestMatchers(HttpMethod.GET, "/arquivos/**").permitAll()
 
                         .requestMatchers("/error").permitAll()
