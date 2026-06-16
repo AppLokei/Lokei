@@ -30,8 +30,10 @@ public class CloudinaryService {
         }
         try {
             Map resultado = cloudinary.uploader().upload(imagem.getBytes(), ObjectUtils.emptyMap());
+            Object secureUrl = resultado.get("secure_url");
+            Object url = secureUrl != null ? secureUrl : resultado.get("url");
             Map<String, String> dados = new HashMap<>();
-            dados.put("url", resultado.get("url").toString());
+            dados.put("url", url.toString());
             dados.put("publicId", resultado.get("public_id").toString());
             return dados;
         } catch (IOException e) {

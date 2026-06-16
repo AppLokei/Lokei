@@ -63,8 +63,6 @@ public class AnuncioController {
             @RequestPart("anuncio") @Valid AnuncioRequest request,
             @RequestPart("imagens") List<MultipartFile> arquivos) {
 
-        List<String> imagensUrl = arquivos.stream().map(arquivo -> cloudinaryService.uploadImagem(arquivo).get("url")).toList();
-
         List<Imagem> imagens = new ArrayList<>();
         for (MultipartFile arquivo : arquivos) {
             Map<String, String> resultado = cloudinaryService.uploadImagem(arquivo);
