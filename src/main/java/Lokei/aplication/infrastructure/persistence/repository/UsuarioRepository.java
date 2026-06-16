@@ -1,19 +1,13 @@
 package Lokei.aplication.infrastructure.persistence.repository;
 
-import Lokei.aplication.domain.entities.Usuario;
-import Lokei.aplication.infrastructure.persistence.entities.UsuarioEntity;
+import Lokei.aplication.infrastructure.persistence.entity.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 
-import java.util.Optional;
+public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
-public interface UsuarioRepository extends JpaRepository<UsuarioEntity, Long> {
-
-    Optional<UsuarioEntity> findByEmail(String email);
-
-    Optional<UsuarioEntity> findByEmailIgnoreCase(String email);
+    Optional<Usuario> findByEmailIgnoreCase(String email);
 
     boolean existsByEmailIgnoreCase(String email);
 

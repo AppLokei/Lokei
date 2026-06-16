@@ -1,9 +1,9 @@
 package Lokei.aplication.infrastructure.shared;
 
-import Lokei.aplication.domain.exceptions.AcessoNegadoException;
-import Lokei.aplication.domain.exceptions.NaoAutenticadoException;
-import Lokei.aplication.domain.exceptions.RegraDeNegocioException;
-import Lokei.aplication.domain.exceptions.RecursoNaoEncontradoException;
+import Lokei.aplication.infrastructure.shared.exception.AcessoNegadoException;
+import Lokei.aplication.infrastructure.shared.exception.NaoAutenticadoException;
+import Lokei.aplication.infrastructure.shared.exception.RegraDeNegocioException;
+import Lokei.aplication.infrastructure.shared.exception.RecursoNaoEncontradoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
@@ -49,6 +49,7 @@ public class ApiExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiErrorResponse> handleUnexpected(Exception exception) {
+        exception.printStackTrace(); 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(criarCorpo("INTERNAL_ERROR", "Erro interno inesperado."));
     }

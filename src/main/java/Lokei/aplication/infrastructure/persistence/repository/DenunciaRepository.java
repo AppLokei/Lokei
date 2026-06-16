@@ -1,16 +1,17 @@
 package Lokei.aplication.infrastructure.persistence.repository;
 
-import Lokei.aplication.domain.enums.StatusDenunciaEnum;
-import Lokei.aplication.infrastructure.persistence.entities.DenunciaEntity;
+import Lokei.aplication.infrastructure.persistence.entity.Denuncia;
+import Lokei.aplication.infrastructure.persistence.enums.statusDenunciaEnum;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface DenunciaRepository extends JpaRepository<DenunciaEntity, Long> {
+public interface DenunciaRepository extends JpaRepository<Denuncia, Integer> {
 
-    List<DenunciaEntity> findByAnuncioId(Long anuncioId);
+    @EntityGraph(attributePaths = {"anuncio", "anuncio.proprietario", "denunciante", "administrador"})
+    List<Denuncia> findByStatusOrderByDataCriacaoDesc(statusDenunciaEnum status);
 
-    List<DenunciaEntity> findByStatus(StatusDenunciaEnum status);
-
-    boolean existsByAnuncioIdAndDenuncianteIdAndStatus(Long anuncioId, Long denuncianteId, StatusDenunciaEnum status);
+    @EntityGraph(attributePaths = {"anuncio", "anuncio.proprietario", "denunciante", "administrador"})
+    List<Denuncia> findAllByOrderByDataCriacaoDesc();
 }
